@@ -1,189 +1,398 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Call of Duty — Actualités françaises</title>
-    <link>https://www.callofduty.com/fr/blog?count=50</link>
-    <description>Actualités, annonces et notes de correctif officielles Call of Duty en français.</description>
-    <atom:link href="https://shynen.github.io/tensho-cod-rss/cod.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Modern Warfare 4 Open Beta: Everything You Need to Know</title>
-      <link>https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-open-beta-everything-you-need-to-know</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-open-beta-everything-you-need-to-know</guid>
-      <description>Nouvelle publication officielle Call of Duty : Modern Warfare 4 Open Beta: Everything You Need to Know</description>
-    </item>
-    <item>
-      <title>Multijoueur de Modern Warfare 4 : présentation détaillée des systèmes de gameplay</title>
-      <link>https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-next-highlights-multiplayer-gameplay-systems</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-next-highlights-multiplayer-gameplay-systems</guid>
-      <description>Nouvelle publication officielle Call of Duty : Multijoueur de Modern Warfare 4 : présentation détaillée des systèmes de gameplay</description>
-    </item>
-    <item>
-      <title>Détails des bonus de précommande des différentes éditions de Modern Warfare 4</title>
-      <link>https://www.callofduty.com/fr/blog/2026/05/call-of-duty-modern-warfare-4-preorder-benefits-game-editions-details</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/05/call-of-duty-modern-warfare-4-preorder-benefits-game-editions-details</guid>
-      <description>Nouvelle publication officielle Call of Duty : Détails des bonus de précommande des différentes éditions de Modern Warfare 4</description>
-    </item>
-    <item>
-      <title>Modern Warfare 4 Weekend One Beta Content: Initial Intel</title>
-      <link>https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-next-early-access-beta-weekend-one</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-next-early-access-beta-weekend-one</guid>
-      <description>Nouvelle publication officielle Call of Duty : Modern Warfare 4 Weekend One Beta Content: Initial Intel</description>
-    </item>
-    <item>
-      <title>Call of Duty: NEXT and Beta: Early Intel</title>
-      <link>https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-next-early-intel-pc-specs</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-next-early-intel-pc-specs</guid>
-      <description>Nouvelle publication officielle Call of Duty : Call of Duty: NEXT and Beta: Early Intel</description>
-    </item>
-    <item>
-      <title>Saison 5 rechargée de Black Ops 7 : renseignements complets</title>
-      <link>https://www.callofduty.com/fr/blog/2026/08/call-of-duty-black-ops-7-warzone-season-05-reloaded-announcement</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/08/call-of-duty-black-ops-7-warzone-season-05-reloaded-announcement</guid>
-      <description>Nouvelle publication officielle Call of Duty : Saison 5 rechargée de Black Ops 7 : renseignements complets</description>
-    </item>
-    <item>
-      <title>Présentation de la Saison 7 de Call of Duty: Mobile — Précision royale</title>
-      <link>https://www.callofduty.com/fr/blog/2026/07/call-of-duty-mobile-season-7-terminated</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/07/call-of-duty-mobile-season-7-terminated</guid>
-      <description>Nouvelle publication officielle Call of Duty : Présentation de la Saison 7 de Call of Duty: Mobile — Précision royale</description>
-    </item>
-    <item>
-      <title>Saison 5 de Black Ops 7 - Passe de combat, Black Cell et packs</title>
-      <link>https://www.callofduty.com/fr/blog/2026/07/call-of-duty-black-ops-7-warzone-season-05-battle-pass-blackcell-store</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/07/call-of-duty-black-ops-7-warzone-season-05-battle-pass-blackcell-store</guid>
-      <description>Nouvelle publication officielle Call of Duty : Saison 5 de Black Ops 7 - Passe de combat, Black Cell et packs</description>
-    </item>
-    <item>
-      <title>Bêta ouverte de MW4, NEXT, Fanatics Fest et camouflage numéroté</title>
-      <link>https://www.callofduty.com/fr/blog/2026/07/call-of-duty-modern-warfare-4-open-beta-next-fanatics-fest-recap-serialized-camo-preorder-bonus</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/07/call-of-duty-modern-warfare-4-open-beta-next-fanatics-fest-recap-serialized-camo-preorder-bonus</guid>
-      <description>Nouvelle publication officielle Call of Duty : Bêta ouverte de MW4, NEXT, Fanatics Fest et camouflage numéroté</description>
-    </item>
-    <item>
-      <title>La rencontre d'Aston Martin et Modern Warfare</title>
-      <link>https://www.callofduty.com/fr/blog/2026/07/call-of-duty-modern-warfare-4-aston-martin-dreadnought</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/07/call-of-duty-modern-warfare-4-aston-martin-dreadnought</guid>
-      <description>Nouvelle publication officielle Call of Duty : La rencontre d'Aston Martin et Modern Warfare</description>
-    </item>
-    <item>
-      <title>Multijoueur de MW4 : Renseignements sur Secteur létal</title>
-      <link>https://www.callofduty.com/fr/blog/2026/07/call-of-duty-modern-warfare-4-multiplayer-kill-block</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/07/call-of-duty-modern-warfare-4-multiplayer-kill-block</guid>
-      <description>Nouvelle publication officielle Call of Duty : Multijoueur de MW4 : Renseignements sur Secteur létal</description>
-    </item>
-    <item>
-      <title>Saison 5 de Black Ops 7 : renseignements complets</title>
-      <link>https://www.callofduty.com/fr/blog/2026/07/call-of-duty-black-ops-7-warzone-season-05-announcement</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/07/call-of-duty-black-ops-7-warzone-season-05-announcement</guid>
-      <description>Nouvelle publication officielle Call of Duty : Saison 5 de Black Ops 7 : renseignements complets</description>
-    </item>
-    <item>
-      <title>Présentation de la Saison 6 de Call of Duty: Mobile — Voleurs de cœurs</title>
-      <link>https://www.callofduty.com/fr/blog/2026/06/call-of-duty-mobile-season-6-take-your-heart</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/06/call-of-duty-mobile-season-6-take-your-heart</guid>
-      <description>Nouvelle publication officielle Call of Duty : Présentation de la Saison 6 de Call of Duty: Mobile — Voleurs de cœurs</description>
-    </item>
-    <item>
-      <title>Saison 4 Rechargée de Black Ops 7 : renseignements complets</title>
-      <link>https://www.callofduty.com/fr/blog/2026/06/call-of-duty-black-ops-7-warzone-season-04-reloaded-announcement</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/06/call-of-duty-black-ops-7-warzone-season-04-reloaded-announcement</guid>
-      <description>Nouvelle publication officielle Call of Duty : Saison 4 Rechargée de Black Ops 7 : renseignements complets</description>
-    </item>
-    <item>
-      <title>Comment assister au Call of Duty Endowment Bowl VII présenté par USAA et gagner des récompenses</title>
-      <link>https://www.callofduty.com/fr/blog/2026/06/call-of-duty-endowment-code-bowl-vii</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/06/call-of-duty-endowment-code-bowl-vii</guid>
-      <description>Nouvelle publication officielle Call of Duty : Comment assister au Call of Duty Endowment Bowl VII présenté par USAA et gagner des récompenses</description>
-    </item>
-    <item>
-      <title>Modern Warfare 4 : accès anticipé à la campagne</title>
-      <link>https://www.callofduty.com/fr/blog/2026/06/call-of-duty-modern-warfare-4-campaign-early-access</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/06/call-of-duty-modern-warfare-4-campaign-early-access</guid>
-      <description>Nouvelle publication officielle Call of Duty : Modern Warfare 4 : accès anticipé à la campagne</description>
-    </item>
-    <item>
-      <title>Plongée en profondeur dans le mode DMZ de Modern Warfare 4</title>
-      <link>https://www.callofduty.com/fr/blog/2026/06/call-of-duty-modern-warfare-4-dmz-deep-dive</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/06/call-of-duty-modern-warfare-4-dmz-deep-dive</guid>
-      <description>Nouvelle publication officielle Call of Duty : Plongée en profondeur dans le mode DMZ de Modern Warfare 4</description>
-    </item>
-    <item>
-      <title>Mise à jour de la Saison 4 par #TeamRICOCHET</title>
-      <link>https://www.callofduty.com/fr/blog/2026/06/call-of-duty-black-ops-7-warzone-ricochet-anti-cheat-season-04</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/06/call-of-duty-black-ops-7-warzone-ricochet-anti-cheat-season-04</guid>
-      <description>Nouvelle publication officielle Call of Duty : Mise à jour de la Saison 4 par #TeamRICOCHET</description>
-    </item>
-    <item>
-      <title>Saison 4 de Black Ops 7 : renseignements complets</title>
-      <link>https://www.callofduty.com/fr/blog/2026/06/call-of-duty-black-ops-7-warzone-season-04-announcement</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/06/call-of-duty-black-ops-7-warzone-season-04-announcement</guid>
-      <description>Nouvelle publication officielle Call of Duty : Saison 4 de Black Ops 7 : renseignements complets</description>
-    </item>
-    <item>
-      <title>Présentation de Call of Duty: Modern Warfare 4</title>
-      <link>https://www.callofduty.com/fr/blog/2026/05/call-of-duty-modern-warfare-4-announcement</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/05/call-of-duty-modern-warfare-4-announcement</guid>
-      <description>Nouvelle publication officielle Call of Duty : Présentation de Call of Duty: Modern Warfare 4</description>
-    </item>
-    <item>
-      <title>UPDATING: Modern Warfare 4: Latest Official Intel Here</title>
-      <link>https://www.callofduty.com/fr/blog/2026/05/modernwarfare4-fob</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/05/modernwarfare4-fob</guid>
-      <description>Nouvelle publication officielle Call of Duty : UPDATING: Modern Warfare 4: Latest Official Intel Here</description>
-    </item>
-    <item>
-      <title>Introducing Call of Duty: Mobile Season 5 — Revenge</title>
-      <link>https://www.callofduty.com/fr/blog/2026/05/call-of-duty-mobile-season-5-2026-revenge-the-boys</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/05/call-of-duty-mobile-season-5-2026-revenge-the-boys</guid>
-      <description>Nouvelle publication officielle Call of Duty : Introducing Call of Duty: Mobile Season 5 — Revenge</description>
-    </item>
-    <item>
-      <title>Mois de reconnaissance des militaires avec Call of Duty Endowment, présenté par USAA</title>
-      <link>https://www.callofduty.com/fr/blog/2026/05/call-of-duty-endowment-2026-military-appreciation-month-usaa</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/05/call-of-duty-endowment-2026-military-appreciation-month-usaa</guid>
-      <description>Nouvelle publication officielle Call of Duty : Mois de reconnaissance des militaires avec Call of Duty Endowment, présenté par USAA</description>
-    </item>
-    <item>
-      <title>Black Ops 7 Season 03 Reloaded: Full Intel</title>
-      <link>https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-warzone-season-03-reloaded-announcement</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-warzone-season-03-reloaded-announcement</guid>
-      <description>Nouvelle publication officielle Call of Duty : Black Ops 7 Season 03 Reloaded: Full Intel</description>
-    </item>
-    <item>
-      <title>Présentation de la Saison 4 de Call of Duty: Mobile — Prison éternelle</title>
-      <link>https://www.callofduty.com/fr/blog/2026/04/call-of-duty-mobile-season-4-2026-eternal-prison</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/04/call-of-duty-mobile-season-4-2026-eternal-prison</guid>
-      <description>Nouvelle publication officielle Call of Duty : Présentation de la Saison 4 de Call of Duty: Mobile — Prison éternelle</description>
-    </item>
-    <item>
-      <title>Le programme pilote débute aujourd'hui dans Black Ops 7</title>
-      <link>https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-expanding-accessibility-new-control-options</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-expanding-accessibility-new-control-options</guid>
-      <description>Nouvelle publication officielle Call of Duty : Le programme pilote débute aujourd'hui dans Black Ops 7</description>
-    </item>
-    <item>
-      <title>Mise à jour de la Saison 3 par #TeamRICOCHET</title>
-      <link>https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-ricochet-anti-cheat-season-03</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-ricochet-anti-cheat-season-03</guid>
-      <description>Nouvelle publication officielle Call of Duty : Mise à jour de la Saison 3 par #TeamRICOCHET</description>
-    </item>
-    <item>
-      <title>Black Ops 7 Season 03 Battle Pass, BlackCell, and Bundles</title>
-      <link>https://www.callofduty.com/fr/blog/2026/03/call-of-duty-black-ops-7-season-03-battle-pass-blackcell-store-bundles</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/03/call-of-duty-black-ops-7-season-03-battle-pass-blackcell-store-bundles</guid>
-      <description>Nouvelle publication officielle Call of Duty : Black Ops 7 Season 03 Battle Pass, BlackCell, and Bundles</description>
-    </item>
-    <item>
-      <title>Saison 3 de Black Ops 7 : renseignements complets</title>
-      <link>https://www.callofduty.com/fr/blog/2026/03/call-of-duty-black-ops-7-warzone-season-03-announcement</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/03/call-of-duty-black-ops-7-warzone-season-03-announcement</guid>
-      <description>Nouvelle publication officielle Call of Duty : Saison 3 de Black Ops 7 : renseignements complets</description>
-    </item>
-    <item>
-      <title>Présentation de la Saison 3 de Call of Duty: Mobile — Paranoïa</title>
-      <link>https://www.callofduty.com/fr/blog/2026/03/call-of-duty-mobile-season-3-2026-paranoia</link>
-      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/03/call-of-duty-mobile-season-3-2026-paranoia</guid>
-      <description>Nouvelle publication officielle Call of Duty : Présentation de la Saison 3 de Call of Duty: Mobile — Paranoïa</description>
-    </item>
-  </channel>
-</rss>
+<ns0:feed xmlns:ns0="http://www.w3.org/2005/Atom" xml:lang="fr-fr">
+  <ns0:id>https://shynen.github.io/tensho-cod-rss/cod.xml</ns0:id>
+  <ns0:title>Call of Duty — Actualités françaises</ns0:title>
+  <ns0:updated>2026-08-22T18:39:00.660931+00:00</ns0:updated>
+  <ns0:link href="https://www.callofduty.com/fr/blog" rel="alternate" type="text/html" />
+  <ns0:link href="https://shynen.github.io/tensho-cod-rss/cod.xml" rel="self" type="application/atom+xml" />
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-open-beta-everything-you-need-to-know</ns0:id>
+    <ns0:title>Modern Warfare 4 Open Beta: Everything You Need to Know</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-open-beta-everything-you-need-to-know" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.660958+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.660958+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;MW4 ... Modern Warfare 4 Open Beta: Everything You Need to Know Actus Annonces Download the Modern Warfare® 4 Open Beta*, earn rewards, master new systems, explore the Campaign, Multiplayer, Kill Block, Ground War: Combat Outpost, Call of Duty®: Warzone™ Resurgence, with detailed intel every step of the way.&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-open-beta-everything-you-need-to-know"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>MW4 ... Modern Warfare 4 Open Beta: Everything You Need to Know Actus Annonces Download the Modern Warfare® 4 Open Beta*, earn rewards, master new systems, explore the Campaign, Multiplayer, Kill Block, Ground War: Combat Outpost, Call of Duty®: Warzone™ Resurgence, with detailed intel every step of the way.</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-next-highlights-multiplayer-gameplay-systems</ns0:id>
+    <ns0:title>Multijoueur de Modern Warfare 4 : présentation détaillée des systèmes de gameplay</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-next-highlights-multiplayer-gameplay-systems" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.660976+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.660976+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;MW4 ... Multijoueur de Modern Warfare 4 : présentation détaillée des systèmes de gameplay Actus Annonces&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-next-highlights-multiplayer-gameplay-systems"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>MW4 ... Multijoueur de Modern Warfare 4 : présentation détaillée des systèmes de gameplay Actus Annonces</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/05/call-of-duty-modern-warfare-4-preorder-benefits-game-editions-details</ns0:id>
+    <ns0:title>Détails des bonus de précommande des différentes éditions de Modern Warfare 4</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/05/call-of-duty-modern-warfare-4-preorder-benefits-game-editions-details" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.660983+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.660983+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;MW4 ... Détails des bonus de précommande des différentes éditions de Modern Warfare 4 Actus Annonces&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/05/call-of-duty-modern-warfare-4-preorder-benefits-game-editions-details"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>MW4 ... Détails des bonus de précommande des différentes éditions de Modern Warfare 4 Actus Annonces</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-next-early-access-beta-weekend-one</ns0:id>
+    <ns0:title>Modern Warfare 4 Weekend One Beta Content: Initial Intel</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-next-early-access-beta-weekend-one" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.660990+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.660990+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Modern Warfare 4 Weekend One Beta Content: Initial Intel&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-next-early-access-beta-weekend-one"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Modern Warfare 4 Weekend One Beta Content: Initial Intel</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-next-early-intel-pc-specs</ns0:id>
+    <ns0:title>Call of Duty: NEXT and Beta: Early Intel</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-next-early-intel-pc-specs" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.660996+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.660996+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Call of Duty: NEXT and Beta: Early Intel&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-next-early-intel-pc-specs"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Call of Duty: NEXT and Beta: Early Intel</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/08/call-of-duty-black-ops-7-warzone-season-05-reloaded-announcement</ns0:id>
+    <ns0:title>Saison 5 rechargée de Black Ops 7 : renseignements complets</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/08/call-of-duty-black-ops-7-warzone-season-05-reloaded-announcement" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661002+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661002+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Saison 5 rechargée de Black Ops 7 : renseignements complets&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/08/call-of-duty-black-ops-7-warzone-season-05-reloaded-announcement"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Saison 5 rechargée de Black Ops 7 : renseignements complets</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/07/call-of-duty-mobile-season-7-terminated</ns0:id>
+    <ns0:title>Présentation de la Saison 7 de Call of Duty: Mobile — Précision royale</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/07/call-of-duty-mobile-season-7-terminated" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661007+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661007+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Présentation de la Saison 7 de Call of Duty: Mobile — Précision royale&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/07/call-of-duty-mobile-season-7-terminated"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Présentation de la Saison 7 de Call of Duty: Mobile — Précision royale</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/07/call-of-duty-black-ops-7-warzone-season-05-battle-pass-blackcell-store</ns0:id>
+    <ns0:title>Saison 5 de Black Ops 7 - Passe de combat, Black Cell et packs</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/07/call-of-duty-black-ops-7-warzone-season-05-battle-pass-blackcell-store" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661012+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661012+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Saison 5 de Black Ops 7 - Passe de combat, Black Cell et packs&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/07/call-of-duty-black-ops-7-warzone-season-05-battle-pass-blackcell-store"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Saison 5 de Black Ops 7 - Passe de combat, Black Cell et packs</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/07/call-of-duty-modern-warfare-4-open-beta-next-fanatics-fest-recap-serialized-camo-preorder-bonus</ns0:id>
+    <ns0:title>Bêta ouverte de MW4, NEXT, Fanatics Fest et camouflage numéroté</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/07/call-of-duty-modern-warfare-4-open-beta-next-fanatics-fest-recap-serialized-camo-preorder-bonus" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661019+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661019+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Bêta ouverte de MW4, NEXT, Fanatics Fest et camouflage numéroté&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/07/call-of-duty-modern-warfare-4-open-beta-next-fanatics-fest-recap-serialized-camo-preorder-bonus"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Bêta ouverte de MW4, NEXT, Fanatics Fest et camouflage numéroté</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/07/call-of-duty-modern-warfare-4-aston-martin-dreadnought</ns0:id>
+    <ns0:title>La rencontre d'Aston Martin et Modern Warfare</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/07/call-of-duty-modern-warfare-4-aston-martin-dreadnought" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661027+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661027+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;La rencontre d'Aston Martin et Modern Warfare&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/07/call-of-duty-modern-warfare-4-aston-martin-dreadnought"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>La rencontre d'Aston Martin et Modern Warfare</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/07/call-of-duty-modern-warfare-4-multiplayer-kill-block</ns0:id>
+    <ns0:title>Multijoueur de MW4 : Renseignements sur Secteur létal</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/07/call-of-duty-modern-warfare-4-multiplayer-kill-block" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661034+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661034+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Multijoueur de MW4 : Renseignements sur Secteur létal&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/07/call-of-duty-modern-warfare-4-multiplayer-kill-block"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Multijoueur de MW4 : Renseignements sur Secteur létal</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/07/call-of-duty-black-ops-7-warzone-season-05-announcement</ns0:id>
+    <ns0:title>Saison 5 de Black Ops 7 : renseignements complets</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/07/call-of-duty-black-ops-7-warzone-season-05-announcement" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661039+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661039+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Saison 5 de Black Ops 7 : renseignements complets&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/07/call-of-duty-black-ops-7-warzone-season-05-announcement"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Saison 5 de Black Ops 7 : renseignements complets</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/06/call-of-duty-mobile-season-6-take-your-heart</ns0:id>
+    <ns0:title>Présentation de la Saison 6 de Call of Duty: Mobile — Voleurs de cœurs</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/06/call-of-duty-mobile-season-6-take-your-heart" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661076+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661076+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Présentation de la Saison 6 de Call of Duty: Mobile — Voleurs de cœurs&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/06/call-of-duty-mobile-season-6-take-your-heart"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Présentation de la Saison 6 de Call of Duty: Mobile — Voleurs de cœurs</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/06/call-of-duty-black-ops-7-warzone-season-04-reloaded-announcement</ns0:id>
+    <ns0:title>Saison 4 Rechargée de Black Ops 7 : renseignements complets</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/06/call-of-duty-black-ops-7-warzone-season-04-reloaded-announcement" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661085+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661085+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Saison 4 Rechargée de Black Ops 7 : renseignements complets&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/06/call-of-duty-black-ops-7-warzone-season-04-reloaded-announcement"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Saison 4 Rechargée de Black Ops 7 : renseignements complets</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/06/call-of-duty-endowment-code-bowl-vii</ns0:id>
+    <ns0:title>Comment assister au Call of Duty Endowment Bowl VII présenté par USAA et gagner des récompenses</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/06/call-of-duty-endowment-code-bowl-vii" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661092+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661092+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Comment assister au Call of Duty Endowment Bowl VII présenté par USAA et gagner des récompenses&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/06/call-of-duty-endowment-code-bowl-vii"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Comment assister au Call of Duty Endowment Bowl VII présenté par USAA et gagner des récompenses</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/06/call-of-duty-modern-warfare-4-campaign-early-access</ns0:id>
+    <ns0:title>Modern Warfare 4 : accès anticipé à la campagne</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/06/call-of-duty-modern-warfare-4-campaign-early-access" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661097+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661097+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Modern Warfare 4 : accès anticipé à la campagne&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/06/call-of-duty-modern-warfare-4-campaign-early-access"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Modern Warfare 4 : accès anticipé à la campagne</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/06/call-of-duty-modern-warfare-4-dmz-deep-dive</ns0:id>
+    <ns0:title>Plongée en profondeur dans le mode DMZ de Modern Warfare 4</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/06/call-of-duty-modern-warfare-4-dmz-deep-dive" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661104+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661104+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Plongée en profondeur dans le mode DMZ de Modern Warfare 4&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/06/call-of-duty-modern-warfare-4-dmz-deep-dive"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Plongée en profondeur dans le mode DMZ de Modern Warfare 4</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/06/call-of-duty-black-ops-7-warzone-ricochet-anti-cheat-season-04</ns0:id>
+    <ns0:title>Mise à jour de la Saison 4 par #TeamRICOCHET</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/06/call-of-duty-black-ops-7-warzone-ricochet-anti-cheat-season-04" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661109+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661109+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Mise à jour de la Saison 4 par #TeamRICOCHET&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/06/call-of-duty-black-ops-7-warzone-ricochet-anti-cheat-season-04"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Mise à jour de la Saison 4 par #TeamRICOCHET</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/06/call-of-duty-black-ops-7-warzone-season-04-announcement</ns0:id>
+    <ns0:title>Saison 4 de Black Ops 7 : renseignements complets</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/06/call-of-duty-black-ops-7-warzone-season-04-announcement" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661113+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661113+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Saison 4 de Black Ops 7 : renseignements complets&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/06/call-of-duty-black-ops-7-warzone-season-04-announcement"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Saison 4 de Black Ops 7 : renseignements complets</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/05/call-of-duty-modern-warfare-4-announcement</ns0:id>
+    <ns0:title>Présentation de Call of Duty: Modern Warfare 4</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/05/call-of-duty-modern-warfare-4-announcement" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661120+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661120+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Présentation de Call of Duty: Modern Warfare 4&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/05/call-of-duty-modern-warfare-4-announcement"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Présentation de Call of Duty: Modern Warfare 4</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/05/modernwarfare4-fob</ns0:id>
+    <ns0:title>UPDATING: Modern Warfare 4: Latest Official Intel Here</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/05/modernwarfare4-fob" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661127+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661127+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;UPDATING: Modern Warfare 4: Latest Official Intel Here&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/05/modernwarfare4-fob"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>UPDATING: Modern Warfare 4: Latest Official Intel Here</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/05/call-of-duty-mobile-season-5-2026-revenge-the-boys</ns0:id>
+    <ns0:title>Introducing Call of Duty: Mobile Season 5 — Revenge</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/05/call-of-duty-mobile-season-5-2026-revenge-the-boys" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661134+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661134+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Introducing Call of Duty: Mobile Season 5 — Revenge&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/05/call-of-duty-mobile-season-5-2026-revenge-the-boys"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Introducing Call of Duty: Mobile Season 5 — Revenge</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/05/call-of-duty-endowment-2026-military-appreciation-month-usaa</ns0:id>
+    <ns0:title>Mois de reconnaissance des militaires avec Call of Duty Endowment, présenté par USAA</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/05/call-of-duty-endowment-2026-military-appreciation-month-usaa" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661139+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661139+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Mois de reconnaissance des militaires avec Call of Duty Endowment, présenté par USAA&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/05/call-of-duty-endowment-2026-military-appreciation-month-usaa"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Mois de reconnaissance des militaires avec Call of Duty Endowment, présenté par USAA</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-warzone-season-03-reloaded-announcement</ns0:id>
+    <ns0:title>Black Ops 7 Season 03 Reloaded: Full Intel</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-warzone-season-03-reloaded-announcement" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661146+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661146+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Black Ops 7 Season 03 Reloaded: Full Intel&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-warzone-season-03-reloaded-announcement"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Black Ops 7 Season 03 Reloaded: Full Intel</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/04/call-of-duty-mobile-season-4-2026-eternal-prison</ns0:id>
+    <ns0:title>Présentation de la Saison 4 de Call of Duty: Mobile — Prison éternelle</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/04/call-of-duty-mobile-season-4-2026-eternal-prison" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661151+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661151+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Présentation de la Saison 4 de Call of Duty: Mobile — Prison éternelle&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/04/call-of-duty-mobile-season-4-2026-eternal-prison"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Présentation de la Saison 4 de Call of Duty: Mobile — Prison éternelle</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-expanding-accessibility-new-control-options</ns0:id>
+    <ns0:title>Le programme pilote débute aujourd'hui dans Black Ops 7</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-expanding-accessibility-new-control-options" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661158+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661158+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Le programme pilote débute aujourd'hui dans Black Ops 7&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-expanding-accessibility-new-control-options"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Le programme pilote débute aujourd'hui dans Black Ops 7</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-ricochet-anti-cheat-season-03</ns0:id>
+    <ns0:title>Mise à jour de la Saison 3 par #TeamRICOCHET</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-ricochet-anti-cheat-season-03" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661163+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661163+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Mise à jour de la Saison 3 par #TeamRICOCHET&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-ricochet-anti-cheat-season-03"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Mise à jour de la Saison 3 par #TeamRICOCHET</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/03/call-of-duty-black-ops-7-season-03-battle-pass-blackcell-store-bundles</ns0:id>
+    <ns0:title>Black Ops 7 Season 03 Battle Pass, BlackCell, and Bundles</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/03/call-of-duty-black-ops-7-season-03-battle-pass-blackcell-store-bundles" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.661170+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.661170+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Black Ops 7 Season 03 Battle Pass, BlackCell, and Bundles&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/03/call-of-duty-black-ops-7-season-03-battle-pass-blackcell-store-bundles"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Black Ops 7 Season 03 Battle Pass, BlackCell, and Bundles</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/03/call-of-duty-black-ops-7-warzone-season-03-announcement</ns0:id>
+    <ns0:title>Saison 3 de Black Ops 7 : renseignements complets</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/03/call-of-duty-black-ops-7-warzone-season-03-announcement" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.662719+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.662719+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Saison 3 de Black Ops 7 : renseignements complets&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/03/call-of-duty-black-ops-7-warzone-season-03-announcement"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Saison 3 de Black Ops 7 : renseignements complets</ns0:summary>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>https://www.callofduty.com/fr/blog/2026/03/call-of-duty-mobile-season-3-2026-paranoia</ns0:id>
+    <ns0:title>Présentation de la Saison 3 de Call of Duty: Mobile — Paranoïa</ns0:title>
+    <ns0:link href="https://www.callofduty.com/fr/blog/2026/03/call-of-duty-mobile-season-3-2026-paranoia" rel="alternate" type="text/html" />
+    <ns0:category term="News" />
+    <ns0:published>2026-08-22T18:39:00.662733+00:00</ns0:published>
+    <ns0:updated>2026-08-22T18:39:00.662733+00:00</ns0:updated>
+    <ns0:author>
+      <ns0:name>Call of Duty</ns0:name>
+    </ns0:author>
+    <ns0:content type="html">&lt;p&gt;Présentation de la Saison 3 de Call of Duty: Mobile — Paranoïa&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.callofduty.com/fr/blog/2026/03/call-of-duty-mobile-season-3-2026-paranoia"&gt;Lire l'article officiel&lt;/a&gt;&lt;/p&gt;</ns0:content>
+    <ns0:summary>Présentation de la Saison 3 de Call of Duty: Mobile — Paranoïa</ns0:summary>
+  </ns0:entry>
+</ns0:feed>
