@@ -48,14 +48,56 @@ register_namespace("atom", ATOM_NS)
 
 def setup_translation():
 
-    print("Préparation Argos EN -> FR...")
+    print("Vérification du modèle Argos EN -> FR...")
+
+    installed = argostranslate.translate.get_installed_languages()
+
+    # Vérifie d'abord si le modèle existe déjà
+    for language in installed:
+
+        if language.code != "en":
+            continue
+
+        for translation in language.translations_from:
+
+            if translation.to_lang.code == "fr":
+
+                print("Modèle EN -> FR déjà installé. ♻️")
+                return
+
+    # Le modèle n'existe pas : on met à jour l'index
+    print("Modèle EN -> FR absent.")
+    print("Téléchargement du modèle Argos...")
 
     try:
         argostranslate.package.update_package_index()
     except Exception as e:
-        print(f"Index Argos indisponible : {e}")
+        print(f"Erreur lors de la mise à jour de l'index : {e}")
+        raise
 
-    installed = argostranslate.translate.get_installed_languages()
+    packages = argostranslate.package.get_available_packages()
+
+    package = next(
+        (
+            p for p in packages
+            if p.from_code == "en"
+            and p.to_code == "fr"
+        ),
+        None
+    )
+
+    if package is None:
+        raise RuntimeError(
+            "Modèle Argos EN -> FR introuvable."
+        )
+
+    print("Installation du modèle EN -> FR...")
+
+    argostranslate.package.install_from_path(
+        package.download()
+    )
+
+    print("Modèle EN -> FR installé. ✅")
 
     for language in installed:
 
