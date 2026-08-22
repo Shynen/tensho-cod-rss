@@ -914,39 +914,51 @@ def create_rss(
     # --------------------------------------------------------
     # FLUX DISCORD MINIMAL
     # --------------------------------------------------------
+if minimal:
 
-    if minimal:
+    for article in articles_to_include:
 
-        for article in articles_to_include:
+        item = SubElement(
+            channel,
+            "item"
+        )
 
-            item = SubElement(
-                channel,
-                "item"
-            )
+        # Titre
+        SubElement(
+            item,
+            "title"
+        ).text = article["title"]
 
-            SubElement(
-                item,
-                "title"
-            ).text = article["title"]
+        # Lien
+        SubElement(
+            item,
+            "link"
+        ).text = article["url"]
 
-            SubElement(
-                item,
-                "link"
-            ).text = article["url"]
+        # GUID
+        SubElement(
+            item,
+            "guid"
+        ).text = article["url"]
 
-            SubElement(
-                item,
-                "guid"
-            ).text = article["url"]
+        # DATE OBLIGATOIRE POUR READYBOT
+        SubElement(
+            item,
+            "pubDate"
+        ).text = (
+            article.get("pubDate")
+            or now
+        )
 
-            SubElement(
-                item,
-                "description"
-            ).text = (
-                article.get("description")
-                or article["title"]
-            )
-
+        # Description
+        SubElement(
+            item,
+            "description"
+        ).text = (
+            article.get("description")
+            or
+            article["title"]
+        )
     # --------------------------------------------------------
     # RSS COMPLET
     # --------------------------------------------------------
