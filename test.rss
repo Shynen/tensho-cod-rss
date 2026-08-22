@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Tensho COD Test</title>
+    <link>https://www.callofduty.com/fr/blog</link>
+    <description>Test RSS Call of Duty</description>
+
+    <item>
+      <title>Test Call of Duty</title>
+      <link>https://www.callofduty.com/fr/blog</link>
+      <guid>tensho-cod-test-001</guid>
+      <description>Test du flux RSS COD pour Readybot.</description>
+    </item>
+
+  </channel>
+</rss>
