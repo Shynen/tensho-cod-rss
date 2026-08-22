@@ -3,17 +3,24 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from xml.etree.ElementTree import Element, SubElement, ElementTree, indent
+from datetime import datetime, timezone
 
 BASE_URL = "https://www.callofduty.com"
 BLOG_URL = "https://www.callofduty.com/fr/blog?count=50"
-OUTPUT = "cod.rss"
+OUTPUT = "cod.xml"
+FEED_URL = "https://shynen.github.io/tensho-cod-rss/cod.xml"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; TenshoCODRSS/1.0)"
 }
 
 
+def now_iso():
+    return datetime.now(timezone.utc).isoformat()
+
+
 def main():
+
     print("Téléchargement du blog Call of Duty...")
 
     response = requests.get(
@@ -29,7 +36,6 @@ def main():
     articles = []
     seen = set()
 
-    # URLs des articles français Call of Duty
     pattern = re.compile(r"^/fr/blog/\d{4}/")
 
     for link in soup.find_all("a", href=True):
@@ -51,90 +57,183 @@ def main():
 
         seen.add(url)
 
+        # Cherche un résumé éventuel dans le bloc parent
+        summary = ""
+
+        parent = link
+
+        for _ in range(4):
+
+            parent = parent.parent
+
+            if parent is None:
+                break
+
+            text = parent.get_text(" ", strip=True)
+
+            if len(text) > len(title) + 20:
+                summary = text
+                break
+
+        if not summary:
+            summary = title
+
         articles.append({
             "title": title,
-            "url": url
+            "url": url,
+            "summary": summary
         })
 
-    # Maximum 30 articles
+    # Limite aux 30 dernières entrées trouvées
     articles = articles[:30]
 
     print(f"{len(articles)} articles trouvés.")
 
-    # -------------------------------------------------
-    # Création du RSS 2.0
-    # -------------------------------------------------
+    # =====================================================
+    # ATOM
+    # =====================================================
 
-    rss = Element(
-        "rss",
+    ATOM_NS = "http://www.w3.org/2005/Atom"
+
+    feed = Element(
+        f"{{{ATOM_NS}}}feed",
         {
-            "version": "2.0",
-            "xmlns:atom": "http://www.w3.org/2005/Atom"
+            "xml:lang": "fr-fr"
         }
     )
 
-    channel = SubElement(rss, "channel")
-
-    SubElement(channel, "title").text = (
-        "Call of Duty — Actualités françaises"
-    )
-
-    SubElement(channel, "link").text = BLOG_URL
-
-    SubElement(channel, "description").text = (
-        "Actualités, annonces et notes de correctif "
-        "officielles Call of Duty en français."
-    )
-
+    # ID du flux
     SubElement(
-        channel,
-        "atom:link",
+        feed,
+        f"{{{ATOM_NS}}}id"
+    ).text = FEED_URL
+
+    # Titre
+    SubElement(
+        feed,
+        f"{{{ATOM_NS}}}title"
+    ).text = "Call of Duty — Actualités françaises"
+
+    # Date de mise à jour
+    SubElement(
+        feed,
+        f"{{{ATOM_NS}}}updated"
+    ).text = now_iso()
+
+    # Lien vers le site officiel
+    SubElement(
+        feed,
+        f"{{{ATOM_NS}}}link",
         {
-            "href": "https://shynen.github.io/tensho-cod-rss/cod.rss",
-            "rel": "self",
-            "type": "application/rss+xml"
+            "href": "https://www.callofduty.com/fr/blog",
+            "rel": "alternate",
+            "type": "text/html"
         }
     )
 
-    # -------------------------------------------------
-    # Articles
-    # -------------------------------------------------
+    # Lien du flux lui-même
+    SubElement(
+        feed,
+        f"{{{ATOM_NS}}}link",
+        {
+            "href": FEED_URL,
+            "rel": "self",
+            "type": "application/atom+xml"
+        }
+    )
+
+    # =====================================================
+    # ENTRÉES
+    # =====================================================
 
     for article in articles:
 
-        item = SubElement(channel, "item")
-
-        SubElement(
-            item,
-            "title"
-        ).text = article["title"]
-
-        SubElement(
-            item,
-            "link"
-        ).text = article["url"]
-
-        SubElement(
-            item,
-            "guid",
-            {
-                "isPermaLink": "true"
-            }
-        ).text = article["url"]
-
-        SubElement(
-            item,
-            "description"
-        ).text = (
-            f"Nouvelle publication officielle Call of Duty : "
-            f"{article['title']}"
+        entry = SubElement(
+            feed,
+            f"{{{ATOM_NS}}}entry"
         )
 
-    # -------------------------------------------------
-    # Écriture du XML
-    # -------------------------------------------------
+        # ID unique basé sur l'URL
+        SubElement(
+            entry,
+            f"{{{ATOM_NS}}}id"
+        ).text = article["url"]
 
-    tree = ElementTree(rss)
+        # Titre
+        SubElement(
+            entry,
+            f"{{{ATOM_NS}}}title"
+        ).text = article["title"]
+
+        # URL
+        SubElement(
+            entry,
+            f"{{{ATOM_NS}}}link",
+            {
+                "href": article["url"],
+                "rel": "alternate",
+                "type": "text/html"
+            }
+        )
+
+        # Catégorie
+        SubElement(
+            entry,
+            f"{{{ATOM_NS}}}category",
+            {
+                "term": "News"
+            }
+        )
+
+        # Date
+        timestamp = now_iso()
+
+        SubElement(
+            entry,
+            f"{{{ATOM_NS}}}published"
+        ).text = timestamp
+
+        SubElement(
+            entry,
+            f"{{{ATOM_NS}}}updated"
+        ).text = timestamp
+
+        # Auteur
+        author = SubElement(
+            entry,
+            f"{{{ATOM_NS}}}author"
+        )
+
+        SubElement(
+            author,
+            f"{{{ATOM_NS}}}name"
+        ).text = "Call of Duty"
+
+        # Contenu
+        SubElement(
+            entry,
+            f"{{{ATOM_NS}}}content",
+            {
+                "type": "html"
+            }
+        ).text = (
+            f"<p>{article['summary']}</p>"
+            f"<p><a href=\"{article['url']}\">"
+            f"Lire l'article officiel"
+            f"</a></p>"
+        )
+
+        # Résumé
+        SubElement(
+            entry,
+            f"{{{ATOM_NS}}}summary"
+        ).text = article["summary"]
+
+    # =====================================================
+    # ÉCRITURE
+    # =====================================================
+
+    tree = ElementTree(feed)
 
     indent(tree, space="  ")
 
@@ -144,7 +243,7 @@ def main():
         xml_declaration=True
     )
 
-    print(f"Flux RSS généré : {OUTPUT}")
+    print(f"Flux Atom généré : {OUTPUT}")
 
 
 if __name__ == "__main__":
