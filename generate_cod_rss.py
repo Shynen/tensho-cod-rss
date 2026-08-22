@@ -1,5 +1,8 @@
+import os
 import re
+import json
 import requests
+
 from bs4 import BeautifulSoup
 from email.utils import formatdate
 from datetime import datetime, timezone
@@ -24,17 +27,13 @@ BASE_URL = "https://www.callofduty.com"
 BLOG_URL = "https://www.callofduty.com/fr/blog?count=50"
 
 OUTPUT = "cod.rss"
+CACHE_FILE = "cod_cache.json"
 
 FEED_URL = "https://shynen.github.io/tensho-cod-rss/cod.rss"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; TenshoCODRSS/1.0)"
 }
-
-
-# ============================================================
-# NAMESPACES RSS
-# ============================================================
 
 CONTENT_NS = "http://purl.org/rss/1.0/modules/content/"
 ATOM_NS = "http://www.w3.org/2005/Atom"
@@ -44,63 +43,49 @@ register_namespace("atom", ATOM_NS)
 
 
 # ============================================================
-# ARGOS TRANSLATE
+# ARGOS
 # ============================================================
 
 def setup_translation():
 
-    print("========================================")
-    print("Préparation de la traduction EN -> FR")
-    print("========================================")
+    print("Préparation Argos EN -> FR...")
 
     try:
         argostranslate.package.update_package_index()
     except Exception as e:
-        print(f"Impossible de mettre à jour l'index Argos : {e}")
+        print(f"Index Argos indisponible : {e}")
 
-    installed_languages = (
-        argostranslate.translate.get_installed_languages()
-    )
+    installed = argostranslate.translate.get_installed_languages()
 
-    english_language = None
+    for language in installed:
 
-    for language in installed_languages:
-        if language.code == "en":
-            english_language = language
-            break
+        if language.code != "en":
+            continue
 
-    if english_language:
-
-        for translation in english_language.translations_from:
+        for translation in language.translations_from:
 
             if translation.to_lang.code == "fr":
 
                 print("Modèle EN -> FR déjà installé.")
                 return
 
-    print("Modèle EN -> FR absent.")
-    print("Recherche du modèle Argos...")
-
     packages = argostranslate.package.get_available_packages()
 
-    package = None
-
-    for candidate in packages:
-
-        if (
-            candidate.from_code == "en"
-            and candidate.to_code == "fr"
-        ):
-            package = candidate
-            break
+    package = next(
+        (
+            p for p in packages
+            if p.from_code == "en"
+            and p.to_code == "fr"
+        ),
+        None
+    )
 
     if package is None:
-
         raise RuntimeError(
-            "Impossible de trouver le modèle Argos EN -> FR."
+            "Modèle Argos EN -> FR introuvable."
         )
 
-    print("Téléchargement du modèle EN -> FR...")
+    print("Installation du modèle EN -> FR...")
 
     argostranslate.package.install_from_path(
         package.download()
@@ -109,114 +94,48 @@ def setup_translation():
     print("Modèle EN -> FR installé.")
 
 
-# ============================================================
-# TRADUCTION D'UN TEXTE
-# ============================================================
-
 def translate_text(text):
 
-    if not text:
-        return text
-
-    text = text.strip()
-
-    if not text:
+    if not text or not text.strip():
         return text
 
     try:
 
-        translated = argostranslate.translate.translate(
-            text,
+        result = argostranslate.translate.translate(
+            text.strip(),
             "en",
             "fr"
         )
 
-        if translated:
-            return translated
+        return result or text
 
     except Exception as e:
 
-        print(
-            f"Erreur pendant la traduction : {e}"
-        )
-
-    return text
+        print(f"Erreur traduction : {e}")
+        return text
 
 
 # ============================================================
-# DÉTECTION SIMPLE DE L'ANGLAIS
+# DÉTECTION ANGLAIS
 # ============================================================
 
 ENGLISH_WORDS = {
-    "the",
-    "and",
-    "you",
-    "your",
-    "with",
-    "for",
-    "from",
-    "this",
-    "that",
-    "these",
-    "those",
-    "everything",
-    "know",
-    "open",
-    "beta",
-    "season",
-    "update",
-    "new",
-    "coming",
-    "available",
-    "details",
-    "about",
-    "what",
-    "when",
-    "where",
-    "will",
-    "how",
-    "play",
-    "game",
-    "games",
-    "content",
-    "multiplayer",
-    "campaign",
-    "weapons",
-    "weapon",
-    "operator",
-    "launch",
-    "weekend",
-    "intel",
-    "event",
-    "events",
-    "rewards",
-    "reward",
-    "battle",
-    "pass",
-    "store",
-    "players",
-    "player",
-    "system",
-    "systems",
-    "feature",
-    "features",
-    "seasonal",
-    "community",
-    "coming",
-    "soon",
-    "first",
-    "second",
-    "third",
-    "early",
-    "access",
-    "everything",
-    "need",
-    "learn",
-    "introducing",
-    "overview",
-    "reveal",
-    "revealed",
-    "announcement",
+    "the", "and", "you", "your", "with", "for",
+    "from", "this", "that", "these", "those",
+    "everything", "know", "open", "beta",
+    "season", "update", "new", "coming",
+    "available", "details", "about", "what",
+    "when", "where", "will", "how", "play",
+    "game", "games", "content", "multiplayer",
+    "campaign", "weapons", "weapon", "operator",
+    "launch", "weekend", "intel", "event",
+    "events", "rewards", "reward", "battle",
+    "pass", "store", "players", "player",
+    "system", "systems", "feature", "features",
+    "community", "soon", "first", "second",
+    "third", "early", "access", "need",
+    "learn", "introducing", "overview",
+    "reveal", "revealed", "announcement",
     "announcements"
 }
 
@@ -234,20 +153,15 @@ def looks_english(text):
     if len(words) < 3:
         return False
 
-    matches = 0
+    matches = sum(
+        1 for word in words
+        if word in ENGLISH_WORDS
+    )
 
-    for word in words:
-
-        if word in ENGLISH_WORDS:
-            matches += 1
-
-    # Quelques mots anglais évidents
     if matches >= 2:
         return True
 
-    # Cas d'un titre court du type :
-    # "Modern Warfare 4 Open Beta"
-    obvious_phrases = [
+    phrases = [
         "open beta",
         "everything you need to know",
         "weekend one",
@@ -262,18 +176,16 @@ def looks_english(text):
         "season reloaded"
     ]
 
-    lower_text = text.lower()
+    lower = text.lower()
 
-    for phrase in obvious_phrases:
-
-        if phrase in lower_text:
-            return True
-
-    return False
+    return any(
+        phrase in lower
+        for phrase in phrases
+    )
 
 
 # ============================================================
-# TRADUCTION DU HTML
+# TRADUCTION HTML
 # ============================================================
 
 def translate_html(html_content):
@@ -286,28 +198,23 @@ def translate_html(html_content):
         "html.parser"
     )
 
-    ignored_tags = {
+    ignored = {
         "script",
         "style",
         "code",
         "pre"
     }
 
-    text_nodes = list(
+    for node in list(
         soup.find_all(string=True)
-    )
-
-    for node in text_nodes:
+    ):
 
         parent = node.parent
 
-        if parent is not None:
-
-            if parent.name in ignored_tags:
-                continue
+        if parent and parent.name in ignored:
+            continue
 
         text = str(node)
-
         stripped = text.strip()
 
         if len(stripped) < 3:
@@ -320,9 +227,8 @@ def translate_html(html_content):
             stripped
         )
 
-        if translated and translated != stripped:
+        if translated != stripped:
 
-            # Conservation des espaces autour du texte
             prefix = text[
                 :len(text) - len(text.lstrip())
             ]
@@ -332,42 +238,28 @@ def translate_html(html_content):
             ]
 
             node.replace_with(
-                prefix
-                + translated
-                + suffix
+                prefix + translated + suffix
             )
 
     return str(soup)
 
 
 # ============================================================
-# EXTRACTION DU CONTENU D'UN ARTICLE
+# EXTRACTION ARTICLE
 # ============================================================
 
 def fetch_article(url):
 
     print()
-    print("----------------------------------------")
-    print(f"Article : {url}")
-    print("----------------------------------------")
+    print(f"Nouvel article : {url}")
 
-    try:
+    response = requests.get(
+        url,
+        headers=HEADERS,
+        timeout=30
+    )
 
-        response = requests.get(
-            url,
-            headers=HEADERS,
-            timeout=30
-        )
-
-        response.raise_for_status()
-
-    except Exception as e:
-
-        print(
-            f"Impossible de récupérer l'article : {e}"
-        )
-
-        return None
+    response.raise_for_status()
 
     soup = BeautifulSoup(
         response.text,
@@ -386,7 +278,6 @@ def fetch_article(url):
     )
 
     if og_title:
-
         title = og_title.get(
             "content",
             ""
@@ -397,7 +288,6 @@ def fetch_article(url):
         h1 = soup.find("h1")
 
         if h1:
-
             title = h1.get_text(
                 " ",
                 strip=True
@@ -432,23 +322,17 @@ def fetch_article(url):
     # CONTENU
     # --------------------------------------------------------
 
-    content = None
-
-    # On privilégie <article>
     content = soup.find("article")
 
-    # Puis différentes structures possibles
     if content is None:
 
-        selectors = [
+        for selector in [
             "main",
             "[role='main']",
             ".article-content",
             ".blog-content",
             ".content"
-        ]
-
-        for selector in selectors:
+        ]:
 
             content = soup.select_one(
                 selector
@@ -457,9 +341,7 @@ def fetch_article(url):
             if content is not None:
                 break
 
-    # Dernier recours
     if content is None:
-
         content = soup.body
 
     if content is None:
@@ -470,78 +352,43 @@ def fetch_article(url):
             "content": ""
         }
 
-    # --------------------------------------------------------
-    # NETTOYAGE
-    # --------------------------------------------------------
-
     for tag in content.find_all([
         "script",
         "style",
         "noscript"
     ]):
-
         tag.decompose()
 
     content_html = str(content)
 
     # --------------------------------------------------------
-    # TRADUCTION DU TITRE
+    # TRADUCTION
     # --------------------------------------------------------
 
     if looks_english(title):
 
-        print(
-            f"Titre anglais détecté : {title}"
+        print(f"Titre anglais : {title}")
+
+        title = translate_text(title)
+
+        print(f"Titre FR : {title}")
+
+    if description and looks_english(description):
+
+        print("Description anglaise -> traduction.")
+
+        description = translate_text(
+            description
         )
 
-        title = translate_text(
-            title
-        )
-
-        print(
-            f"Titre français : {title}"
-        )
-
-    else:
-
-        print(
-            f"Titre déjà français : {title}"
-        )
-
-    # --------------------------------------------------------
-    # TRADUCTION DE LA DESCRIPTION
-    # --------------------------------------------------------
-
-    if description:
-
-        if looks_english(description):
-
-            print(
-                "Description anglaise détectée."
-            )
-
-            description = translate_text(
-                description
-            )
-
-    # --------------------------------------------------------
-    # TRADUCTION DU CONTENU
-    # --------------------------------------------------------
-
-    plain_content = content.get_text(
+    plain = content.get_text(
         " ",
         strip=True
     )
 
-    # On regarde une partie assez importante
-    # pour déterminer la langue
-    sample = plain_content[:5000]
+    if looks_english(plain[:5000]):
 
-    if looks_english(sample):
-
-        print(
-            "Contenu anglais détecté -> traduction."
-        )
+        print("Contenu anglais -> traduction.")
 
         content_html = translate_html(
             content_html
@@ -549,9 +396,7 @@ def fetch_article(url):
 
     else:
 
-        print(
-            "Contenu déjà français."
-        )
+        print("Contenu déjà français.")
 
     return {
         "title": title,
@@ -561,15 +406,69 @@ def fetch_article(url):
 
 
 # ============================================================
-# RÉCUPÉRATION DES ARTICLES DU BLOG
+# CACHE
+# ============================================================
+
+def load_cache():
+
+    if not os.path.exists(CACHE_FILE):
+
+        print("Aucun cache trouvé.")
+
+        return {}
+
+    try:
+
+        with open(
+            CACHE_FILE,
+            "r",
+            encoding="utf-8"
+        ) as file:
+
+            cache = json.load(file)
+
+        print(
+            f"Cache chargé : {len(cache)} articles."
+        )
+
+        return cache
+
+    except Exception as e:
+
+        print(
+            f"Cache illisible, nouveau cache : {e}"
+        )
+
+        return {}
+
+
+def save_cache(cache):
+
+    with open(
+        CACHE_FILE,
+        "w",
+        encoding="utf-8"
+    ) as file:
+
+        json.dump(
+            cache,
+            file,
+            ensure_ascii=False,
+            indent=2
+        )
+
+    print(
+        f"Cache sauvegardé : {len(cache)} articles."
+    )
+
+
+# ============================================================
+# RÉCUPÉRATION BLOG
 # ============================================================
 
 def get_articles():
 
-    print()
-    print("========================================")
-    print("Téléchargement du blog Call of Duty")
-    print("========================================")
+    print("Téléchargement du blog COD...")
 
     response = requests.get(
         BLOG_URL,
@@ -587,7 +486,6 @@ def get_articles():
     articles = []
     seen = set()
 
-    # Même logique que le script original
     pattern = re.compile(
         r"^/fr/blog/\d{4}/"
     )
@@ -620,10 +518,6 @@ def get_articles():
 
         seen.add(url)
 
-        # ----------------------------------------------------
-        # Recherche d'une date
-        # ----------------------------------------------------
-
         parent = link
         date_text = ""
 
@@ -649,7 +543,6 @@ def get_articles():
             if match:
 
                 date_text = match.group(0)
-
                 break
 
         articles.append({
@@ -658,10 +551,8 @@ def get_articles():
             "date": date_text
         })
 
-    # Même limite que le script original
     articles = articles[:20]
 
-    print()
     print(
         f"{len(articles)} articles trouvés."
     )
@@ -703,12 +594,8 @@ def convert_date(date_text):
     if not match:
         return None
 
-    month_name = match.group(1).lower()
-    day = int(match.group(2))
-    year = int(match.group(3))
-
     month = months.get(
-        month_name
+        match.group(1).lower()
     )
 
     if not month:
@@ -717,9 +604,9 @@ def convert_date(date_text):
     try:
 
         date = datetime(
-            year,
+            int(match.group(3)),
             month,
-            day,
+            int(match.group(2)),
             tzinfo=timezone.utc
         )
 
@@ -733,24 +620,37 @@ def convert_date(date_text):
 
 
 # ============================================================
-# GÉNÉRATION DU RSS
+# GÉNÉRATION RSS
 # ============================================================
 
-def generate_feed(articles):
+def generate_feed(articles, cache):
 
     print()
-    print("========================================")
-    print("Génération du RSS")
-    print("========================================")
+    print("Génération du RSS...")
 
     rss = Element(
         "rss",
         {
             "version": "2.0",
-            "xmlns:atom": ATOM_NS,
-            "xmlns:content": CONTENT_NS
+            "xmlns:atom": ATOM_NS
         }
     )
+
+    # UNE SEULE déclaration content
+    rss.set(
+        f"{{{CONTENT_NS}}}encoded",
+        ""
+    )
+
+    # On supprime l'attribut temporaire :
+    del rss.attrib[
+        f"{{{CONTENT_NS}}}encoded"
+    ]
+
+    # Namespace content manuel
+    rss.attrib[
+        "xmlns:content"
+    ] = CONTENT_NS
 
     channel = SubElement(
         rss,
@@ -799,47 +699,74 @@ def generate_feed(articles):
         "lastBuildDate"
     ).text = now
 
+    successful = 0
+
     # ========================================================
     # ARTICLES
     # ========================================================
 
-    successful = 0
-
     for article in articles:
 
-        data = fetch_article(
-            article["url"]
-        )
+        url = article["url"]
 
-        if data is None:
-            continue
+        # ----------------------------------------------------
+        # CACHE
+        # ----------------------------------------------------
+
+        if url in cache:
+
+            print()
+            print(
+                f"♻️ Cache utilisé : {article['title']}"
+            )
+
+            data = cache[url]
+
+        else:
+
+            print()
+            print(
+                f"🆕 Nouvel article : {article['title']}"
+            )
+
+            try:
+
+                data = fetch_article(
+                    url
+                )
+
+                if data is None:
+                    continue
+
+                # Sauvegarde immédiate dans le cache
+                cache[url] = data
+
+            except Exception as e:
+
+                print(
+                    f"Erreur article : {e}"
+                )
+
+                continue
+
+        # ----------------------------------------------------
+        # ITEM RSS
+        # ----------------------------------------------------
 
         item = SubElement(
             channel,
             "item"
         )
 
-        # ----------------------------------------------------
-        # TITRE
-        # ----------------------------------------------------
-
         SubElement(
             item,
             "title"
         ).text = data["title"]
 
-        # ----------------------------------------------------
-        # LIEN
-        # ----------------------------------------------------
-
         SubElement(
             item,
             "link"
-        ).text = article["url"]
-
-        # ----------------------------------------------------
-        # GUID
-        # ----------------------------------------------------
+        ).text = url
 
         SubElement(
             item,
@@ -847,11 +774,7 @@ def generate_feed(articles):
             {
                 "isPermaLink": "true"
             }
-        ).text = article["url"]
-
-        # ----------------------------------------------------
-        # DATE
-        # ----------------------------------------------------
+        ).text = url
 
         rss_date = convert_date(
             article["date"]
@@ -864,15 +787,11 @@ def generate_feed(articles):
                 "pubDate"
             ).text = rss_date
 
-        # ----------------------------------------------------
-        # DESCRIPTION
-        # ----------------------------------------------------
-
         description = (
             data["description"]
             or
-            f"Nouvelle publication officielle Call of Duty : "
-            f"{data['title']}"
+            f"Nouvelle publication officielle "
+            f"Call of Duty : {data['title']}"
         )
 
         SubElement(
@@ -880,11 +799,7 @@ def generate_feed(articles):
             "description"
         ).text = description
 
-        # ----------------------------------------------------
-        # CONTENU COMPLET
-        # ----------------------------------------------------
-
-        if data["content"]:
+        if data.get("content"):
 
             content_element = SubElement(
                 item,
@@ -897,9 +812,26 @@ def generate_feed(articles):
 
         successful += 1
 
-    # ========================================================
+    # --------------------------------------------------------
+    # NETTOYAGE CACHE
+    # --------------------------------------------------------
+
+    current_urls = {
+        article["url"]
+        for article in articles
+    }
+
+    cache = {
+        url: data
+        for url, data in cache.items()
+        if url in current_urls
+    }
+
+    save_cache(cache)
+
+    # --------------------------------------------------------
     # ÉCRITURE
-    # ========================================================
+    # --------------------------------------------------------
 
     tree = ElementTree(
         rss
@@ -917,14 +849,9 @@ def generate_feed(articles):
     )
 
     print()
-    print("========================================")
     print(
-        f"✅ {successful} articles générés"
+        f"✅ {successful} articles dans {OUTPUT}"
     )
-    print(
-        f"✅ Fichier : {OUTPUT}"
-    )
-    print("========================================")
 
 
 # ============================================================
@@ -936,7 +863,7 @@ if __name__ == "__main__":
     print()
     print("########################################")
     print("# Tensho COD RSS")
-    print("# Traduction automatique EN -> FR")
+    print("# Cache + traduction EN -> FR")
     print("########################################")
     print()
 
@@ -947,11 +874,14 @@ if __name__ == "__main__":
     if not articles:
 
         raise RuntimeError(
-            "Aucun article trouvé sur le blog Call of Duty."
+            "Aucun article trouvé."
         )
 
+    cache = load_cache()
+
     generate_feed(
-        articles
+        articles,
+        cache
     )
 
     print()
