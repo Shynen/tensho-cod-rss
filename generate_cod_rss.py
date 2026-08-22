@@ -1,9 +1,6 @@
 import re
-import html
 import requests
 from bs4 import BeautifulSoup
-from email.utils import formatdate
-from datetime import datetime, timezone
 from urllib.parse import urljoin
 from xml.etree.ElementTree import Element, SubElement, ElementTree, indent
 
@@ -11,114 +8,144 @@ BASE_URL = "https://www.callofduty.com"
 BLOG_URL = "https://www.callofduty.com/fr/blog?count=50"
 OUTPUT = "cod.xml"
 
-headers = {
+HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; TenshoCODRSS/1.0)"
 }
 
-response = requests.get(BLOG_URL, headers=headers, timeout=30)
-response.raise_for_status()
 
-soup = BeautifulSoup(response.text, "html.parser")
+def main():
+    print("Téléchargement du blog Call of Duty...")
 
-articles = []
-seen = set()
+    response = requests.get(
+        BLOG_URL,
+        headers=HEADERS,
+        timeout=30
+    )
 
-pattern = re.compile(r"^/fr/blog/\d{4}/")
+    response.raise_for_status()
 
-for link in soup.find_all("a", href=True):
-    href = link["href"]
+    soup = BeautifulSoup(response.text, "html.parser")
 
-    if not pattern.match(href):
-        continue
+    articles = []
+    seen = set()
 
-    url = urljoin(BASE_URL, href)
+    # URLs des articles français Call of Duty
+    pattern = re.compile(r"^/fr/blog/\d{4}/")
 
-    if url in seen:
-        continue
+    for link in soup.find_all("a", href=True):
 
-    title = link.get_text(" ", strip=True)
+        href = link["href"].strip()
 
-    if not title or len(title) < 8:
-        continue
+        if not pattern.match(href):
+            continue
 
-    seen.add(url)
+        url = urljoin(BASE_URL, href)
 
-    # Recherche d'une date dans le bloc parent
-    parent = link
-    date_text = ""
+        if url in seen:
+            continue
 
-    for _ in range(5):
-        parent = parent.parent
-        if parent is None:
-            break
+        title = link.get_text(" ", strip=True)
 
-        text = parent.get_text(" ", strip=True)
+        if not title or len(title) < 8:
+            continue
 
-        match = re.search(
-            r"(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)\s+\d{1,2},?\s+\d{4}",
-            text,
-            re.IGNORECASE
-        )
+        seen.add(url)
 
-        if match:
-            date_text = match.group(0)
-            break
+        articles.append({
+            "title": title,
+            "url": url
+        })
 
-    articles.append({
-        "title": title,
-        "url": url,
-        "date": date_text
-    })
+    # Maximum 30 articles
+    articles = articles[:30]
 
-# Limite aux 20 articles les plus récents trouvés
-articles = articles[:20]
+    print(f"{len(articles)} articles trouvés.")
 
-rss = Element(
-    "rss",
-    {
-        "version": "2.0",
-        "xmlns:atom": "http://www.w3.org/2005/Atom"
-    }
-)
+    # -------------------------------------------------
+    # Création du RSS 2.0
+    # -------------------------------------------------
 
-channel = SubElement(rss, "channel")
+    rss = Element(
+        "rss",
+        {
+            "version": "2.0",
+            "xmlns:atom": "http://www.w3.org/2005/Atom"
+        }
+    )
 
-SubElement(channel, "title").text = "Call of Duty — Actualités FR"
-SubElement(channel, "link").text = BLOG_URL
-SubElement(channel, "description").text = (
-    "Actualités, annonces et patch notes officiels Call of Duty en français."
-)
+    channel = SubElement(rss, "channel")
 
-SubElement(
-    channel,
-    "atom:link",
-    {
-        "href": "https://shynen.github.io/tensho-cod-rss/cod.xml",
-        "rel": "self",
-        "type": "application/rss+xml"
-    }
-)
+    SubElement(channel, "title").text = (
+        "Call of Duty — Actualités françaises"
+    )
 
-now = formatdate(datetime.now(timezone.utc).timestamp(), usegmt=True)
-SubElement(channel, "lastBuildDate").text = now
+    SubElement(channel, "link").text = BLOG_URL
 
-for article in articles:
-    item = SubElement(channel, "item")
-
-    SubElement(item, "title").text = article["title"]
-    SubElement(item, "link").text = article["url"]
-    SubElement(item, "guid", {"isPermaLink": "true"}).text = article["url"]
-
-    if article["date"]:
-        SubElement(item, "pubDate").text = article["date"]
+    SubElement(channel, "description").text = (
+        "Actualités, annonces et notes de correctif "
+        "officielles Call of Duty en français."
+    )
 
     SubElement(
-        item,
-        "description"
-    ).text = f"Nouvelle publication officielle Call of Duty : {article['title']}"
+        channel,
+        "atom:link",
+        {
+            "href": "https://shynen.github.io/tensho-cod-rss/cod.xml",
+            "rel": "self",
+            "type": "application/rss+xml"
+        }
+    )
 
-tree = ElementTree(rss)
-indent(tree, space="  ")
-tree.write(OUTPUT, encoding="utf-8", xml_declaration=True)
+    # -------------------------------------------------
+    # Articles
+    # -------------------------------------------------
 
-print(f"{len(articles)} articles ajoutés dans {OUTPUT}")
+    for article in articles:
+
+        item = SubElement(channel, "item")
+
+        SubElement(
+            item,
+            "title"
+        ).text = article["title"]
+
+        SubElement(
+            item,
+            "link"
+        ).text = article["url"]
+
+        SubElement(
+            item,
+            "guid",
+            {
+                "isPermaLink": "true"
+            }
+        ).text = article["url"]
+
+        SubElement(
+            item,
+            "description"
+        ).text = (
+            f"Nouvelle publication officielle Call of Duty : "
+            f"{article['title']}"
+        )
+
+    # -------------------------------------------------
+    # Écriture du XML
+    # -------------------------------------------------
+
+    tree = ElementTree(rss)
+
+    indent(tree, space="  ")
+
+    tree.write(
+        OUTPUT,
+        encoding="utf-8",
+        xml_declaration=True
+    )
+
+    print(f"Flux RSS généré : {OUTPUT}")
+
+
+if __name__ == "__main__":
+    main()
