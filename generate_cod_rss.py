@@ -957,18 +957,14 @@ now = formatdate(
 # ============================================================
 # CREATION RSS
 # ============================================================
-
 def create_rss(
     output_file,
     rss_title,
     rss_description,
     feed_url,
-    articles_to_include
+    articles_to_include,
+    include_content=True
 ):
-
-    # --------------------------------------------------------
-    # RSS ROOT
-    # --------------------------------------------------------
 
     rss = Element(
         "rss",
@@ -981,10 +977,6 @@ def create_rss(
         rss,
         "channel"
     )
-
-    # --------------------------------------------------------
-    # CHANNEL
-    # --------------------------------------------------------
 
     SubElement(
         channel,
@@ -1026,7 +1018,7 @@ def create_rss(
     )
 
     # --------------------------------------------------------
-    # DATE
+    # DATE DE GENERATION
     # --------------------------------------------------------
 
     SubElement(
@@ -1045,28 +1037,19 @@ def create_rss(
             "item"
         )
 
-        # ----------------------------------------------------
-        # TITLE
-        # ----------------------------------------------------
-
+        # Titre
         SubElement(
             item,
             "title"
         ).text = article["title"]
 
-        # ----------------------------------------------------
-        # LINK
-        # ----------------------------------------------------
-
+        # Lien
         SubElement(
             item,
             "link"
         ).text = article["url"]
 
-        # ----------------------------------------------------
         # GUID
-        # ----------------------------------------------------
-
         SubElement(
             item,
             "guid",
@@ -1075,10 +1058,7 @@ def create_rss(
             }
         ).text = article["url"]
 
-        # ----------------------------------------------------
-        # DATE
-        # ----------------------------------------------------
-
+        # Date
         if article.get("pubDate"):
 
             SubElement(
@@ -1086,17 +1066,12 @@ def create_rss(
                 "pubDate"
             ).text = article["pubDate"]
 
-        # ----------------------------------------------------
-        # DESCRIPTION
-        # ----------------------------------------------------
-
+        # Description / résumé
         SubElement(
             item,
             "description"
         ).text = (
-            article.get(
-                "description"
-            )
+            article.get("description")
             or
             article["title"]
         )
@@ -1104,23 +1079,27 @@ def create_rss(
         # ----------------------------------------------------
         # CONTENU COMPLET
         # ----------------------------------------------------
+        # Seulement pour cod.rss
+        # PAS pour cod-discord.rss
 
-        content = article.get(
-            "content",
-            ""
-        )
+        if include_content:
 
-        if content:
-
-            content_element = SubElement(
-                item,
-                f"{{{CONTENT_NS}}}encoded"
+            content = article.get(
+                "content",
+                ""
             )
 
-            content_element.text = content
+            if content:
+
+                content_element = SubElement(
+                    item,
+                    f"{{{CONTENT_NS}}}encoded"
+                )
+
+                content_element.text = content
 
     # --------------------------------------------------------
-    # ECRITURE
+    # ECRITURE DU FICHIER
     # --------------------------------------------------------
 
     tree = ElementTree(
