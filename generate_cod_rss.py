@@ -6,7 +6,7 @@ from xml.etree.ElementTree import Element, SubElement, ElementTree, indent
 
 BASE_URL = "https://www.callofduty.com"
 BLOG_URL = "https://www.callofduty.com/fr/blog?count=50"
-OUTPUT = "cod.xml"
+OUTPUT = "cod.rss"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; TenshoCODRSS/1.0)"
@@ -90,7 +90,7 @@ def main():
         channel,
         "atom:link",
         {
-            "href": "https://shynen.github.io/tensho-cod-rss/cod.xml",
+            "href": "https://shynen.github.io/tensho-cod-rss/cod.rss",
             "rel": "self",
             "type": "application/rss+xml"
         }
