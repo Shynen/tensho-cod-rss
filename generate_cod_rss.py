@@ -2,6 +2,7 @@ import json
 import os
 import re
 import requests
+
 import argostranslate.package
 import argostranslate.translate
 
@@ -9,6 +10,7 @@ from bs4 import BeautifulSoup, NavigableString
 from email.utils import formatdate
 from datetime import datetime, timezone
 from urllib.parse import urljoin
+
 from xml.etree.ElementTree import (
     Element,
     SubElement,
@@ -34,9 +36,18 @@ MAX_ARTICLES = 20
 ATOM_NS = "http://www.w3.org/2005/Atom"
 CONTENT_NS = "http://purl.org/rss/1.0/modules/content/"
 
+
+# ============================================================
+# NAMESPACES XML
+# ============================================================
+
 register_namespace("atom", ATOM_NS)
 register_namespace("content", CONTENT_NS)
 
+
+# ============================================================
+# HTTP
+# ============================================================
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; TenshoCODRSS/1.0)"
@@ -62,7 +73,9 @@ print("")
 def load_cache():
 
     if not os.path.exists(CACHE_FILE):
+
         print("Aucun cache trouvé.")
+
         return {}
 
     try:
@@ -76,7 +89,11 @@ def load_cache():
             cache = json.load(f)
 
         if not isinstance(cache, dict):
-            print("Cache invalide, nouveau cache.")
+
+            print(
+                "Cache invalide, nouveau cache."
+            )
+
             return {}
 
         print(
@@ -129,7 +146,7 @@ def setup_translation():
     )
 
     # --------------------------------------------------------
-    # Le modèle existe déjà
+    # Vérifie si le modèle existe déjà
     # --------------------------------------------------------
 
     for language in installed:
@@ -142,13 +159,13 @@ def setup_translation():
             if translation.to_lang.code == "fr":
 
                 print(
-                    "Modèle EN -> FR déjà installé. ♻️"
+                    "Modèle EN -> FR déjà installé. 🟢"
                 )
 
                 return
 
     # --------------------------------------------------------
-    # Modèle absent
+    # Installation du modèle
     # --------------------------------------------------------
 
     print(
@@ -159,17 +176,7 @@ def setup_translation():
         "Téléchargement du modèle Argos..."
     )
 
-    try:
-
-        argostranslate.package.update_package_index()
-
-    except Exception as e:
-
-        print(
-            f"Erreur mise à jour index Argos : {e}"
-        )
-
-        raise
+    argostranslate.package.update_package_index()
 
     packages = (
         argostranslate.package
@@ -201,7 +208,7 @@ def setup_translation():
     )
 
     print(
-        "Modèle EN -> FR installé. ✅"
+        "Modèle EN -> FR installé. 🟢"
     )
 
 
@@ -209,7 +216,7 @@ setup_translation()
 
 
 # ============================================================
-# TRADUCTEUR
+# RECUPERATION DU TRADUCTEUR
 # ============================================================
 
 def get_translator():
@@ -240,7 +247,7 @@ def get_translator():
     if english is None or french is None:
 
         raise RuntimeError(
-            "Langues EN ou FR introuvables dans Argos."
+            "Langues EN ou FR introuvables."
         )
 
     for translation in english.translations_from:
@@ -349,7 +356,7 @@ def translate_html_content(content):
 
 
 # ============================================================
-# NORMALISATION DES URLS HTML
+# NORMALISATION DES URLS
 # ============================================================
 
 def normalize_html_urls(content):
@@ -363,7 +370,7 @@ def normalize_html_urls(content):
     )
 
     # --------------------------------------------------------
-    # Images
+    # IMAGES
     # --------------------------------------------------------
 
     for img in soup.find_all("img"):
@@ -377,12 +384,11 @@ def normalize_html_urls(content):
                 src
             )
 
-        # Certains sites utilisent srcset
         srcset = img.get("srcset")
 
         if srcset:
 
-            parts = []
+            new_srcset = []
 
             for part in srcset.split(","):
 
@@ -402,24 +408,26 @@ def normalize_html_urls(content):
 
                 if len(values) > 1:
 
-                    parts.append(
+                    new_srcset.append(
                         absolute_url
                         + " "
-                        + " ".join(values[1:])
+                        + " ".join(
+                            values[1:]
+                        )
                     )
 
                 else:
 
-                    parts.append(
+                    new_srcset.append(
                         absolute_url
                     )
 
             img["srcset"] = ", ".join(
-                parts
+                new_srcset
             )
 
     # --------------------------------------------------------
-    # Liens
+    # LIENS
     # --------------------------------------------------------
 
     for link in soup.find_all("a"):
@@ -437,7 +445,7 @@ def normalize_html_urls(content):
 
 
 # ============================================================
-# DATE
+# DATES
 # ============================================================
 
 MONTHS = {
@@ -503,13 +511,13 @@ def parse_article_date(date_text):
 
 
 # ============================================================
-# EXTRACTION D'UN ARTICLE
+# EXTRACTION ARTICLE
 # ============================================================
 
 def extract_article_content(url):
 
     print(
-        f"   Téléchargement : {url}"
+        f"   Téléchargement de l'article..."
     )
 
     response = requests.get(
@@ -586,12 +594,7 @@ def extract_article_content(url):
     if content_node is None:
 
         content_node = soup.find(
-            "main",
-            class_=lambda value: (
-                value
-                and
-                "article-layout-content" in value
-            )
+            "main"
         )
 
     if content_node is None:
@@ -603,7 +606,7 @@ def extract_article_content(url):
     if content_node is None:
 
         print(
-            "   ⚠️ Contenu principal introuvable."
+            "⚠️ Contenu principal introuvable."
         )
 
         return {
@@ -614,7 +617,7 @@ def extract_article_content(url):
         }
 
     # --------------------------------------------------------
-    # SUPPRESSION ELEMENTS INUTILES
+    # SUPPRESSION DES SCRIPTS
     # --------------------------------------------------------
 
     for tag in content_node.find_all(
@@ -628,12 +631,16 @@ def extract_article_content(url):
         tag.decompose()
 
     # --------------------------------------------------------
-    # URLS ABSOLUES AVANT TRADUCTION
+    # HTML
     # --------------------------------------------------------
 
     content_html = str(
         content_node
     )
+
+    # --------------------------------------------------------
+    # URLS ABSOLUES
+    # --------------------------------------------------------
 
     content_html = normalize_html_urls(
         content_html
@@ -751,7 +758,7 @@ print(
 
 
 # ============================================================
-# TRAITEMENT + CACHE
+# TRAITEMENT DES ARTICLES
 # ============================================================
 
 processed_articles = []
@@ -770,7 +777,7 @@ for index, article in enumerate(
     )
 
     # --------------------------------------------------------
-    # ARTICLE EN CACHE
+    # ARTICLE DEJA EN CACHE
     # --------------------------------------------------------
 
     if url in cache:
@@ -778,21 +785,17 @@ for index, article in enumerate(
         cached = cache[url]
 
         print(
-            f"♻️ Cache utilisé : "
+            f"🟢 Cache utilisé : "
             f"{article['title']}"
         )
 
         cached_content = cached.get(
             "content",
-            cached.get(
-                "content_encoded",
-                ""
-            )
+            ""
         )
 
-        # IMPORTANT :
-        # On ne retraduit pas le contenu.
-        # On corrige seulement les URL relatives.
+        # Corrige les anciennes URLs
+        # sans retraduire l'article.
         cached_content = normalize_html_urls(
             cached_content
         )
@@ -817,7 +820,6 @@ for index, article in enumerate(
             processed_article
         )
 
-        # Mise à jour éventuelle du cache
         cache[url] = {
             "title": processed_article["title"],
             "description": processed_article["description"],
@@ -854,7 +856,7 @@ for index, article in enumerate(
     )
 
     # --------------------------------------------------------
-    # TRADUCTION TITRE
+    # TITRE
     # --------------------------------------------------------
 
     print(
@@ -866,21 +868,19 @@ for index, article in enumerate(
     )
 
     # --------------------------------------------------------
-    # TRADUCTION DESCRIPTION
+    # DESCRIPTION
     # --------------------------------------------------------
 
     print(
         "   Traduction de la description..."
     )
 
-    translated_description = (
-        translate_text(
-            original_description
-        )
+    translated_description = translate_text(
+        original_description
     )
 
     # --------------------------------------------------------
-    # TRADUCTION CONTENU
+    # CONTENU
     # --------------------------------------------------------
 
     print(
@@ -894,7 +894,7 @@ for index, article in enumerate(
     )
 
     # --------------------------------------------------------
-    # NORMALISATION FINALE DES URLS
+    # URLS FINALES
     # --------------------------------------------------------
 
     translated_content = (
@@ -934,7 +934,7 @@ for index, article in enumerate(
 
 
 # ============================================================
-# SAUVEGARDE DU CACHE
+# SAUVEGARDE CACHE
 # ============================================================
 
 save_cache(
@@ -966,6 +966,10 @@ def create_rss(
     articles_to_include
 ):
 
+    # --------------------------------------------------------
+    # RSS ROOT
+    # --------------------------------------------------------
+
     rss = Element(
         "rss",
         {
@@ -977,6 +981,10 @@ def create_rss(
         rss,
         "channel"
     )
+
+    # --------------------------------------------------------
+    # CHANNEL
+    # --------------------------------------------------------
 
     SubElement(
         channel,
@@ -993,20 +1001,42 @@ def create_rss(
         "description"
     ).text = rss_description
 
-    SubElement(
+    # --------------------------------------------------------
+    # ATOM SELF LINK
+    # --------------------------------------------------------
+
+    atom_link = SubElement(
         channel,
-        "atom:link",
-        {
-            "href": feed_url,
-            "rel": "self",
-            "type": "application/rss+xml"
-        }
+        f"{{{ATOM_NS}}}link"
     )
+
+    atom_link.set(
+        "href",
+        feed_url
+    )
+
+    atom_link.set(
+        "rel",
+        "self"
+    )
+
+    atom_link.set(
+        "type",
+        "application/rss+xml"
+    )
+
+    # --------------------------------------------------------
+    # DATE
+    # --------------------------------------------------------
 
     SubElement(
         channel,
         "lastBuildDate"
     ).text = now
+
+    # --------------------------------------------------------
+    # ARTICLES
+    # --------------------------------------------------------
 
     for article in articles_to_include:
 
@@ -1016,7 +1046,7 @@ def create_rss(
         )
 
         # ----------------------------------------------------
-        # TITRE
+        # TITLE
         # ----------------------------------------------------
 
         SubElement(
@@ -1025,7 +1055,7 @@ def create_rss(
         ).text = article["title"]
 
         # ----------------------------------------------------
-        # LIEN
+        # LINK
         # ----------------------------------------------------
 
         SubElement(
@@ -1076,15 +1106,22 @@ def create_rss(
         # ----------------------------------------------------
 
         content = article.get(
-            "content"
+            "content",
+            ""
         )
 
         if content:
 
-            SubElement(
+            content_element = SubElement(
                 item,
-                "content:encoded"
-            ).text = content
+                f"{{{CONTENT_NS}}}encoded"
+            )
+
+            content_element.text = content
+
+    # --------------------------------------------------------
+    # ECRITURE
+    # --------------------------------------------------------
 
     tree = ElementTree(
         rss
@@ -1103,7 +1140,7 @@ def create_rss(
 
 
 # ============================================================
-# RSS COMPLET
+# RSS COMPLET : 20 ARTICLES
 # ============================================================
 
 print("")
@@ -1120,13 +1157,13 @@ create_rss(
 )
 
 print(
-    f"✅ {len(processed_articles)} articles "
+    f"🟢 {len(processed_articles)} articles "
     f"écrits dans {OUTPUT}"
 )
 
 
 # ============================================================
-# RSS DISCORD
+# RSS DISCORD : 1 SEUL ARTICLE
 # ============================================================
 
 print("")
@@ -1138,10 +1175,10 @@ discord_articles = []
 
 if processed_articles:
 
-    # Le site COD est parcouru du plus récent
-    # au plus ancien.
-    # Le premier article est donc celui
-    # que Readybot doit recevoir.
+    # Le site Call of Duty renvoie les articles
+    # du plus récent au plus ancien.
+    #
+    # On ne garde donc que le premier article.
 
     discord_articles = [
         processed_articles[0]
@@ -1156,11 +1193,17 @@ create_rss(
 )
 
 print(
-    "✅ Flux Discord généré : "
+    "🟢 Flux Discord généré : "
     f"{DISCORD_OUTPUT}"
 )
+
+
+# ============================================================
+# FIN
+# ============================================================
 
 print("")
 print("########################################")
 print("# TERMINÉ")
 print("########################################")
+print("")
