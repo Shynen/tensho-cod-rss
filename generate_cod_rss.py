@@ -1,12 +1,19 @@
 import re
+import html
 import requests
+
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from xml.etree.ElementTree import Element, SubElement, ElementTree, indent
 from datetime import datetime, timezone
 
+import argostranslate.package
+import argostranslate.translate
+
+
 BASE_URL = "https://www.callofduty.com"
 BLOG_URL = "https://www.callofduty.com/fr/blog?count=50"
+
 OUTPUT = "cod.xml"
 FEED_URL = "https://shynen.github.io/tensho-cod-rss/cod.xml"
 
@@ -15,11 +22,316 @@ HEADERS = {
 }
 
 
-def now_iso():
-    return datetime.now(timezone.utc).isoformat()
+# =========================================================
+# ARGOS TRANSLATE
+# =========================================================
+
+def setup_translation():
+
+    print("Recherche du modèle anglais → français...")
+
+    argostranslate.package.update_package_index()
+
+    installed = argostranslate.translate.get_installed_languages()
+
+    for lang in installed:
+        if lang.code == "en":
+            for translation in lang.translations_from:
+                if translation.to_lang.code == "fr":
+                    print("Modèle EN → FR déjà installé.")
+                    return
+
+    packages = argostranslate.package.get_available_packages()
+
+    package = next(
+        (
+            p for p in packages
+            if p.from_code == "en"
+            and p.to_code == "fr"
+        ),
+        None
+    )
+
+    if package is None:
+        raise RuntimeError("Modèle Argos EN → FR introuvable.")
+
+    print("Téléchargement du modèle EN → FR...")
+
+    argostranslate.package.install_from_path(
+        package.download()
+    )
+
+    print("Modèle EN → FR installé.")
 
 
-def main():
+def translate_text(text):
+
+    if not text or not text.strip():
+        return text
+
+    text = text.strip()
+
+    try:
+        result = argostranslate.translate.translate(
+            text,
+            "en",
+            "fr"
+        )
+
+        return result
+
+    except Exception as e:
+        print(f"Erreur traduction : {e}")
+        return text
+
+
+# =========================================================
+# DÉTECTION ANGLAIS
+# =========================================================
+
+def looks_english(text):
+
+    if not text:
+        return False
+
+    text_lower = text.lower()
+
+    english_words = {
+        "the",
+        "and",
+        "you",
+        "your",
+        "with",
+        "for",
+        "from",
+        "this",
+        "that",
+        "everything",
+        "know",
+        "open",
+        "beta",
+        "season",
+        "update",
+        "new",
+        "coming",
+        "available",
+        "details",
+        "we",
+        "will",
+        "get",
+        "play",
+        "game"
+    }
+
+    words = re.findall(r"\b[a-zA-Z]+\b", text_lower)
+
+    if not words:
+        return False
+
+    matches = sum(
+        1 for word in words
+        if word in english_words
+    )
+
+    return matches >= 2
+
+
+# =========================================================
+# TRADUCTION HTML
+# =========================================================
+
+def translate_html_content(element):
+
+    if element is None:
+        return ""
+
+    # On travaille sur une copie
+    soup = BeautifulSoup(str(element), "html.parser")
+
+    ignored = {
+        "script",
+        "style",
+        "code",
+        "pre"
+    }
+
+    for node in soup.find_all(string=True):
+
+        parent = node.parent
+
+        if parent and parent.name in ignored:
+            continue
+
+        text = str(node).strip()
+
+        if not text:
+            continue
+
+        # Pas de traduction des URLs ou textes trop courts
+        if len(text) < 3:
+            continue
+
+        if not looks_english(text):
+            continue
+
+        translated = translate_text(text)
+
+        node.replace_with(
+            str(node).replace(text, translated)
+        )
+
+    return str(soup)
+
+
+# =========================================================
+# EXTRACTION ARTICLE
+# =========================================================
+
+def fetch_article(url):
+
+    print(f"Lecture : {url}")
+
+    try:
+
+        response = requests.get(
+            url,
+            headers=HEADERS,
+            timeout=30
+        )
+
+        response.raise_for_status()
+
+    except Exception as e:
+
+        print(f"Impossible de récupérer {url}: {e}")
+
+        return None
+
+    soup = BeautifulSoup(
+        response.text,
+        "html.parser"
+    )
+
+    # -----------------------------------------------------
+    # TITLE
+    # -----------------------------------------------------
+
+    title = ""
+
+    og_title = soup.find(
+        "meta",
+        property="og:title"
+    )
+
+    if og_title and og_title.get("content"):
+        title = og_title["content"].strip()
+
+    if not title and soup.title:
+        title = soup.title.get_text(
+            " ",
+            strip=True
+        )
+
+    # -----------------------------------------------------
+    # DESCRIPTION
+    # -----------------------------------------------------
+
+    description = ""
+
+    og_description = soup.find(
+        "meta",
+        property="og:description"
+    )
+
+    if og_description and og_description.get("content"):
+        description = og_description["content"].strip()
+
+    # -----------------------------------------------------
+    # CONTENU
+    # -----------------------------------------------------
+
+    content = None
+
+    # On privilégie article
+    content = soup.find("article")
+
+    # Puis les principaux conteneurs possibles
+    if content is None:
+        for selector in [
+            "main",
+            "[role='main']",
+            ".article-content",
+            ".blog-content",
+            ".content"
+        ]:
+
+            content = soup.select_one(selector)
+
+            if content is not None:
+                break
+
+    if content is None:
+        content = soup.body
+
+    if content is None:
+        return None
+
+    # Supprime les éléments inutiles
+    for tag in content.find_all([
+        "script",
+        "style",
+        "noscript"
+    ]):
+        tag.decompose()
+
+    # -----------------------------------------------------
+    # TRADUCTION
+    # -----------------------------------------------------
+
+    if looks_english(title):
+
+        print(f"  → Titre anglais détecté : {title}")
+
+        title = translate_text(title)
+
+        print(f"  → Titre FR : {title}")
+
+    if description and looks_english(description):
+
+        print("  → Description anglaise détectée")
+
+        description = translate_text(
+            description
+        )
+
+    content_html = str(content)
+
+    if looks_english(
+        content.get_text(" ", strip=True)[:2000]
+    ):
+
+        print("  → Contenu anglais détecté")
+
+        content_html = translate_html_content(
+            content
+        )
+
+    else:
+
+        print("  → Contenu déjà français")
+
+    return {
+        "title": title,
+        "description": description,
+        "content": content_html
+    }
+
+
+# =========================================================
+# RÉCUPÉRATION DU BLOG
+# =========================================================
+
+def get_articles():
 
     print("Téléchargement du blog Call of Duty...")
 
@@ -31,69 +343,63 @@ def main():
 
     response.raise_for_status()
 
-    soup = BeautifulSoup(response.text, "html.parser")
+    soup = BeautifulSoup(
+        response.text,
+        "html.parser"
+    )
 
     articles = []
     seen = set()
 
-    pattern = re.compile(r"^/fr/blog/\d{4}/")
+    pattern = re.compile(
+        r"^/fr/blog/\d{4}/"
+    )
 
-    for link in soup.find_all("a", href=True):
+    for link in soup.find_all(
+        "a",
+        href=True
+    ):
 
         href = link["href"].strip()
 
         if not pattern.match(href):
             continue
 
-        url = urljoin(BASE_URL, href)
+        url = urljoin(
+            BASE_URL,
+            href
+        )
 
         if url in seen:
             continue
 
-        title = link.get_text(" ", strip=True)
+        seen.add(url)
+
+        title = link.get_text(
+            " ",
+            strip=True
+        )
 
         if not title or len(title) < 8:
             continue
 
-        seen.add(url)
-
-        # Cherche un résumé éventuel dans le bloc parent
-        summary = ""
-
-        parent = link
-
-        for _ in range(4):
-
-            parent = parent.parent
-
-            if parent is None:
-                break
-
-            text = parent.get_text(" ", strip=True)
-
-            if len(text) > len(title) + 20:
-                summary = text
-                break
-
-        if not summary:
-            summary = title
-
         articles.append({
-            "title": title,
             "url": url,
-            "summary": summary
+            "title": title
         })
 
-    # Limite aux 30 dernières entrées trouvées
-    articles = articles[:30]
+    return articles[:15]
 
-    print(f"{len(articles)} articles trouvés.")
 
-    # =====================================================
-    # ATOM
-    # =====================================================
+# =========================================================
+# GÉNÉRATION ATOM
+# =========================================================
 
-    ATOM_NS = "http://www.w3.org/2005/Atom"
+def generate_feed(articles):
+
+    ATOM_NS = (
+        "http://www.w3.org/2005/Atom"
+    )
 
     feed = Element(
         f"{{{ATOM_NS}}}feed",
@@ -102,36 +408,36 @@ def main():
         }
     )
 
-    # ID du flux
     SubElement(
         feed,
         f"{{{ATOM_NS}}}id"
     ).text = FEED_URL
 
-    # Titre
     SubElement(
         feed,
         f"{{{ATOM_NS}}}title"
-    ).text = "Call of Duty — Actualités françaises"
+    ).text = (
+        "Call of Duty — Actualités françaises"
+    )
 
-    # Date de mise à jour
     SubElement(
         feed,
         f"{{{ATOM_NS}}}updated"
-    ).text = now_iso()
+    ).text = datetime.now(
+        timezone.utc
+    ).isoformat()
 
-    # Lien vers le site officiel
     SubElement(
         feed,
         f"{{{ATOM_NS}}}link",
         {
-            "href": "https://www.callofduty.com/fr/blog",
+            "href":
+                "https://www.callofduty.com/fr/blog",
             "rel": "alternate",
             "type": "text/html"
         }
     )
 
-    # Lien du flux lui-même
     SubElement(
         feed,
         f"{{{ATOM_NS}}}link",
@@ -142,30 +448,34 @@ def main():
         }
     )
 
-    # =====================================================
-    # ENTRÉES
-    # =====================================================
-
     for article in articles:
+
+        data = fetch_article(
+            article["url"]
+        )
+
+        if data is None:
+            continue
+
+        timestamp = datetime.now(
+            timezone.utc
+        ).isoformat()
 
         entry = SubElement(
             feed,
             f"{{{ATOM_NS}}}entry"
         )
 
-        # ID unique basé sur l'URL
         SubElement(
             entry,
             f"{{{ATOM_NS}}}id"
         ).text = article["url"]
 
-        # Titre
         SubElement(
             entry,
             f"{{{ATOM_NS}}}title"
-        ).text = article["title"]
+        ).text = data["title"]
 
-        # URL
         SubElement(
             entry,
             f"{{{ATOM_NS}}}link",
@@ -176,7 +486,6 @@ def main():
             }
         )
 
-        # Catégorie
         SubElement(
             entry,
             f"{{{ATOM_NS}}}category",
@@ -184,9 +493,6 @@ def main():
                 "term": "News"
             }
         )
-
-        # Date
-        timestamp = now_iso()
 
         SubElement(
             entry,
@@ -198,7 +504,6 @@ def main():
             f"{{{ATOM_NS}}}updated"
         ).text = timestamp
 
-        # Auteur
         author = SubElement(
             entry,
             f"{{{ATOM_NS}}}author"
@@ -209,33 +514,28 @@ def main():
             f"{{{ATOM_NS}}}name"
         ).text = "Call of Duty"
 
-        # Contenu
         SubElement(
             entry,
             f"{{{ATOM_NS}}}content",
             {
                 "type": "html"
             }
-        ).text = (
-            f"<p>{article['summary']}</p>"
-            f"<p><a href=\"{article['url']}\">"
-            f"Lire l'article officiel"
-            f"</a></p>"
-        )
+        ).text = data["content"]
 
-        # Résumé
         SubElement(
             entry,
             f"{{{ATOM_NS}}}summary"
-        ).text = article["summary"]
-
-    # =====================================================
-    # ÉCRITURE
-    # =====================================================
+        ).text = (
+            data["description"]
+            or data["title"]
+        )
 
     tree = ElementTree(feed)
 
-    indent(tree, space="  ")
+    indent(
+        tree,
+        space="  "
+    )
 
     tree.write(
         OUTPUT,
@@ -243,8 +543,23 @@ def main():
         xml_declaration=True
     )
 
-    print(f"Flux Atom généré : {OUTPUT}")
+    print(
+        f"Flux Atom généré : {OUTPUT}"
+    )
 
+
+# =========================================================
+# MAIN
+# =========================================================
 
 if __name__ == "__main__":
-    main()
+
+    setup_translation()
+
+    articles = get_articles()
+
+    print(
+        f"{len(articles)} articles trouvés."
+    )
+
+    generate_feed(articles)
