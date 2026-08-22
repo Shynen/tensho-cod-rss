@@ -20,6 +20,17 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: "3.x"
+          cache: "pip"
+
+      - name: Restore Argos cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.local/share/argos-translate
+            ~/.local/cache/argos-translate
+          key: argos-en-fr-${{ runner.os }}-v1
+          restore-keys: |
+            argos-en-fr-${{ runner.os }}-
 
       - name: Install dependencies
         run: |
