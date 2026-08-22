@@ -28,7 +28,7 @@ BASE_URL = "https://www.callofduty.com"
 BLOG_URL = "https://www.callofduty.com/fr/blog?count=50"
 
 OUTPUT = "cod.rss"
-DISCORD_OUTPUT = "cod-discord.rss"
+DISCORD_OUTPUT = "cod-discord.xml"
 CACHE_FILE = "cod_cache.json"
 
 MAX_ARTICLES = 20
@@ -1101,7 +1101,7 @@ create_rss(
     DISCORD_OUTPUT,
     "Call of Duty Actualités",
     "Dernières actualités Call of Duty.",
-    "https://shynen.github.io/tensho-cod-rss/cod-discord.rss",
+    "https://shynen.github.io/tensho-cod-rss/cod-discord.xml",
     discord_articles,
     include_content=False,
     minimal=True
