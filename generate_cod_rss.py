@@ -874,14 +874,14 @@ now = formatdate(
 # ============================================================
 # CREATION RSS
 # ============================================================
-
 def create_rss(
     output_file,
     rss_title,
     rss_description,
     feed_url,
     articles_to_include,
-    include_content=True
+    include_content=True,
+    minimal=False
 ):
 
     rss = Element(
@@ -912,121 +912,133 @@ def create_rss(
     ).text = rss_description
 
     # --------------------------------------------------------
-    # ATOM SELF LINK
+    # FLUX DISCORD MINIMAL
     # --------------------------------------------------------
 
-    atom_link = SubElement(
-        channel,
-        f"{{{ATOM_NS}}}link"
-    )
+    if minimal:
 
-    atom_link.set(
-        "href",
-        feed_url
-    )
+        for article in articles_to_include:
 
-    atom_link.set(
-        "rel",
-        "self"
-    )
-
-    atom_link.set(
-        "type",
-        "application/rss+xml"
-    )
-
-    # --------------------------------------------------------
-    # DATE
-    # --------------------------------------------------------
-
-    SubElement(
-        channel,
-        "lastBuildDate"
-    ).text = now
-
-    # --------------------------------------------------------
-    # ARTICLES
-    # --------------------------------------------------------
-
-    for article in articles_to_include:
-
-        item = SubElement(
-            channel,
-            "item"
-        )
-
-        # Titre
-        SubElement(
-            item,
-            "title"
-        ).text = article["title"]
-
-        # Lien
-        SubElement(
-            item,
-            "link"
-        ).text = article["url"]
-
-        # GUID
-        SubElement(
-            item,
-            "guid",
-            {
-                "isPermaLink": "true"
-            }
-        ).text = article["url"]
-
-        # Date
-        if article.get("pubDate"):
+            item = SubElement(
+                channel,
+                "item"
+            )
 
             SubElement(
                 item,
-                "pubDate"
-            ).text = article["pubDate"]
+                "title"
+            ).text = article["title"]
 
-        # Description
-        SubElement(
-            item,
-            "description"
-        ).text = (
-            article.get(
+            SubElement(
+                item,
+                "link"
+            ).text = article["url"]
+
+            SubElement(
+                item,
+                "guid"
+            ).text = article["url"]
+
+            SubElement(
+                item,
                 "description"
+            ).text = (
+                article.get("description")
+                or article["title"]
             )
-            or
-            article["title"]
+
+    # --------------------------------------------------------
+    # RSS COMPLET
+    # --------------------------------------------------------
+
+    else:
+
+        atom_link = SubElement(
+            channel,
+            f"{{{ATOM_NS}}}link"
         )
 
-        # ----------------------------------------------------
-        # CONTENU COMPLET
-        #
-        # IMPORTANT :
-        # cod.rss       -> include_content=True
-        # cod-discord   -> include_content=False
-        # ----------------------------------------------------
+        atom_link.set(
+            "href",
+            feed_url
+        )
 
-        if include_content:
+        atom_link.set(
+            "rel",
+            "self"
+        )
 
-            content = article.get(
-                "content",
-                ""
+        atom_link.set(
+            "type",
+            "application/rss+xml"
+        )
+
+        SubElement(
+            channel,
+            "lastBuildDate"
+        ).text = now
+
+        for article in articles_to_include:
+
+            item = SubElement(
+                channel,
+                "item"
             )
 
-            if content:
+            SubElement(
+                item,
+                "title"
+            ).text = article["title"]
 
-                content_element = SubElement(
+            SubElement(
+                item,
+                "link"
+            ).text = article["url"]
+
+            SubElement(
+                item,
+                "guid",
+                {
+                    "isPermaLink": "true"
+                }
+            ).text = article["url"]
+
+            if article.get("pubDate"):
+
+                SubElement(
                     item,
-                    f"{{{CONTENT_NS}}}encoded"
+                    "pubDate"
+                ).text = article["pubDate"]
+
+            SubElement(
+                item,
+                "description"
+            ).text = (
+                article.get("description")
+                or article["title"]
+            )
+
+            if include_content:
+
+                content = article.get(
+                    "content",
+                    ""
                 )
 
-                content_element.text = content
+                if content:
+
+                    content_element = SubElement(
+                        item,
+                        f"{{{CONTENT_NS}}}encoded"
+                    )
+
+                    content_element.text = content
 
     # --------------------------------------------------------
     # ECRITURE
     # --------------------------------------------------------
 
-    tree = ElementTree(
-        rss
-    )
+    tree = ElementTree(rss)
 
     indent(
         tree,
@@ -1038,7 +1050,6 @@ def create_rss(
         encoding="utf-8",
         xml_declaration=True
     )
-
 
 # ============================================================
 # RSS COMPLET : 20 ARTICLES
@@ -1088,11 +1099,12 @@ if processed_articles:
 
 create_rss(
     DISCORD_OUTPUT,
-    "Call of Duty — Actualités françaises — Discord",
-    "Flux Call of Duty destiné à Discord — dernière actualité uniquement.",
+    "Call of Duty Actualités",
+    "Dernières actualités Call of Duty.",
     "https://shynen.github.io/tensho-cod-rss/cod-discord.rss",
     discord_articles,
-    include_content=False
+    include_content=False,
+    minimal=True
 )
 
 print(
