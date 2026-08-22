@@ -1,7 +1,6 @@
 import json
 import os
 import re
-import html
 import requests
 import argostranslate.package
 import argostranslate.translate
@@ -61,28 +60,48 @@ print("")
 # ============================================================
 
 def load_cache():
+
     if not os.path.exists(CACHE_FILE):
         print("Aucun cache trouvé.")
         return {}
 
     try:
-        with open(CACHE_FILE, "r", encoding="utf-8") as f:
+
+        with open(
+            CACHE_FILE,
+            "r",
+            encoding="utf-8"
+        ) as f:
+
             cache = json.load(f)
 
         if not isinstance(cache, dict):
             print("Cache invalide, nouveau cache.")
             return {}
 
-        print(f"Cache chargé : {len(cache)} articles.")
+        print(
+            f"Cache chargé : {len(cache)} articles."
+        )
+
         return cache
 
     except Exception as e:
-        print(f"Erreur lecture cache : {e}")
+
+        print(
+            f"Erreur lecture cache : {e}"
+        )
+
         return {}
 
 
 def save_cache(cache):
-    with open(CACHE_FILE, "w", encoding="utf-8") as f:
+
+    with open(
+        CACHE_FILE,
+        "w",
+        encoding="utf-8"
+    ) as f:
+
         json.dump(
             cache,
             f,
@@ -100,11 +119,19 @@ cache = load_cache()
 
 def setup_translation():
 
-    print("Vérification du modèle Argos EN -> FR...")
+    print(
+        "Vérification du modèle Argos EN -> FR..."
+    )
 
-    installed = argostranslate.translate.get_installed_languages()
+    installed = (
+        argostranslate.translate
+        .get_installed_languages()
+    )
 
-    # Le modèle est déjà installé
+    # --------------------------------------------------------
+    # Le modèle existe déjà
+    # --------------------------------------------------------
+
     for language in installed:
 
         if language.code != "en":
@@ -114,21 +141,40 @@ def setup_translation():
 
             if translation.to_lang.code == "fr":
 
-                print("Modèle EN -> FR déjà installé. ♻️")
+                print(
+                    "Modèle EN -> FR déjà installé. ♻️"
+                )
+
                 return
 
-    # Sinon on télécharge le modèle
-    print("Modèle EN -> FR absent.")
-    print("Téléchargement du modèle Argos...")
+    # --------------------------------------------------------
+    # Modèle absent
+    # --------------------------------------------------------
+
+    print(
+        "Modèle EN -> FR absent."
+    )
+
+    print(
+        "Téléchargement du modèle Argos..."
+    )
 
     try:
+
         argostranslate.package.update_package_index()
 
     except Exception as e:
-        print(f"Erreur mise à jour index Argos : {e}")
+
+        print(
+            f"Erreur mise à jour index Argos : {e}"
+        )
+
         raise
 
-    packages = argostranslate.package.get_available_packages()
+    packages = (
+        argostranslate.package
+        .get_available_packages()
+    )
 
     package = next(
         (
@@ -141,29 +187,37 @@ def setup_translation():
     )
 
     if package is None:
+
         raise RuntimeError(
             "Modèle Argos EN -> FR introuvable."
         )
 
-    print("Installation du modèle EN -> FR...")
+    print(
+        "Installation du modèle EN -> FR..."
+    )
 
     argostranslate.package.install_from_path(
         package.download()
     )
 
-    print("Modèle EN -> FR installé. ✅")
+    print(
+        "Modèle EN -> FR installé. ✅"
+    )
 
 
 setup_translation()
 
 
 # ============================================================
-# TRADUCTION
+# TRADUCTEUR
 # ============================================================
 
 def get_translator():
 
-    installed = argostranslate.translate.get_installed_languages()
+    installed = (
+        argostranslate.translate
+        .get_installed_languages()
+    )
 
     english = next(
         (
@@ -184,6 +238,7 @@ def get_translator():
     )
 
     if english is None or french is None:
+
         raise RuntimeError(
             "Langues EN ou FR introuvables dans Argos."
         )
@@ -191,6 +246,7 @@ def get_translator():
     for translation in english.translations_from:
 
         if translation.to_lang.code == "fr":
+
             return translation
 
     raise RuntimeError(
@@ -200,6 +256,10 @@ def get_translator():
 
 translator = get_translator()
 
+
+# ============================================================
+# TRADUCTION TEXTE
+# ============================================================
 
 def translate_text(text):
 
@@ -212,12 +272,21 @@ def translate_text(text):
         return ""
 
     try:
+
         return translator.translate(text)
 
     except Exception as e:
-        print(f"Erreur traduction : {e}")
+
+        print(
+            f"Erreur traduction : {e}"
+        )
+
         return text
 
+
+# ============================================================
+# TRADUCTION HTML
+# ============================================================
 
 def translate_html_content(content):
 
@@ -229,8 +298,6 @@ def translate_html_content(content):
         "html.parser"
     )
 
-    # On traduit uniquement les vrais textes.
-    # Les balises HTML, scripts, styles, etc. sont conservés.
     for text_node in soup.find_all(
         string=True
     ):
@@ -255,23 +322,115 @@ def translate_html_content(content):
         ):
             continue
 
-        original = str(text_node).strip()
+        original = str(
+            text_node
+        ).strip()
 
         if not original:
             continue
 
-        # Évite de traduire certaines chaînes techniques
         if len(original) < 2:
             continue
 
-        translated = translate_text(original)
+        translated = translate_text(
+            original
+        )
 
         if translated:
+
             text_node.replace_with(
                 str(text_node).replace(
                     original,
                     translated
                 )
+            )
+
+    return str(soup)
+
+
+# ============================================================
+# NORMALISATION DES URLS HTML
+# ============================================================
+
+def normalize_html_urls(content):
+
+    if not content:
+        return ""
+
+    soup = BeautifulSoup(
+        content,
+        "html.parser"
+    )
+
+    # --------------------------------------------------------
+    # Images
+    # --------------------------------------------------------
+
+    for img in soup.find_all("img"):
+
+        src = img.get("src")
+
+        if src:
+
+            img["src"] = urljoin(
+                BASE_URL,
+                src
+            )
+
+        # Certains sites utilisent srcset
+        srcset = img.get("srcset")
+
+        if srcset:
+
+            parts = []
+
+            for part in srcset.split(","):
+
+                part = part.strip()
+
+                if not part:
+                    continue
+
+                values = part.split()
+
+                image_url = values[0]
+
+                absolute_url = urljoin(
+                    BASE_URL,
+                    image_url
+                )
+
+                if len(values) > 1:
+
+                    parts.append(
+                        absolute_url
+                        + " "
+                        + " ".join(values[1:])
+                    )
+
+                else:
+
+                    parts.append(
+                        absolute_url
+                    )
+
+            img["srcset"] = ", ".join(
+                parts
+            )
+
+    # --------------------------------------------------------
+    # Liens
+    # --------------------------------------------------------
+
+    for link in soup.find_all("a"):
+
+        href = link.get("href")
+
+        if href:
+
+            link["href"] = urljoin(
+                BASE_URL,
+                href
             )
 
     return str(soup)
@@ -314,12 +473,15 @@ def parse_article_date(date_text):
     day = int(match.group(2))
     year = int(match.group(3))
 
-    month = MONTHS.get(month_name)
+    month = MONTHS.get(
+        month_name
+    )
 
     if not month:
         return None
 
     try:
+
         dt = datetime(
             year,
             month,
@@ -336,16 +498,19 @@ def parse_article_date(date_text):
         )
 
     except Exception:
+
         return None
 
 
 # ============================================================
-# EXTRACTION DU CONTENU D'UN ARTICLE
+# EXTRACTION D'UN ARTICLE
 # ============================================================
 
 def extract_article_content(url):
 
-    print(f"   Téléchargement : {url}")
+    print(
+        f"   Téléchargement : {url}"
+    )
 
     response = requests.get(
         url,
@@ -372,7 +537,10 @@ def extract_article_content(url):
     )
 
     if title_node is None:
-        title_node = soup.find("h1")
+
+        title_node = soup.find(
+            "h1"
+        )
 
     title = (
         title_node.get_text(
@@ -396,6 +564,7 @@ def extract_article_content(url):
     )
 
     if date_node:
+
         date_text = date_node.get_text(
             " ",
             strip=True
@@ -415,21 +584,28 @@ def extract_article_content(url):
     )
 
     if content_node is None:
+
         content_node = soup.find(
             "main",
             class_=lambda value: (
-                value and
+                value
+                and
                 "article-layout-content" in value
             )
         )
 
     if content_node is None:
+
         content_node = soup.find(
             "article"
         )
 
     if content_node is None:
-        print("   ⚠️ Contenu principal introuvable.")
+
+        print(
+            "   ⚠️ Contenu principal introuvable."
+        )
+
         return {
             "title": title,
             "description": "",
@@ -438,7 +614,7 @@ def extract_article_content(url):
         }
 
     # --------------------------------------------------------
-    # SUPPRESSION DES ÉLÉMENTS INUTILES
+    # SUPPRESSION ELEMENTS INUTILES
     # --------------------------------------------------------
 
     for tag in content_node.find_all(
@@ -448,44 +624,35 @@ def extract_article_content(url):
             "noscript"
         ]
     ):
+
         tag.decompose()
 
     # --------------------------------------------------------
-    # URL ABSOLUES POUR LES IMAGES
+    # URLS ABSOLUES AVANT TRADUCTION
     # --------------------------------------------------------
 
-    for img in content_node.find_all("img"):
+    content_html = str(
+        content_node
+    )
 
-        src = img.get("src")
-
-        if src:
-            img["src"] = urljoin(
-                BASE_URL,
-                src
-            )
-
-    # --------------------------------------------------------
-    # URL ABSOLUES POUR LES LIENS
-    # --------------------------------------------------------
-
-    for a in content_node.find_all("a"):
-
-        href = a.get("href")
-
-        if href:
-            a["href"] = urljoin(
-                BASE_URL,
-                href
-            )
+    content_html = normalize_html_urls(
+        content_html
+    )
 
     # --------------------------------------------------------
     # DESCRIPTION
     # --------------------------------------------------------
 
+    content_soup = BeautifulSoup(
+        content_html,
+        "html.parser"
+    )
+
     description = ""
 
-    # On prend le premier paragraphe utile
-    for paragraph in content_node.find_all("p"):
+    for paragraph in content_soup.find_all(
+        "p"
+    ):
 
         text = paragraph.get_text(
             " ",
@@ -493,16 +660,10 @@ def extract_article_content(url):
         )
 
         if len(text) >= 40:
+
             description = text
+
             break
-
-    # --------------------------------------------------------
-    # HTML COMPLET
-    # --------------------------------------------------------
-
-    content_html = str(
-        content_node
-    )
 
     return {
         "title": title,
@@ -513,10 +674,12 @@ def extract_article_content(url):
 
 
 # ============================================================
-# BLOG CALL OF DUTY
+# TELECHARGEMENT DU BLOG
 # ============================================================
 
-print("Téléchargement du blog COD...")
+print(
+    "Téléchargement du blog COD..."
+)
 
 response = requests.get(
     BLOG_URL,
@@ -533,7 +696,7 @@ soup = BeautifulSoup(
 
 
 # ============================================================
-# RÉCUPÉRATION DES ARTICLES
+# RECUPERATION DES ARTICLES
 # ============================================================
 
 articles = []
@@ -588,7 +751,7 @@ print(
 
 
 # ============================================================
-# TRAITEMENT DES ARTICLES + CACHE
+# TRAITEMENT + CACHE
 # ============================================================
 
 processed_articles = []
@@ -602,11 +765,12 @@ for index, article in enumerate(
 
     print("")
     print(
-        f"[{index}/{len(articles)}] {article['title']}"
+        f"[{index}/{len(articles)}] "
+        f"{article['title']}"
     )
 
     # --------------------------------------------------------
-    # CACHE
+    # ARTICLE EN CACHE
     # --------------------------------------------------------
 
     if url in cache:
@@ -614,32 +778,52 @@ for index, article in enumerate(
         cached = cache[url]
 
         print(
-            f"♻️ Cache utilisé : {article['title']}"
+            f"♻️ Cache utilisé : "
+            f"{article['title']}"
         )
 
-        processed_articles.append(
-            {
-                "url": url,
-                "title": cached.get(
-                    "title",
-                    article["title"]
-                ),
-                "description": cached.get(
-                    "description",
-                    ""
-                ),
-                "content": cached.get(
-                    "content",
-                    cached.get(
-                        "content_encoded",
-                        ""
-                    )
-                ),
-                "pubDate": cached.get(
-                    "pubDate"
-                )
-            }
+        cached_content = cached.get(
+            "content",
+            cached.get(
+                "content_encoded",
+                ""
+            )
         )
+
+        # IMPORTANT :
+        # On ne retraduit pas le contenu.
+        # On corrige seulement les URL relatives.
+        cached_content = normalize_html_urls(
+            cached_content
+        )
+
+        processed_article = {
+            "url": url,
+            "title": cached.get(
+                "title",
+                article["title"]
+            ),
+            "description": cached.get(
+                "description",
+                ""
+            ),
+            "content": cached_content,
+            "pubDate": cached.get(
+                "pubDate"
+            )
+        }
+
+        processed_articles.append(
+            processed_article
+        )
+
+        # Mise à jour éventuelle du cache
+        cache[url] = {
+            "title": processed_article["title"],
+            "description": processed_article["description"],
+            "content": processed_article["content"],
+            "pubDate": processed_article["pubDate"]
+        }
 
         continue
 
@@ -657,7 +841,8 @@ for index, article in enumerate(
 
     original_title = (
         data["title"]
-        or article["title"]
+        or
+        article["title"]
     )
 
     original_description = (
@@ -669,10 +854,12 @@ for index, article in enumerate(
     )
 
     # --------------------------------------------------------
-    # TRADUCTION DU TITRE
+    # TRADUCTION TITRE
     # --------------------------------------------------------
 
-    print("   Traduction du titre...")
+    print(
+        "   Traduction du titre..."
+    )
 
     translated_title = translate_text(
         original_title
@@ -686,8 +873,10 @@ for index, article in enumerate(
         "   Traduction de la description..."
     )
 
-    translated_description = translate_text(
-        original_description
+    translated_description = (
+        translate_text(
+            original_description
+        )
     )
 
     # --------------------------------------------------------
@@ -698,8 +887,20 @@ for index, article in enumerate(
         "   Traduction du contenu..."
     )
 
-    translated_content = translate_html_content(
-        original_content
+    translated_content = (
+        translate_html_content(
+            original_content
+        )
+    )
+
+    # --------------------------------------------------------
+    # NORMALISATION FINALE DES URLS
+    # --------------------------------------------------------
+
+    translated_content = (
+        normalize_html_urls(
+            translated_content
+        )
     )
 
     # --------------------------------------------------------
@@ -715,7 +916,9 @@ for index, article in enumerate(
         )
     }
 
-    save_cache(cache)
+    save_cache(
+        cache
+    )
 
     processed_articles.append(
         {
@@ -731,7 +934,16 @@ for index, article in enumerate(
 
 
 # ============================================================
-# DATE DE GÉNÉRATION
+# SAUVEGARDE DU CACHE
+# ============================================================
+
+save_cache(
+    cache
+)
+
+
+# ============================================================
+# DATE DE GENERATION
 # ============================================================
 
 now = formatdate(
@@ -743,7 +955,7 @@ now = formatdate(
 
 
 # ============================================================
-# FONCTION DE CRÉATION D'UN RSS
+# CREATION RSS
 # ============================================================
 
 def create_rss(
@@ -855,7 +1067,8 @@ def create_rss(
             article.get(
                 "description"
             )
-            or article["title"]
+            or
+            article["title"]
         )
 
         # ----------------------------------------------------
@@ -890,7 +1103,7 @@ def create_rss(
 
 
 # ============================================================
-# RSS COMPLET : 20 ARTICLES
+# RSS COMPLET
 # ============================================================
 
 print("")
@@ -907,12 +1120,13 @@ create_rss(
 )
 
 print(
-    f"✅ {len(processed_articles)} articles écrits dans {OUTPUT}"
+    f"✅ {len(processed_articles)} articles "
+    f"écrits dans {OUTPUT}"
 )
 
 
 # ============================================================
-# RSS DISCORD : UNIQUEMENT LE DERNIER ARTICLE
+# RSS DISCORD
 # ============================================================
 
 print("")
@@ -924,7 +1138,11 @@ discord_articles = []
 
 if processed_articles:
 
-    # Le premier article est le plus récent
+    # Le site COD est parcouru du plus récent
+    # au plus ancien.
+    # Le premier article est donc celui
+    # que Readybot doit recevoir.
+
     discord_articles = [
         processed_articles[0]
     ]
@@ -938,7 +1156,8 @@ create_rss(
 )
 
 print(
-    f"✅ Flux Discord généré : {DISCORD_OUTPUT}"
+    "✅ Flux Discord généré : "
+    f"{DISCORD_OUTPUT}"
 )
 
 print("")
