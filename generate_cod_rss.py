@@ -1168,7 +1168,8 @@ create_rss(
     "Call of Duty — Actualités françaises — Discord",
     "Flux Call of Duty destiné à Discord — dernière actualité uniquement.",
     "https://shynen.github.io/tensho-cod-rss/cod-discord.rss",
-    discord_articles
+    discord_articles,
+    include_content=False
 )
 
 print(
