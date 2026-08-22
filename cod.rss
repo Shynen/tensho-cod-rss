@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0">
   <channel>
     <title>Call of Duty — Actualités françaises</title>
     <link>https://www.callofduty.com/fr/blog?count=50</link>
     <description>Actualités, annonces et notes de correctif officielles Call of Duty en français.</description>
     <atom:link href="https://shynen.github.io/tensho-cod-rss/cod.rss" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 22 Aug 2026 20:40:35 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 22 Aug 2026 20:45:52 GMT</lastBuildDate>
     <item>
       <title>Modern Warfare 4 Open Beta: Tout ce que vous devez savoir</title>
       <link>https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-open-beta-everything-you-need-to-know</link>
@@ -9566,7 +9566,7 @@ Prenez une longueur d'avance sur vos achats de la saison en participant à l'év
       <title>Présentation du Passe de combat de la Saison 5, de Black Cell et des nouveaux packs de la boutique pour Call of Duty: Black Ops 7 et Call of Duty: Warzone</title>
       <link>https://www.callofduty.com/fr/blog/2026/07/call-of-duty-black-ops-7-warzone-season-05-battle-pass-blackcell-store</link>
       <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/07/call-of-duty-black-ops-7-warzone-season-05-battle-pass-blackcell-store</guid>
-      <description>Nouvelle publication officielle Call of Duty : Présentation du Passe de combat de la Saison 5, de Black Cell et des nouveaux packs de la boutique pour Call of Duty: Black Ops 7 et Call of Duty: Warzone</description>
+      <description>Présentation du Passe de combat de la Saison 5, de Black Cell et des nouveaux packs de la boutique pour Call of Duty: Black Ops 7 et Call of Duty: Warzone</description>
       <content:encoded>&lt;main class="article-layout-content" data-article-layout="boxOut" data-article-type="blog" id="main-content"&gt;
 &lt;div class="inner-container"&gt;
 &lt;div class="article-header-container"&gt;
