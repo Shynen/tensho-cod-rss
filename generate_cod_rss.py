@@ -914,7 +914,6 @@ def create_rss(
     # --------------------------------------------------------
     # FLUX DISCORD MINIMAL
     # --------------------------------------------------------
-if minimal:
 
     for article in articles_to_include:
 
