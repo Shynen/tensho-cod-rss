@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0">
+  <channel>
+    <title>Call of Duty Actualités</title>
+    <link>https://www.callofduty.com/fr/blog?count=50</link>
+    <description>Dernières actualités Call of Duty.</description>
+    <item>
+      <title>Modern Warfare 4 Open Beta: Tout ce que vous devez savoir</title>
+      <link>https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-open-beta-everything-you-need-to-know</link>
+      <guid>https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-open-beta-everything-you-need-to-know</guid>
+      <description>Téléchargez le Modern Warfare® 4 Open Beta*, gagnez des récompenses, maîtrisez de nouveaux systèmes, explorez la Campagne, Multijoueur, Kill Block, Ground War: Combat Outpost, Call of Duty®: WarzoneTM Résurgence, avec des informations détaillées à chaque étape du chemin.</description>
+    </item>
+  </channel>
+</rss>
