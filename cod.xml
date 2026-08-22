@@ -1,11 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Call of Duty — Actualités FR</title>
+    <title>Call of Duty — Actualités françaises</title>
     <link>https://www.callofduty.com/fr/blog?count=50</link>
-    <description>Actualités, annonces et patch notes officiels Call of Duty en français.</description>
+    <description>Actualités, annonces et notes de correctif officielles Call of Duty en français.</description>
     <atom:link href="https://shynen.github.io/tensho-cod-rss/cod.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 22 Aug 2026 18:13:12 GMT</lastBuildDate>
     <item>
       <title>Modern Warfare 4 Open Beta: Everything You Need to Know</title>
       <link>https://www.callofduty.com/fr/blog/2026/08/call-of-duty-modern-warfare-4-open-beta-everything-you-need-to-know</link>
@@ -125,6 +124,66 @@
       <link>https://www.callofduty.com/fr/blog/2026/05/call-of-duty-modern-warfare-4-announcement</link>
       <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/05/call-of-duty-modern-warfare-4-announcement</guid>
       <description>Nouvelle publication officielle Call of Duty : Présentation de Call of Duty: Modern Warfare 4</description>
+    </item>
+    <item>
+      <title>UPDATING: Modern Warfare 4: Latest Official Intel Here</title>
+      <link>https://www.callofduty.com/fr/blog/2026/05/modernwarfare4-fob</link>
+      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/05/modernwarfare4-fob</guid>
+      <description>Nouvelle publication officielle Call of Duty : UPDATING: Modern Warfare 4: Latest Official Intel Here</description>
+    </item>
+    <item>
+      <title>Introducing Call of Duty: Mobile Season 5 — Revenge</title>
+      <link>https://www.callofduty.com/fr/blog/2026/05/call-of-duty-mobile-season-5-2026-revenge-the-boys</link>
+      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/05/call-of-duty-mobile-season-5-2026-revenge-the-boys</guid>
+      <description>Nouvelle publication officielle Call of Duty : Introducing Call of Duty: Mobile Season 5 — Revenge</description>
+    </item>
+    <item>
+      <title>Mois de reconnaissance des militaires avec Call of Duty Endowment, présenté par USAA</title>
+      <link>https://www.callofduty.com/fr/blog/2026/05/call-of-duty-endowment-2026-military-appreciation-month-usaa</link>
+      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/05/call-of-duty-endowment-2026-military-appreciation-month-usaa</guid>
+      <description>Nouvelle publication officielle Call of Duty : Mois de reconnaissance des militaires avec Call of Duty Endowment, présenté par USAA</description>
+    </item>
+    <item>
+      <title>Black Ops 7 Season 03 Reloaded: Full Intel</title>
+      <link>https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-warzone-season-03-reloaded-announcement</link>
+      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-warzone-season-03-reloaded-announcement</guid>
+      <description>Nouvelle publication officielle Call of Duty : Black Ops 7 Season 03 Reloaded: Full Intel</description>
+    </item>
+    <item>
+      <title>Présentation de la Saison 4 de Call of Duty: Mobile — Prison éternelle</title>
+      <link>https://www.callofduty.com/fr/blog/2026/04/call-of-duty-mobile-season-4-2026-eternal-prison</link>
+      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/04/call-of-duty-mobile-season-4-2026-eternal-prison</guid>
+      <description>Nouvelle publication officielle Call of Duty : Présentation de la Saison 4 de Call of Duty: Mobile — Prison éternelle</description>
+    </item>
+    <item>
+      <title>Le programme pilote débute aujourd'hui dans Black Ops 7</title>
+      <link>https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-expanding-accessibility-new-control-options</link>
+      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-expanding-accessibility-new-control-options</guid>
+      <description>Nouvelle publication officielle Call of Duty : Le programme pilote débute aujourd'hui dans Black Ops 7</description>
+    </item>
+    <item>
+      <title>Mise à jour de la Saison 3 par #TeamRICOCHET</title>
+      <link>https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-ricochet-anti-cheat-season-03</link>
+      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/04/call-of-duty-black-ops-7-ricochet-anti-cheat-season-03</guid>
+      <description>Nouvelle publication officielle Call of Duty : Mise à jour de la Saison 3 par #TeamRICOCHET</description>
+    </item>
+    <item>
+      <title>Black Ops 7 Season 03 Battle Pass, BlackCell, and Bundles</title>
+      <link>https://www.callofduty.com/fr/blog/2026/03/call-of-duty-black-ops-7-season-03-battle-pass-blackcell-store-bundles</link>
+      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/03/call-of-duty-black-ops-7-season-03-battle-pass-blackcell-store-bundles</guid>
+      <description>Nouvelle publication officielle Call of Duty : Black Ops 7 Season 03 Battle Pass, BlackCell, and Bundles</description>
+    </item>
+    <item>
+      <title>Saison 3 de Black Ops 7 : renseignements complets</title>
+      <link>https://www.callofduty.com/fr/blog/2026/03/call-of-duty-black-ops-7-warzone-season-03-announcement</link>
+      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/03/call-of-duty-black-ops-7-warzone-season-03-announcement</guid>
+      <description>Nouvelle publication officielle Call of Duty : Saison 3 de Black Ops 7 : renseignements complets</description>
+    </item>
+    <item>
+      <title>Présentation de la Saison 3 de Call of Duty: Mobile — Paranoïa</title>
+      <link>https://www.callofduty.com/fr/blog/2026/03/call-of-duty-mobile-season-3-2026-paranoia</link>
+      <guid isPermaLink="true">https://www.callofduty.com/fr/blog/2026/03/call-of-duty-mobile-season-3-2026-paranoia</guid>
+      <description>Nouvelle publication officielle Call of Duty : Présentation de la Saison 3 de Call of Duty: Mobile — Paranoïa</description>
     </item>
   </channel>
 </rss>
