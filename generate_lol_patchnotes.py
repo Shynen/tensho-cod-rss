@@ -23,7 +23,7 @@ BASE_URL = "https://www.leagueoflegends.com"
 
 SOURCE_URL = (
     "https://www.leagueoflegends.com/"
-    "fr-fr/news/tags/patch-notes/"
+    "fr-fr/news/game-updates/"
 )
 
 OUTPUT = "lol-patchnotes.xml"
@@ -212,17 +212,18 @@ soup = BeautifulSoup(
 
 all_urls = set()
 
+# ------------------------------------------------------------
+# 1. Liens HTML classiques
+# ------------------------------------------------------------
+
 for link in soup.find_all(
     "a",
     href=True,
 ):
 
-    href = link.get(
-        "href"
-    )
+    href = link.get("href")
 
     if not href:
-
         continue
 
     full_url = urljoin(
@@ -232,29 +233,92 @@ for link in soup.find_all(
 
     full_url = full_url.rstrip("/")
 
-    # --------------------------------------------------------
-    # UNIQUEMENT LES ARTICLES PATCH NOTES LOL
-    # --------------------------------------------------------
-
-    if "leagueoflegends.com" not in full_url:
-
+    # Uniquement les articles de mises à jour du jeu
+    if "/fr-fr/news/game-updates/" not in full_url:
         continue
 
-    if "/fr-fr/news/" not in full_url:
-
+    # Exclure la page catégorie elle-même
+    if full_url == (
+        BASE_URL
+        + "/fr-fr/news/game-updates"
+    ):
         continue
 
+    # Une vraie patch note doit contenir patch
+    if "patch" not in full_url.lower():
+        continue
+
+    # Exclure d'éventuelles pages parasites
     if (
         "patch-notes" not in full_url.lower()
-        and
-        "patchnote" not in full_url.lower()
+        and "patchnote" not in full_url.lower()
+        and "/patch-" not in full_url.lower()
     ):
-
         continue
 
-    all_urls.add(
-        full_url
+    all_urls.add(full_url)
+
+
+# ------------------------------------------------------------
+# 2. Fallback : recherche directement dans le HTML
+# ------------------------------------------------------------
+
+if not all_urls:
+
+    print(
+        "⚠️ Aucun lien Patch Note détecté "
+        "directement."
     )
+
+    print(
+        "Recherche des vraies URLs "
+        "Patch Notes dans le HTML..."
+    )
+
+    html = response.text.replace(
+        "\\/",
+        "/",
+    )
+
+    matches = re.findall(
+        r'https?://www\.leagueoflegends\.com'
+        r'/fr-fr/news/game-updates/'
+        r'[^"\'<>\s]+',
+        html,
+        re.IGNORECASE,
+    )
+
+    for url in matches:
+
+        url = url.rstrip(
+            "/,);"
+        )
+
+        if "patch" not in url.lower():
+            continue
+
+        if (
+            "patch-notes" not in url.lower()
+            and "patchnote" not in url.lower()
+            and "/patch-" not in url.lower()
+        ):
+            continue
+
+        all_urls.add(url)
+
+
+# ------------------------------------------------------------
+# 3. Nettoyage final
+# ------------------------------------------------------------
+
+all_urls = {
+    url.rstrip("/")
+    for url in all_urls
+    if url.rstrip("/") != (
+        BASE_URL
+        + "/fr-fr/news/tags/patch-notes"
+    )
+}
 
 
 print("")
@@ -265,42 +329,10 @@ print(
 )
 print("########################################")
 
-
-# ============================================================
-# FALLBACK : EXTRACTION DEPUIS LE TEXTE
-# ============================================================
-
-if not all_urls:
-
+for url in sorted(all_urls):
     print(
-        "⚠️ Aucun lien détecté directement."
+        f"🟢 Patch trouvé : {url}"
     )
-
-    print(
-        "Recherche des URL Patch Notes "
-        "dans le HTML..."
-    )
-
-    matches = re.findall(
-        r'https?://www\.leagueoflegends\.com/'
-        r'fr-fr/news/[^"\']*patch[^"\']*',
-        response.text,
-        re.IGNORECASE,
-    )
-
-    for url in matches:
-
-        all_urls.add(
-            url.rstrip("/")
-        )
-
-
-print(
-    f"URLs finales candidates : "
-    f"{len(all_urls)}"
-)
-
-
 # ============================================================
 # TRAITEMENT DES PATCH NOTES
 # ============================================================
