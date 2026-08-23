@@ -1,42 +1,102 @@
 {
   "https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic": {
-    "title": "Dev 2026-07-14T15:00:00.000Z /dev: League of Legends Classic Bon retour parmi nous, invocateurs.",
+    "title": "/dev: League of Legends Classic",
     "description": "Bon retour parmi nous, invocateurs.",
     "pubDate": "Tue, 14 Jul 2026 15:00:00 GMT"
   },
   "https://www.leagueoflegends.com/fr-fr/news/dev/tldw-classic-mayhem-more-dev-update": {
-    "title": "Dev 2026-07-14T15:00:00.000Z Résumé Dev Update : Classic, ARAM du chaos et plus Un petit résumé des changements discutés dans le Dev Update du jour.",
+    "title": "Résumé Dev Update : Classic, ARAM du chaos et plus",
     "description": "Un petit résumé des changements discutés dans le Dev Update du jour.",
     "pubDate": "Tue, 14 Jul 2026 15:00:00 GMT"
   },
   "https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-return-of-ranked-5s": {
-    "title": "Dev 2026-05-27T20:00:00.000Z /dev : Le retour du mode Classé 5c5 Nous essayons une nouvelle file classée.",
+    "title": "/dev : Le retour du mode Classé 5c5",
     "description": "Nous essayons une nouvelle file classée.",
     "pubDate": "Wed, 27 May 2026 20:00:00 GMT"
   },
   "https://www.leagueoflegends.com/fr-fr/news/dev/tldw-mayhem-ranked-5s-more-dev-update": {
-    "title": "Dev 2026-05-27T20:00:00.000Z Résumé Dev Update Un petit résumé des changements discutés dans le Dev Update du jour.",
+    "title": "Résumé Dev Update",
     "description": "Un petit résumé des changements discutés dans le Dev Update du jour.",
     "pubDate": "Wed, 27 May 2026 20:00:00 GMT"
   },
   "https://www.leagueoflegends.com/fr-fr/news/dev/dev-augmentmaxxing-aram-mayhem": {
-    "title": "Dev 2026-05-27T20:00:00.000Z /dev : Optimisation maximale des optimisations en ARAM du chaos Encore plus de chaos vous attend à partir de la 26.12 !",
+    "title": "/dev : Optimisation maximale des optimisations en ARAM du chaos",
     "description": "Encore plus de chaos vous attend à partir de la 26.12 !",
     "pubDate": "Wed, 27 May 2026 20:00:00 GMT"
   },
   "https://www.leagueoflegends.com/fr-fr/news/dev/tldw-pandemonium-arena-more-dev-update": {
-    "title": "Dev 2026-04-14T18:00:00.000Z Résumé : Dev Update Pandémonium, Arena et plus encore Un petit résumé des changements discutés dans le Dev Update du jour.",
+    "title": "Résumé : Dev Update Pandémonium, Arena et plus encore",
     "description": "Un petit résumé des changements discutés dans le Dev Update du jour.",
     "pubDate": "Tue, 14 Apr 2026 18:00:00 GMT"
   },
   "https://www.leagueoflegends.com/fr-fr/news/dev/dev-wasds-ranked-release": {
-    "title": "Dev 2026-04-14T18:00:00.000Z /dev : déploiement du ZQSD en mode classé Après des mois d'ajustement, le système de déplacement ZQSD est prêt à faire son show !",
+    "title": "/dev : déploiement du ZQSD en mode classé",
     "description": "Après des mois d'ajustement, le système de déplacement ZQSD est prêt à faire son show !",
     "pubDate": "Tue, 14 Apr 2026 18:00:00 GMT"
   },
   "https://www.leagueoflegends.com/fr-fr/news/dev/dev-leveling-up-arena": {
-    "title": "Dev 2026-04-14T17:00:00.000Z /dev : Arena passe au niveau supérieur Un aperçu de tous les changements apportés à Arena lors de la saison 2.",
+    "title": "/dev : Arena passe au niveau supérieur",
     "description": "Un aperçu de tous les changements apportés à Arena lors de la saison 2.",
     "pubDate": "Tue, 14 Apr 2026 17:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/game-updates": {
+    "title": "Mises à jour du jeu",
+    "description": "Toutes les infos officielles à propos du jeu.",
+    "pubDate": "Tue, 11 Aug 2026 18:00:00 GMT"
+  },
+  "https://lolesports.com/fr-fr/news/triumphant-ryze-returns": {
+    "title": "Retour de Ryze triomphant",
+    "description": "Retour de Ryze triomphant",
+    "pubDate": "Mon, 03 Aug 2026 00:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/media": {
+    "title": "Médias",
+    "description": "Explorez le côté créatif et les coulisses des cinématiques, musiques et plus encore.",
+    "pubDate": "Wed, 29 Jul 2026 18:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/art-spotlight-for-locke": {
+    "title": "Focus artistique sur Locke",
+    "description": "Une collection d'œuvres originales pour célébrer notre nouveau champion",
+    "pubDate": "Tue, 23 Jun 2026 14:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/community/celebrate-pride-2026": {
+    "title": "Célébrons la Pride 2026 !",
+    "description": "Fêtez la Pride et la communauté avec nous !",
+    "pubDate": "Thu, 28 May 2026 17:30:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/community": {
+    "title": "Communauté",
+    "description": "Retrouvez vos streamers préférés et les créations de la communauté.",
+    "pubDate": "Thu, 28 May 2026 17:30:00 GMT"
+  },
+  "https://lolesports.com/fr-fr/news/league-of-legends-game-changers-returns": {
+    "title": "Les Game Changers League of Legends sont de retour !",
+    "description": "Les Game Changers League of Legends sont de retour !",
+    "pubDate": "Wed, 06 May 2026 00:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/merch": {
+    "title": "Produits dérivés",
+    "description": "Découvrez les produits dérivés officiels et parcourez les dernières collections de la boutique.",
+    "pubDate": "Fri, 10 Apr 2026 21:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/dev-team-voice-in-league": {
+    "title": "/dev : Chat vocal d'équipe dans League",
+    "description": "Nos objectifs pour la communication vocale par équipe dans League of Legends",
+    "pubDate": "Fri, 13 Mar 2026 18:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/tldw-ranked-shyvana-more-dev-update": {
+    "title": "Résumé : Mode classé, Shyvana et plus encore",
+    "description": "Un petit résumé des changements discutés dans le Dev Update du jour.",
+    "pubDate": "Mon, 02 Mar 2026 16:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/dev-mmr-to-rank-distribution": {
+    "title": "/dev : Distribution du MMR par rang",
+    "description": "Nos objectifs pour le mode Classé et les changements pour une progression équitable et compétitive.",
+    "pubDate": "Mon, 02 Mar 2026 16:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/tldw-for-demacia-dev-update": {
+    "title": "Résumé Dev Update Pour Demacia",
+    "description": "Un petit résumé des changements discutés dans le Dev Update du jour.",
+    "pubDate": "Thu, 08 Jan 2026 16:00:00 GMT"
   }
 }
