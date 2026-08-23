@@ -5,6 +5,69 @@
     <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/</link>
     <description>Actualités officielles françaises de Teamfight Tactics.</description>
     <atom:link href="https://shynen.github.io/tensho-cod-rss/tft-news.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sun, 23 Aug 2026 10:40:30 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2026 10:48:57 GMT</lastBuildDate>
+    <item>
+      <title>Dev TFT : Leçons de Space Gods</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/dev/dev-tft-space-gods-reviewed</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/dev/dev-tft-space-gods-reviewed</guid>
+      <pubDate>Fri, 21 Aug 2026 16:00:00 GMT</pubDate>
+      <description>Retour sur Space Gods (et plus encore) avec l'équipe à l'origine du set !</description>
+    </item>
+    <item>
+      <title>Compete TFT en 4c4</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/esports/4v4-arrives-to-compete-tft</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/esports/4v4-arrives-to-compete-tft</guid>
+      <pubDate>Wed, 19 Aug 2026 14:00:00 GMT</pubDate>
+      <description>Classez-vous, assemblez votre équipe, jouez en 4c4. Tactician's Superbrawl arrive en novembre.</description>
+    </item>
+    <item>
+      <title>Aperçu d'Enchanted Wilds</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/enchanted-wilds-overview</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/enchanted-wilds-overview</guid>
+      <pubDate>Mon, 27 Jul 2026 15:00:00 GMT</pubDate>
+      <description>Découvrez les esprits de la forêt et certains nouveaux types d'Enchanted Wilds !</description>
+    </item>
+    <item>
+      <title>5 questions avec Huanmie, champion de Space Gods !</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/esports/5-questions-with-aur-huanmie-the-space-gods-champion</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/esports/5-questions-with-aur-huanmie-the-space-gods-champion</guid>
+      <pubDate>Mon, 20 Jul 2026 14:00:00 GMT</pubDate>
+      <description>Réflexions sur la Tactician's Crown avec le champion du monde de TFT.</description>
+    </item>
+    <item>
+      <title>TFT Vegas Open 2026 : infos pour les participants</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/esports/tft-vegas-open-2026-competitor-info</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/esports/tft-vegas-open-2026-competitor-info</guid>
+      <pubDate>Sat, 11 Jul 2026 12:00:00 GMT</pubDate>
+      <description>Voici tout ce qu'il faut savoir pour participer au Vegas Open à venir !</description>
+    </item>
+    <item>
+      <title>Célébrez TFT et Riftbound lors du Convergence Fest</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/announcements/celebrate-tft-and-riftbound-at-convergence-fest</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/announcements/celebrate-tft-and-riftbound-at-convergence-fest</guid>
+      <pubDate>Fri, 10 Jul 2026 13:00:00 GMT</pubDate>
+      <description>Rejoignez-nous du 11 au 13 décembre pour vivre une expérience communautaire inoubliable à Las Vegas.</description>
+    </item>
+    <item>
+      <title>Annonce de la Tactician’s Crown Space Gods de TFT</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/esports/tft-space-gods-tacticians-crown-announcement</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/esports/tft-space-gods-tacticians-crown-announcement</guid>
+      <pubDate>Mon, 22 Jun 2026 14:00:00 GMT</pubDate>
+      <description>Plus de détails sur les dates, le format, la cagnotte de l'événement et plus encore.</description>
+    </item>
+    <item>
+      <title>FAQ Migration de TFT vers Unreal</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/faq-tft-unreal-migration</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/faq-tft-unreal-migration</guid>
+      <pubDate>Fri, 12 Jun 2026 19:00:08 GMT</pubDate>
+      <description>TFT is moving to Unreal! Here’s what you need to know, and what you might ask.</description>
+    </item>
+    <item>
+      <title>Fête des 7 ans de TFT</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/tft-7-year-bash</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/tft-7-year-bash</guid>
+      <pubDate>Wed, 27 May 2026 17:00:00 GMT</pubDate>
+      <description>Pengu organise une fiesta et vous êtes tous invités.</description>
+    </item>
   </channel>
 </rss>

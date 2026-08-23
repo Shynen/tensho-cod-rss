@@ -1,1 +1,47 @@
-{}
+{
+  "https://teamfighttactics.leagueoflegends.com/fr-fr/news/dev/dev-tft-space-gods-reviewed": {
+    "title": "Dev TFT : Leçons de Space Gods",
+    "description": "Retour sur Space Gods (et plus encore) avec l'équipe à l'origine du set !",
+    "pubDate": "Fri, 21 Aug 2026 16:00:00 GMT"
+  },
+  "https://teamfighttactics.leagueoflegends.com/fr-fr/news/esports/4v4-arrives-to-compete-tft": {
+    "title": "Compete TFT en 4c4",
+    "description": "Classez-vous, assemblez votre équipe, jouez en 4c4. Tactician's Superbrawl arrive en novembre.",
+    "pubDate": "Wed, 19 Aug 2026 14:00:00 GMT"
+  },
+  "https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/enchanted-wilds-overview": {
+    "title": "Aperçu d'Enchanted Wilds",
+    "description": "Découvrez les esprits de la forêt et certains nouveaux types d'Enchanted Wilds !",
+    "pubDate": "Mon, 27 Jul 2026 15:00:00 GMT"
+  },
+  "https://teamfighttactics.leagueoflegends.com/fr-fr/news/esports/5-questions-with-aur-huanmie-the-space-gods-champion": {
+    "title": "5 questions avec Huanmie, champion de Space Gods !",
+    "description": "Réflexions sur la Tactician's Crown avec le champion du monde de TFT.",
+    "pubDate": "Mon, 20 Jul 2026 14:00:00 GMT"
+  },
+  "https://teamfighttactics.leagueoflegends.com/fr-fr/news/esports/tft-vegas-open-2026-competitor-info": {
+    "title": "TFT Vegas Open 2026 : infos pour les participants",
+    "description": "Voici tout ce qu'il faut savoir pour participer au Vegas Open à venir !",
+    "pubDate": "Sat, 11 Jul 2026 12:00:00 GMT"
+  },
+  "https://teamfighttactics.leagueoflegends.com/fr-fr/news/announcements/celebrate-tft-and-riftbound-at-convergence-fest": {
+    "title": "Célébrez TFT et Riftbound lors du Convergence Fest",
+    "description": "Rejoignez-nous du 11 au 13 décembre pour vivre une expérience communautaire inoubliable à Las Vegas.",
+    "pubDate": "Fri, 10 Jul 2026 13:00:00 GMT"
+  },
+  "https://teamfighttactics.leagueoflegends.com/fr-fr/news/esports/tft-space-gods-tacticians-crown-announcement": {
+    "title": "Annonce de la Tactician’s Crown Space Gods de TFT",
+    "description": "Plus de détails sur les dates, le format, la cagnotte de l'événement et plus encore.",
+    "pubDate": "Mon, 22 Jun 2026 14:00:00 GMT"
+  },
+  "https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/faq-tft-unreal-migration": {
+    "title": "FAQ Migration de TFT vers Unreal",
+    "description": "TFT is moving to Unreal! Here’s what you need to know, and what you might ask.",
+    "pubDate": "Fri, 12 Jun 2026 19:00:08 GMT"
+  },
+  "https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/tft-7-year-bash": {
+    "title": "Fête des 7 ans de TFT",
+    "description": "Pengu organise une fiesta et vous êtes tous invités.",
+    "pubDate": "Wed, 27 May 2026 17:00:00 GMT"
+  }
+}
