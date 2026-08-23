@@ -5,20 +5,20 @@
     <link>https://www.leagueoflegends.com/fr-fr/news/</link>
     <description>Actualités officielles françaises de League of Legends.</description>
     <atom:link href="https://shynen.github.io/tensho-cod-rss/lol-news.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sun, 23 Aug 2026 10:20:42 GMT</lastBuildDate>
-    <item>
-      <title>/dev: League of Legends Classic</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic</guid>
-      <pubDate>Tue, 14 Jul 2026 15:00:00 GMT</pubDate>
-      <description>Bon retour parmi nous, invocateurs.</description>
-    </item>
+    <lastBuildDate>Sun, 23 Aug 2026 10:28:02 GMT</lastBuildDate>
     <item>
       <title>Résumé Dev Update : Classic, ARAM du chaos et plus</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-classic-mayhem-more-dev-update</link>
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-classic-mayhem-more-dev-update</guid>
       <pubDate>Tue, 14 Jul 2026 15:00:00 GMT</pubDate>
       <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
+    </item>
+    <item>
+      <title>/dev: League of Legends Classic</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic</guid>
+      <pubDate>Tue, 14 Jul 2026 15:00:00 GMT</pubDate>
+      <description>Bon retour parmi nous, invocateurs.</description>
     </item>
     <item>
       <title>Focus artistique sur Locke</title>
@@ -42,13 +42,6 @@
       <description>Encore plus de chaos vous attend à partir de la 26.12 !</description>
     </item>
     <item>
-      <title>/dev : Le retour du mode Classé 5c5</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-return-of-ranked-5s</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-return-of-ranked-5s</guid>
-      <pubDate>Wed, 27 May 2026 20:00:00 GMT</pubDate>
-      <description>Nous essayons une nouvelle file classée.</description>
-    </item>
-    <item>
       <title>Résumé Dev Update</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-mayhem-ranked-5s-more-dev-update</link>
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-mayhem-ranked-5s-more-dev-update</guid>
@@ -56,95 +49,11 @@
       <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
     </item>
     <item>
-      <title>/dev : déploiement du ZQSD en mode classé</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-wasds-ranked-release</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-wasds-ranked-release</guid>
-      <pubDate>Tue, 14 Apr 2026 18:00:00 GMT</pubDate>
-      <description>Après des mois d'ajustement, le système de déplacement ZQSD est prêt à faire son show !</description>
-    </item>
-    <item>
-      <title>Résumé : Dev Update Pandémonium, Arena et plus encore</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-pandemonium-arena-more-dev-update</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-pandemonium-arena-more-dev-update</guid>
-      <pubDate>Tue, 14 Apr 2026 18:00:00 GMT</pubDate>
-      <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
-    </item>
-    <item>
-      <title>/dev : Arena passe au niveau supérieur</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-leveling-up-arena</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-leveling-up-arena</guid>
-      <pubDate>Tue, 14 Apr 2026 17:00:00 GMT</pubDate>
-      <description>Un aperçu de tous les changements apportés à Arena lors de la saison 2.</description>
-    </item>
-    <item>
-      <title>/dev : Chat vocal d'équipe dans League</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-team-voice-in-league</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-team-voice-in-league</guid>
-      <pubDate>Fri, 13 Mar 2026 18:00:00 GMT</pubDate>
-      <description>Nos objectifs pour la communication vocale par équipe dans League of Legends</description>
-    </item>
-    <item>
-      <title>Résumé : Mode classé, Shyvana et plus encore</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-ranked-shyvana-more-dev-update</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-ranked-shyvana-more-dev-update</guid>
-      <pubDate>Mon, 02 Mar 2026 16:00:00 GMT</pubDate>
-      <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
-    </item>
-    <item>
-      <title>/dev : Distribution du MMR par rang</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-mmr-to-rank-distribution</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-mmr-to-rank-distribution</guid>
-      <pubDate>Mon, 02 Mar 2026 16:00:00 GMT</pubDate>
-      <description>Nos objectifs pour le mode Classé et les changements pour une progression équitable et compétitive.</description>
-    </item>
-    <item>
-      <title>Résumé Dev Update Pour Demacia</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-for-demacia-dev-update</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-for-demacia-dev-update</guid>
-      <pubDate>Thu, 08 Jan 2026 16:00:00 GMT</pubDate>
-      <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
-    </item>
-    <item>
-      <title>/dev : Accélération de Partie accélérée</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-a-swifter-swiftplay</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-a-swifter-swiftplay</guid>
-      <pubDate>Mon, 01 Dec 2025 16:00:00 GMT</pubDate>
-      <description>On passe à la vitesse supérieure l'an prochain.</description>
-    </item>
-    <item>
-      <title>/dev : Aperçu du gameplay de la saison 1 2026</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-2026-season-one-gameplay-preview</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-2026-season-one-gameplay-preview</guid>
-      <pubDate>Mon, 01 Dec 2025 16:00:00 GMT</pubDate>
-      <description>Un aperçu des changements de gameplay de la Faille de l'invocateur en 2026</description>
-    </item>
-    <item>
-      <title>/dev : mode classé 2026</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-ranked-2026</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-ranked-2026</guid>
-      <pubDate>Mon, 01 Dec 2025 16:00:00 GMT</pubDate>
-      <description>Les changements apportés au mode compétitif pour la nouvelle année.</description>
-    </item>
-    <item>
-      <title>Dev Update S1 2026 : thématique, gameplay et plus</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-s1-2026-theme-gameplay-more-dev-update</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-s1-2026-theme-gameplay-more-dev-update</guid>
-      <pubDate>Mon, 01 Dec 2025 16:00:00 GMT</pubDate>
-      <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
-    </item>
-    <item>
-      <title>/dev : le chaos s'empare de l'ARAM</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-bringing-mayhem-to-aram</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-bringing-mayhem-to-aram</guid>
-      <pubDate>Mon, 06 Oct 2025 15:00:00 GMT</pubDate>
-      <description>L'ARAM avec une pointe de chaos.</description>
-    </item>
-    <item>
-      <title>Résumé du Dev Update : ARAM du chaos, smurfs et +</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-aram-mayhem-smurfing--more-dev-update</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-aram-mayhem-smurfing--more-dev-update</guid>
-      <pubDate>Mon, 06 Oct 2025 15:00:00 GMT</pubDate>
-      <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
+      <title>/dev : Le retour du mode Classé 5c5</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-return-of-ranked-5s</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-return-of-ranked-5s</guid>
+      <pubDate>Wed, 27 May 2026 20:00:00 GMT</pubDate>
+      <description>Nous essayons une nouvelle file classée.</description>
     </item>
   </channel>
 </rss>
