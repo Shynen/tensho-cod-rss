@@ -66,16 +66,29 @@ def parse_date(value):
 
 def format_pubdate(dt):
     return formatdate(dt.timestamp(), usegmt=True)
-
+    
 def is_patch_url(url):
     value = url.lower()
+
+    # ========================================================
+    # SÉPARATION STRICTE LOL / TFT
+    # Ce script ne doit accepter QUE les Patch Notes LoL.
+    # Les Patch Notes TFT sont gérées par generate_tft_patchnotes.py
+    # ========================================================
+
+    if "teamfighttactics.leagueoflegends.com" in value:
+        return False
+
+    if "www.leagueoflegends.com" not in value:
+        return False
+
     if "/fr-fr/news/game-updates/" not in value:
         return False
+
     return bool(
         re.search(r"patch[-_]\d+[.-]\d+", value)
         or re.search(r"patch[-_]\d+[-_]\d+", value)
     )
-
 cache = load_cache()
 
 def collect_patch_urls():
