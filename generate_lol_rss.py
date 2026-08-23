@@ -425,36 +425,70 @@ def is_excluded_url(url):
 
     value = url.lower()
 
-    # Wild Rift
+    # ========================================================
+    # PAGES CATEGORIES / NAVIGATION
+    # ========================================================
+
+    excluded_paths = [
+        "/news/game-updates/",
+        "/news/media/",
+        "/news/community/",
+        "/news/esports/",
+        "/news/products/",
+        "/news/tags/",
+    ]
+
+    for path in excluded_paths:
+
+        if path in value:
+            return True
+
+    # ========================================================
+    # TFT
+    # ========================================================
+
+    # Les articles TFT peuvent apparaître dans les pages
+    # communes de League of Legends.
+    #
+    # Ils seront traités par generate_tft_rss.py.
+    #
+
+    tft_patterns = [
+        "teamfight-tactics",
+        "team-fight-tactics",
+        "/tft/",
+        "tft-",
+        "-tft-",
+    ]
+
+    for pattern in tft_patterns:
+
+        if pattern in value:
+            return True
+
+    # ========================================================
+    # WILD RIFT
+    # ========================================================
+
     if "wild-rift" in value:
         return True
 
-    # Patch notes
-    if "patch-notes" in value:
-        return True
+    # ========================================================
+    # PATCH NOTES
+    # ========================================================
 
-    if "patchnote" in value:
-        return True
+    patch_patterns = [
+        "patch-notes",
+        "patchnote",
+        "patch-notes-",
+    ]
+
+    for pattern in patch_patterns:
+
+        if pattern in value:
+            return True
 
     return False
-
-
-candidate_urls = []
-
-for url in all_urls:
-
-    if is_excluded_url(url):
-        continue
-
-    candidate_urls.append(
-        url
-    )
-
-
-print(
-    f"URLs candidates après premier filtrage : "
-    f"{len(candidate_urls)}"
-)
 
 
 # ============================================================
@@ -730,16 +764,39 @@ for index, url in enumerate(
 
     excluded = False
 
-    # Patch notes
+    # ========================================================
+    # TFT
+    # ========================================================
+
+    # Les actualités TFT doivent être traitées
+    # uniquement par le futur flux TFT.
+    tft_patterns = [
+        r"\btft\b",
+        r"teamfight tactics",
+        r"team-fight tactics",
+        r"teamfight-tactics",
+        r"/tft/",
+        r"tft-",
+        r"-tft\b",
+    ]
+
+    # ========================================================
+    # PATCH NOTES
+    # ========================================================
+
     patch_patterns = [
         r"notes?\s+de\s+patch",
         r"patch\s+\d+\.\d+",
         r"patch[-_]\d+[-_]\d+",
         r"patch-notes",
         r"patchnote",
+        r"notes?\s+du\s+patch",
     ]
 
-    # Esport
+    # ========================================================
+    # ESPORT
+    # ========================================================
+
     esport_patterns = [
         r"\blec\b",
         r"\bmsi\b",
@@ -750,9 +807,14 @@ for index, url in enumerate(
         r"watch party",
         r"compétition",
         r"compétitions",
+        r"joueur professionnel",
+        r"équipe professionnelle",
     ]
 
-    # Guides
+    # ========================================================
+    # GUIDES
+    # ========================================================
+
     guide_patterns = [
         r"\bguide\b",
         r"\bbuild\b",
@@ -761,15 +823,40 @@ for index, url in enumerate(
         r"comment bien",
         r"survivre dans",
         r"phase de laning",
+        r"guide des",
+        r"guide pour",
     ]
 
-    for pattern in (
+    # ========================================================
+    # CONTENU HORS ACTUALITES
+    # ========================================================
+
+    excluded_content_patterns = [
+        r"produits dérivés",
+        r"merchandising",
+        r"merchandise",
+        r"goodies",
+        r"fond d'écran",
+        r"wallpaper",
+    ]
+
+    # ========================================================
+    # APPLICATION DES FILTRES
+    # ========================================================
+
+    all_filters = (
+        tft_patterns
+        +
         patch_patterns
         +
         esport_patterns
         +
         guide_patterns
-    ):
+        +
+        excluded_content_patterns
+    )
+
+    for pattern in all_filters:
 
         if re.search(
             pattern,
@@ -778,13 +865,14 @@ for index, url in enumerate(
         ):
 
             excluded = True
+
+            print(
+                f"❌ Exclu : {title}"
+            )
+
             break
 
     if excluded:
-
-        print(
-            f"❌ Exclu : {title}"
-        )
 
         continue
 
