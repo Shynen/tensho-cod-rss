@@ -4,7 +4,7 @@ import re
 import requests
 
 from bs4 import BeautifulSoup
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from email.utils import formatdate
 from urllib.parse import urljoin
 from xml.etree.ElementTree import Element, SubElement, ElementTree, indent
@@ -954,6 +954,51 @@ articles = list(
 
 
 # ============================================================
+# FILTRE DES 90 DERNIERS JOURS
+# ============================================================
+
+now_utc = datetime.now(
+    timezone.utc
+)
+
+cutoff_date = (
+    now_utc
+    - timedelta(days=90)
+)
+
+recent_articles = []
+
+for article in articles:
+
+    article_date = article["date"]
+
+    # S'assure que la date possède bien un fuseau
+    if article_date.tzinfo is None:
+
+        article_date = article_date.replace(
+            tzinfo=timezone.utc
+        )
+
+    if article_date >= cutoff_date:
+
+        recent_articles.append(
+            article
+
+        )
+
+    else:
+
+        print(
+            f"❌ Trop ancien : "
+            f"{format_pubdate(article_date)} "
+            f"- {article['title']}"
+        )
+
+
+articles = recent_articles
+
+
+# ============================================================
 # TRI PAR DATE
 # ============================================================
 
@@ -971,7 +1016,6 @@ articles.sort(
 articles = articles[
     :MAX_ARTICLES
 ]
-
 
 # ============================================================
 # AFFICHAGE FINAL
