@@ -59,9 +59,8 @@ jobs:
       - name: Generate LoL RSS
         run: python generate_lol_rss.py
 
-      # ======================================================
-      # COMMIT DES FLUX
-      # ======================================================
+      - name: Generate TFT RSS
+        run: python generate_tft_rss.py
 
       - name: Commit generated feeds
         run: |
@@ -74,8 +73,10 @@ jobs:
             cod_cache.json \
             lol-news.xml \
             lol-news-discord.xml \
-            lol_cache.json
+            lol_cache.json \
+            tft-news.xml \
+            tft-news-discord.xml \
+            tft_cache.json
 
-          git diff --cached --quiet || git commit -m "Update game RSS feeds"
-
+          git diff --cached --quiet || git commit -m "Update RSS feeds"
           git push
