@@ -181,9 +181,79 @@ def is_excluded_url(url):
     # DOMAINE TFT OBLIGATOIRE
     # --------------------------------------------------------
 
-    if "teamfighttactics.leagueoflegends.com" not in value:
+    if not value.startswith(
+        "https://teamfighttactics.leagueoflegends.com/"
+    ):
 
         return True
+
+    # --------------------------------------------------------
+    # PAGE PRINCIPALE / NAVIGATION
+    # --------------------------------------------------------
+
+    if value == (
+        "https://teamfighttactics.leagueoflegends.com"
+        "/fr-fr/news"
+    ):
+
+        return True
+
+    # --------------------------------------------------------
+    # AUTRES JEUX
+    # --------------------------------------------------------
+
+    excluded_patterns = [
+        "wild-rift",
+        "valorant",
+        "legends-of-runeterra",
+    ]
+
+    for pattern in excluded_patterns:
+
+        if pattern in value:
+
+            return True
+
+    # --------------------------------------------------------
+    # PAGES CATEGORIES / NAVIGATION
+    # --------------------------------------------------------
+
+    excluded_paths = [
+        "/news/game-updates",
+        "/news/media",
+        "/news/community",
+        "/news/esports",
+        "/news/products",
+        "/news/tags",
+        "/news/lore",
+        "/news/riot-games",
+        "/news/merch",
+    ]
+
+    for path in excluded_paths:
+
+        if value.endswith(path):
+
+            return True
+
+    # --------------------------------------------------------
+    # PATCH NOTES
+    # --------------------------------------------------------
+
+    patch_patterns = [
+        "patch-notes",
+        "patchnote",
+        "notes-de-patch",
+        "notes-du-patch",
+    ]
+
+    for pattern in patch_patterns:
+
+        if pattern in value:
+
+            return True
+
+    return False
 
     # --------------------------------------------------------
     # WILD RIFT / LOL / AUTRES JEUX
