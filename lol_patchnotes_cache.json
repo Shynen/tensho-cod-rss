@@ -103,5 +103,35 @@
     "title": "Notes de patch 26.3",
     "description": "Célébrez la nouvelle année et plongez-vous dans le patch 26.3 🎊",
     "pubDate": "Tue, 03 Feb 2026 19:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-26-2-notes": {
+    "title": "Notes de patch 26.2",
+    "description": "Patch 26.2 ready to deploy!",
+    "pubDate": "Wed, 21 Jan 2026 19:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-26-1-notes": {
+    "title": "Notes de patch 26.1",
+    "description": "Demacia rises in Patch 26.1 🛡️",
+    "pubDate": "Wed, 07 Jan 2026 19:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-25-24-notes": {
+    "title": "Notes de patch 25.24",
+    "description": "Le dernier patch de l'année, le 25.24, est là !",
+    "pubDate": "Tue, 02 Dec 2025 19:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-25-23-notes": {
+    "title": "Notes de patch 25.23",
+    "description": "Patch 25.23 has ascended 🙏",
+    "pubDate": "Tue, 18 Nov 2025 19:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-25-22-notes": {
+    "title": "Notes de patch 25.22",
+    "description": "Nous partons à Chengdu avec le patch 25.22 !",
+    "pubDate": "Tue, 04 Nov 2025 19:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-25-21-notes": {
+    "title": "Notes de patch 25.21",
+    "description": "Le patch 25.21 est ruchement intéressant ! 🐝",
+    "pubDate": "Tue, 21 Oct 2025 18:00:00 GMT"
   }
 }
