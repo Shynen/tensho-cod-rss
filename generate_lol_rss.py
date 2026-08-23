@@ -9,7 +9,10 @@ from email.utils import formatdate
 from urllib.parse import urljoin
 from xml.etree.ElementTree import Element, SubElement, ElementTree, indent
 
-from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import (
+    sync_playwright,
+    TimeoutError as PlaywrightTimeoutError
+)
 
 
 # ============================================================
@@ -28,8 +31,6 @@ DISCORD_OUTPUT = "lol-news-discord.xml"
 CACHE_FILE = "lol_cache.json"
 
 MAX_ARTICLES = 20
-
-# Nombre maximum de clics sur "VOIR PLUS"
 MAX_LOAD_MORE_CLICKS = 8
 
 HEADERS = {
@@ -152,6 +153,7 @@ def parse_date(value):
         return dt
 
     except Exception:
+
         return None
 
 
@@ -164,14 +166,95 @@ def format_pubdate(dt):
 
 
 # ============================================================
-# PLAYWRIGHT : RECUPERATION DE TOUS LES ARTICLES
+# FILTRAGE DES URL
+# ============================================================
+
+def is_excluded_url(url):
+
+    value = url.lower().rstrip("/")
+
+    # --------------------------------------------------------
+    # TFT
+    # --------------------------------------------------------
+
+    tft_patterns = [
+        "teamfight-tactics",
+        "team-fight-tactics",
+        "teamfighttactics",
+        "/tft",
+        "tft-",
+        "-tft-",
+        "-tft",
+    ]
+
+    for pattern in tft_patterns:
+
+        if pattern in value:
+            return True
+
+    # --------------------------------------------------------
+    # WILD RIFT
+    # --------------------------------------------------------
+
+    if "wild-rift" in value:
+        return True
+
+    # --------------------------------------------------------
+    # PAGES CATEGORIES / NAVIGATION
+    # --------------------------------------------------------
+
+    excluded_paths = [
+        "/news/game-updates",
+        "/news/media",
+        "/news/community",
+        "/news/esports",
+        "/news/products",
+        "/news/tags",
+        "/news/lore",
+        "/news/riot-games",
+        "/news/merch",
+    ]
+
+    for path in excluded_paths:
+
+        if value.endswith(path):
+            return True
+
+    # --------------------------------------------------------
+    # DOMAINE NON LOL
+    # --------------------------------------------------------
+
+    if "leagueoflegends.com/fr-fr/news/" not in value:
+        return True
+
+    # --------------------------------------------------------
+    # PATCH NOTES
+    # --------------------------------------------------------
+
+    patch_patterns = [
+        "patch-notes",
+        "patchnote",
+        "notes-de-patch",
+        "notes-du-patch",
+    ]
+
+    for pattern in patch_patterns:
+
+        if pattern in value:
+            return True
+
+    return False
+
+
+# ============================================================
+# PLAYWRIGHT : RECUPERATION DES ARTICLES
 # ============================================================
 
 def collect_article_urls(page_url):
 
     print("")
     print("========================================")
-    print(f"Ouverture avec Playwright :")
+    print("Ouverture avec Playwright :")
     print(page_url)
     print("========================================")
 
@@ -196,9 +279,7 @@ def collect_article_urls(page_url):
                 timeout=60000
             )
 
-            page.wait_for_timeout(
-                3000
-            )
+            page.wait_for_timeout(3000)
 
         except Exception as e:
 
@@ -207,10 +288,11 @@ def collect_article_urls(page_url):
             )
 
             browser.close()
+
             return []
 
         # ----------------------------------------------------
-        # FONCTION DE RECUPERATION DES URL
+        # RECUPERATION DES URL
         # ----------------------------------------------------
 
         def collect_urls():
@@ -220,7 +302,6 @@ def collect_article_urls(page_url):
             )
 
             count = links.count()
-
             before = len(urls)
 
             for i in range(count):
@@ -239,11 +320,14 @@ def collect_article_urls(page_url):
                         href
                     )
 
-                    # On ne veut pas les pages catégories
-                    if full_url.rstrip("/") in [
+                    full_url = full_url.rstrip("/")
+
+                    # Pages principales
+                    if full_url in [
                         SOURCE_URLS[0].rstrip("/"),
                         SOURCE_URLS[1].rstrip("/"),
                     ]:
+
                         continue
 
                     if "/fr-fr/news/" not in full_url:
@@ -254,21 +338,23 @@ def collect_article_urls(page_url):
                     )
 
                 except Exception:
+
                     continue
 
-            added = len(urls) - before
+            return len(urls) - before
 
-            return added
+        # ----------------------------------------------------
+        # PREMIER LOT
+        # ----------------------------------------------------
 
-        # Premier lot
-        added = collect_urls()
+        collect_urls()
 
         print(
             f"Premier lot : {len(urls)} articles."
         )
 
         # ----------------------------------------------------
-        # CLICS "VOIR PLUS"
+        # VOIR PLUS
         # ----------------------------------------------------
 
         for click_number in range(
@@ -282,7 +368,6 @@ def collect_article_urls(page_url):
                 f"{MAX_LOAD_MORE_CLICKS})..."
             )
 
-            # Plusieurs variantes pour être robuste
             buttons = page.get_by_text(
                 "VOIR PLUS",
                 exact=True
@@ -311,9 +396,7 @@ def collect_article_urls(page_url):
 
                     button.scroll_into_view_if_needed()
 
-                    page.wait_for_timeout(
-                        500
-                    )
+                    page.wait_for_timeout(500)
 
                     button.click(
                         timeout=10000
@@ -328,6 +411,7 @@ def collect_article_urls(page_url):
                     break
 
                 except Exception:
+
                     continue
 
             if not clicked:
@@ -339,10 +423,7 @@ def collect_article_urls(page_url):
 
                 break
 
-            # Laisse Riot charger les nouvelles cartes
-            page.wait_for_timeout(
-                2500
-            )
+            page.wait_for_timeout(2500)
 
             try:
 
@@ -352,6 +433,7 @@ def collect_article_urls(page_url):
                 )
 
             except PlaywrightTimeoutError:
+
                 pass
 
             added = collect_urls()
@@ -362,8 +444,6 @@ def collect_article_urls(page_url):
                 f"(+{added})"
             )
 
-            # Si aucun nouvel article n'arrive,
-            # on arrête pour éviter une boucle.
             if added == 0:
 
                 print(
@@ -375,6 +455,7 @@ def collect_article_urls(page_url):
         browser.close()
 
     print("")
+
     print(
         f"🟢 Total récupéré depuis cette page : "
         f"{len(urls)} URLs"
@@ -384,7 +465,7 @@ def collect_article_urls(page_url):
 
 
 # ============================================================
-# COLLECTE DES URL
+# COLLECTE
 # ============================================================
 
 all_urls = set()
@@ -416,75 +497,9 @@ print(
 )
 print("########################################")
 
-# ============================================================
-# FILTRAGE DES URL
-# ============================================================
-
-def is_excluded_url(url):
-
-    value = url.lower()
-
-    # ========================================================
-    # PAGES CATEGORIES / NAVIGATION
-    # ========================================================
-
-    excluded_paths = [
-        "/news/game-updates/",
-        "/news/media/",
-        "/news/community/",
-        "/news/esports/",
-        "/news/products/",
-        "/news/tags/",
-    ]
-
-    for path in excluded_paths:
-
-        if path in value:
-            return True
-
-    # ========================================================
-    # TFT
-    # ========================================================
-
-    tft_patterns = [
-        "teamfight-tactics",
-        "team-fight-tactics",
-        "/tft/",
-        "tft-",
-        "-tft-",
-    ]
-
-    for pattern in tft_patterns:
-
-        if pattern in value:
-            return True
-
-    # ========================================================
-    # WILD RIFT
-    # ========================================================
-
-    if "wild-rift" in value:
-        return True
-
-    # ========================================================
-    # PATCH NOTES
-    # ========================================================
-
-    patch_patterns = [
-        "patch-notes",
-        "patchnote",
-        "patch-notes-",
-    ]
-
-    for pattern in patch_patterns:
-
-        if pattern in value:
-            return True
-
-    return False
 
 # ============================================================
-# FILTRAGE URL
+# FILTRAGE INITIAL DES URL
 # ============================================================
 
 candidate_urls = []
@@ -504,7 +519,7 @@ print(
 
 
 # ============================================================
-# RECUPERATION DES PAGES ARTICLES
+# SESSION HTTP
 # ============================================================
 
 session = requests.Session()
@@ -513,398 +528,10 @@ session.headers.update(
     HEADERS
 )
 
-articles = []
 
-for index, url in enumerate(
-    candidate_urls,
-    start=1
-):
-
-    print("")
-    print(
-        f"[{index}/{len(candidate_urls)}] "
-        f"{url}"
-    )
-
-    # --------------------------------------------------------
-    # CACHE
-    # --------------------------------------------------------
-
-    cached = cache.get(
-        url
-    )
-
-    cached_date = None
-
-    if cached:
-
-        cached_date = parse_date(
-            cached.get(
-                "pubDate"
-            )
-        )
-
-    # --------------------------------------------------------
-    # PAGE ARTICLE
-    # --------------------------------------------------------
-
-    try:
-
-        response = session.get(
-            url,
-            timeout=30
-        )
-
-        response.raise_for_status()
-
-        soup = BeautifulSoup(
-            response.text,
-            "html.parser"
-        )
-
-    except Exception as e:
-
-        print(
-            f"⚠️ Impossible de charger : {e}"
-        )
-
-        continue
-
-    # --------------------------------------------------------
-    # TITRE
-    # --------------------------------------------------------
-
-    title = ""
-
-    h1 = soup.find(
-        "h1"
-    )
-
-    if h1:
-
-        title = clean_text(
-            h1.get_text(
-                " ",
-                strip=True
-            )
-        )
-
-    if not title:
-
-        og_title = soup.find(
-            "meta",
-            attrs={
-                "property":
-                "og:title"
-            }
-        )
-
-        if og_title:
-
-            title = clean_text(
-                og_title.get(
-                    "content"
-                )
-            )
-
-    if not title:
-
-        title = (
-            url.rstrip("/")
-            .split("/")
-            [-1]
-            .replace(
-                "-",
-                " "
-            )
-            .strip()
-            .title()
-        )
-
-    # --------------------------------------------------------
-    # DATE
-    # --------------------------------------------------------
-
-    dt = None
-
-    for script in soup.find_all(
-        "script",
-        type="application/ld+json"
-    ):
-
-        raw = (
-            script.string
-            or
-            script.get_text()
-        )
-
-        if not raw:
-            continue
-
-        matches = re.findall(
-            r'"datePublished"\s*:\s*"([^"]+)"',
-            raw
-        )
-
-        for value in matches:
-
-            dt = parse_date(
-                value
-            )
-
-            if dt:
-                break
-
-        if dt:
-            break
-
-    if not dt:
-
-        for attrs in [
-            {
-                "property":
-                "article:published_time"
-            },
-            {
-                "property":
-                "og:published_time"
-            },
-        ]:
-
-            meta = soup.find(
-                "meta",
-                attrs=attrs
-            )
-
-            if meta:
-
-                dt = parse_date(
-                    meta.get(
-                        "content"
-                    )
-                )
-
-                if dt:
-                    break
-
-    if not dt:
-
-        for node in soup.find_all(
-            "time"
-        ):
-
-            dt = parse_date(
-                node.get(
-                    "datetime"
-                )
-            )
-
-            if dt:
-                break
-
-    if not dt:
-
-        dt = cached_date
-
-    if not dt:
-
-        print(
-            "⚠️ Date introuvable."
-        )
-
-        continue
-
-    # --------------------------------------------------------
-    # DESCRIPTION
-    # --------------------------------------------------------
-
-    description = ""
-
-    meta = soup.find(
-        "meta",
-        attrs={
-            "name":
-            "description"
-        }
-    )
-
-    if meta:
-
-        description = clean_text(
-            meta.get(
-                "content"
-            )
-        )
-
-    if not description:
-
-        meta = soup.find(
-            "meta",
-            attrs={
-                "property":
-                "og:description"
-            }
-        )
-
-        if meta:
-
-            description = clean_text(
-                meta.get(
-                    "content"
-                )
-            )
-
-    if not description:
-
-        description = title
-
-    # --------------------------------------------------------
-    # CATEGORIES / FILTRES
-    # --------------------------------------------------------
-
-    combined = (
-        title
-        + " "
-        + url
-        + " "
-        + description
-    ).lower()
-
-    excluded = False
-
-    # ========================================================
-    # TFT
-    # ========================================================
-
-    tft_patterns = [
-        r"\btft\b",
-        r"teamfight tactics",
-        r"team-fight tactics",
-        r"teamfight-tactics",
-        r"/tft/",
-        r"tft-",
-        r"-tft\b",
-    ]
-
-    # ========================================================
-    # PATCH NOTES
-    # ========================================================
-
-    patch_patterns = [
-        r"notes?\s+de\s+patch",
-        r"patch\s+\d+\.\d+",
-        r"patch[-_]\d+[-_]\d+",
-        r"patch-notes",
-        r"patchnote",
-        r"notes?\s+du\s+patch",
-    ]
-
-    # ========================================================
-    # ESPORT
-    # ========================================================
-
-    esport_patterns = [
-        r"\blec\b",
-        r"\bmsi\b",
-        r"\bworlds\b",
-        r"\besport\b",
-        r"\be-sport\b",
-        r"hall of legends",
-        r"watch party",
-        r"compétition",
-        r"compétitions",
-        r"joueur professionnel",
-        r"équipe professionnelle",
-    ]
-
-    # ========================================================
-    # GUIDES
-    # ========================================================
-
-    guide_patterns = [
-        r"\bguide\b",
-        r"\bbuild\b",
-        r"\bastuces?\b",
-        r"comment avoir",
-        r"comment bien",
-        r"survivre dans",
-        r"phase de laning",
-        r"guide des",
-        r"guide pour",
-    ]
-
-    # ========================================================
-    # CONTENU HORS ACTUALITES
-    # ========================================================
-
-    excluded_content_patterns = [
-        r"produits dérivés",
-        r"merchandising",
-        r"merchandise",
-        r"goodies",
-        r"fond d'écran",
-        r"wallpaper",
-    ]
-
-    # ========================================================
-    # APPLICATION DES FILTRES
-    # ========================================================
-
-    all_filters = (
-        tft_patterns
-        +
-        patch_patterns
-        +
-        esport_patterns
-        +
-        guide_patterns
-        +
-        excluded_content_patterns
-    )
-
-    for pattern in all_filters:
-
-        if re.search(
-            pattern,
-            combined,
-            re.IGNORECASE
-        ):
-
-            excluded = True
-
-            print(
-                f"❌ Exclu : {title}"
-            )
-
-            break
-
-    if excluded:
-
-        continue
-
-    # --------------------------------------------------------
-    # AJOUT
-    # --------------------------------------------------------
-
-    articles.append(
-        {
-            "title": title,
-            "url": url,
-            "description": description,
-            "date": dt
-        }
-    )
-
-    print(
-        f"🟢 {format_pubdate(dt)} "
-        f"- {title}"
-    )
-
-session = requests.Session()
-
-session.headers.update(
-    HEADERS
-)
+# ============================================================
+# TRAITEMENT DES ARTICLES
+# ============================================================
 
 articles = []
 
@@ -1082,7 +709,7 @@ for index, url in enumerate(
                 if dt:
                     break
 
-    # time
+    # Time
     if not dt:
 
         for node in soup.find_all(
@@ -1098,7 +725,7 @@ for index, url in enumerate(
             if dt:
                 break
 
-    # Cache en dernier recours
+    # Cache
     if not dt:
 
         dt = cached_date
@@ -1156,7 +783,7 @@ for index, url in enumerate(
         description = title
 
     # --------------------------------------------------------
-    # CATEGORIES / FILTRES
+    # FILTRAGE CONTENU
     # --------------------------------------------------------
 
     combined = (
@@ -1173,13 +800,12 @@ for index, url in enumerate(
     # TFT
     # ========================================================
 
-    # Les actualités TFT doivent être traitées
-    # uniquement par le futur flux TFT.
     tft_patterns = [
         r"\btft\b",
         r"teamfight tactics",
         r"team-fight tactics",
         r"teamfight-tactics",
+        r"teamfighttactics",
         r"/tft/",
         r"tft-",
         r"-tft\b",
@@ -1246,7 +872,7 @@ for index, url in enumerate(
     ]
 
     # ========================================================
-    # APPLICATION DES FILTRES
+    # APPLICATION
     # ========================================================
 
     all_filters = (
@@ -1278,7 +904,6 @@ for index, url in enumerate(
             break
 
     if excluded:
-
         continue
 
     # --------------------------------------------------------
@@ -1329,7 +954,7 @@ articles = list(
 
 
 # ============================================================
-# TRI
+# TRI PAR DATE
 # ============================================================
 
 articles.sort(
@@ -1348,6 +973,10 @@ articles = articles[
 ]
 
 
+# ============================================================
+# AFFICHAGE FINAL
+# ============================================================
+
 print("")
 print("########################################")
 print(
@@ -1355,7 +984,6 @@ print(
 )
 print("########################################")
 print("")
-
 
 for index, article in enumerate(
     articles,
