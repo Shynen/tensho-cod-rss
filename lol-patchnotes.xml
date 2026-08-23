@@ -4,7 +4,7 @@
     <title>League of Legends — Patch Notes</title>
     <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/</link>
     <description>Notes de patch officielles françaises de League of Legends.</description>
-    <lastBuildDate>Sun, 23 Aug 2026 11:50:28 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2026 12:25:03 GMT</lastBuildDate>
     <item>
       <title>Notes de patch 26.16 de League of Legends</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-16-notes</link>
@@ -55,18 +55,18 @@
       <description>La saison des démons continue avec le patch 26.10 !</description>
     </item>
     <item>
-      <title>Notes de patch 26.9 de League of Legends</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-9-notes</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-9-notes</guid>
-      <pubDate>Tue, 28 Apr 2026 18:00:00 GMT</pubDate>
-      <description>Il est temps de chasser les démons avec le patch 26.9 !</description>
-    </item>
-    <item>
       <title>Notes de patch 17.2 de TFT</title>
       <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-17-2</link>
       <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-17-2</guid>
       <pubDate>Tue, 28 Apr 2026 18:00:00 GMT</pubDate>
       <description>Ne passez pas à côté de l'expérience céleste que propose le patch 17.2 avec les rencontres d'ouverture et les nouvelles bénédictions divines.</description>
+    </item>
+    <item>
+      <title>Notes de patch 26.9 de League of Legends</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-9-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-9-notes</guid>
+      <pubDate>Tue, 28 Apr 2026 18:00:00 GMT</pubDate>
+      <description>Il est temps de chasser les démons avec le patch 26.9 !</description>
     </item>
     <item>
       <title>Notes de patch 17.1 de TFT</title>
@@ -132,18 +132,18 @@
       <description>Happy Lunar Revel, welcome to patch 26.4!</description>
     </item>
     <item>
-      <title>Notes de patch 16.4 de TFT</title>
-      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-4</link>
-      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-4</guid>
-      <pubDate>Tue, 03 Feb 2026 19:00:00 GMT</pubDate>
-      <description>Le patch 16.4 introduit des optimisations, des ajustements aux niveaux et des modifs d'équilibrage.</description>
-    </item>
-    <item>
       <title>Notes de patch 26.3</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-26-3-notes</link>
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-26-3-notes</guid>
       <pubDate>Tue, 03 Feb 2026 19:00:00 GMT</pubDate>
       <description>Célébrez la nouvelle année et plongez-vous dans le patch 26.3 🎊</description>
+    </item>
+    <item>
+      <title>Notes de patch 16.4 de TFT</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-4</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-4</guid>
+      <pubDate>Tue, 03 Feb 2026 19:00:00 GMT</pubDate>
+      <description>Le patch 16.4 introduit des optimisations, des ajustements aux niveaux et des modifs d'équilibrage.</description>
     </item>
   </channel>
 </rss>
