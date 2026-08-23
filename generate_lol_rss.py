@@ -421,79 +421,418 @@ print("########################################")
 # FILTRAGE URL
 # ============================================================
 
-def is_excluded_url(url):
+candidate_urls = []
 
-    value = url.lower()
+for url in all_urls:
 
-    # ========================================================
-    # PAGES CATEGORIES / NAVIGATION
-    # ========================================================
+    if is_excluded_url(url):
+        continue
 
-    excluded_paths = [
-        "/news/game-updates/",
-        "/news/media/",
-        "/news/community/",
-        "/news/esports/",
-        "/news/products/",
-        "/news/tags/",
-    ]
+    candidate_urls.append(url)
 
-    for path in excluded_paths:
 
-        if path in value:
-            return True
+print(
+    f"URLs candidates après premier filtrage : "
+    f"{len(candidate_urls)}"
+)
+
+
+# ============================================================
+# RECUPERATION DES PAGES ARTICLES
+# ============================================================
+
+session = requests.Session()
+
+session.headers.update(
+    HEADERS
+)
+
+articles = []
+
+for index, url in enumerate(
+    candidate_urls,
+    start=1
+):
+
+    print("")
+    print(
+        f"[{index}/{len(candidate_urls)}] "
+        f"{url}"
+    )
+
+    # --------------------------------------------------------
+    # CACHE
+    # --------------------------------------------------------
+
+    cached = cache.get(
+        url
+    )
+
+    cached_date = None
+
+    if cached:
+
+        cached_date = parse_date(
+            cached.get(
+                "pubDate"
+            )
+        )
+
+    # --------------------------------------------------------
+    # PAGE ARTICLE
+    # --------------------------------------------------------
+
+    try:
+
+        response = session.get(
+            url,
+            timeout=30
+        )
+
+        response.raise_for_status()
+
+        soup = BeautifulSoup(
+            response.text,
+            "html.parser"
+        )
+
+    except Exception as e:
+
+        print(
+            f"⚠️ Impossible de charger : {e}"
+        )
+
+        continue
+
+    # --------------------------------------------------------
+    # TITRE
+    # --------------------------------------------------------
+
+    title = ""
+
+    h1 = soup.find(
+        "h1"
+    )
+
+    if h1:
+
+        title = clean_text(
+            h1.get_text(
+                " ",
+                strip=True
+            )
+        )
+
+    if not title:
+
+        og_title = soup.find(
+            "meta",
+            attrs={
+                "property":
+                "og:title"
+            }
+        )
+
+        if og_title:
+
+            title = clean_text(
+                og_title.get(
+                    "content"
+                )
+            )
+
+    if not title:
+
+        title = (
+            url.rstrip("/")
+            .split("/")
+            [-1]
+            .replace(
+                "-",
+                " "
+            )
+            .strip()
+            .title()
+        )
+
+    # --------------------------------------------------------
+    # DATE
+    # --------------------------------------------------------
+
+    dt = None
+
+    for script in soup.find_all(
+        "script",
+        type="application/ld+json"
+    ):
+
+        raw = (
+            script.string
+            or
+            script.get_text()
+        )
+
+        if not raw:
+            continue
+
+        matches = re.findall(
+            r'"datePublished"\s*:\s*"([^"]+)"',
+            raw
+        )
+
+        for value in matches:
+
+            dt = parse_date(
+                value
+            )
+
+            if dt:
+                break
+
+        if dt:
+            break
+
+    if not dt:
+
+        for attrs in [
+            {
+                "property":
+                "article:published_time"
+            },
+            {
+                "property":
+                "og:published_time"
+            },
+        ]:
+
+            meta = soup.find(
+                "meta",
+                attrs=attrs
+            )
+
+            if meta:
+
+                dt = parse_date(
+                    meta.get(
+                        "content"
+                    )
+                )
+
+                if dt:
+                    break
+
+    if not dt:
+
+        for node in soup.find_all(
+            "time"
+        ):
+
+            dt = parse_date(
+                node.get(
+                    "datetime"
+                )
+            )
+
+            if dt:
+                break
+
+    if not dt:
+
+        dt = cached_date
+
+    if not dt:
+
+        print(
+            "⚠️ Date introuvable."
+        )
+
+        continue
+
+    # --------------------------------------------------------
+    # DESCRIPTION
+    # --------------------------------------------------------
+
+    description = ""
+
+    meta = soup.find(
+        "meta",
+        attrs={
+            "name":
+            "description"
+        }
+    )
+
+    if meta:
+
+        description = clean_text(
+            meta.get(
+                "content"
+            )
+        )
+
+    if not description:
+
+        meta = soup.find(
+            "meta",
+            attrs={
+                "property":
+                "og:description"
+            }
+        )
+
+        if meta:
+
+            description = clean_text(
+                meta.get(
+                    "content"
+                )
+            )
+
+    if not description:
+
+        description = title
+
+    # --------------------------------------------------------
+    # CATEGORIES / FILTRES
+    # --------------------------------------------------------
+
+    combined = (
+        title
+        + " "
+        + url
+        + " "
+        + description
+    ).lower()
+
+    excluded = False
 
     # ========================================================
     # TFT
     # ========================================================
 
-    # Les articles TFT peuvent apparaître dans les pages
-    # communes de League of Legends.
-    #
-    # Ils seront traités par generate_tft_rss.py.
-    #
-
     tft_patterns = [
-        "teamfight-tactics",
-        "team-fight-tactics",
-        "/tft/",
-        "tft-",
-        "-tft-",
+        r"\btft\b",
+        r"teamfight tactics",
+        r"team-fight tactics",
+        r"teamfight-tactics",
+        r"/tft/",
+        r"tft-",
+        r"-tft\b",
     ]
-
-    for pattern in tft_patterns:
-
-        if pattern in value:
-            return True
-
-    # ========================================================
-    # WILD RIFT
-    # ========================================================
-
-    if "wild-rift" in value:
-        return True
 
     # ========================================================
     # PATCH NOTES
     # ========================================================
 
     patch_patterns = [
-        "patch-notes",
-        "patchnote",
-        "patch-notes-",
+        r"notes?\s+de\s+patch",
+        r"patch\s+\d+\.\d+",
+        r"patch[-_]\d+[-_]\d+",
+        r"patch-notes",
+        r"patchnote",
+        r"notes?\s+du\s+patch",
     ]
 
-    for pattern in patch_patterns:
+    # ========================================================
+    # ESPORT
+    # ========================================================
 
-        if pattern in value:
-            return True
+    esport_patterns = [
+        r"\blec\b",
+        r"\bmsi\b",
+        r"\bworlds\b",
+        r"\besport\b",
+        r"\be-sport\b",
+        r"hall of legends",
+        r"watch party",
+        r"compétition",
+        r"compétitions",
+        r"joueur professionnel",
+        r"équipe professionnelle",
+    ]
 
-    return False
+    # ========================================================
+    # GUIDES
+    # ========================================================
 
+    guide_patterns = [
+        r"\bguide\b",
+        r"\bbuild\b",
+        r"\bastuces?\b",
+        r"comment avoir",
+        r"comment bien",
+        r"survivre dans",
+        r"phase de laning",
+        r"guide des",
+        r"guide pour",
+    ]
 
-# ============================================================
-# RECUPERATION DES PAGES ARTICLES
-# ============================================================
+    # ========================================================
+    # CONTENU HORS ACTUALITES
+    # ========================================================
+
+    excluded_content_patterns = [
+        r"produits dérivés",
+        r"merchandising",
+        r"merchandise",
+        r"goodies",
+        r"fond d'écran",
+        r"wallpaper",
+    ]
+
+    # ========================================================
+    # APPLICATION DES FILTRES
+    # ========================================================
+
+    all_filters = (
+        tft_patterns
+        +
+        patch_patterns
+        +
+        esport_patterns
+        +
+        guide_patterns
+        +
+        excluded_content_patterns
+    )
+
+    for pattern in all_filters:
+
+        if re.search(
+            pattern,
+            combined,
+            re.IGNORECASE
+        ):
+
+            excluded = True
+
+            print(
+                f"❌ Exclu : {title}"
+            )
+
+            break
+
+    if excluded:
+
+        continue
+
+    # --------------------------------------------------------
+    # AJOUT
+    # --------------------------------------------------------
+
+    articles.append(
+        {
+            "title": title,
+            "url": url,
+            "description": description,
+            "date": dt
+        }
+    )
+
+    print(
+        f"🟢 {format_pubdate(dt)} "
+        f"- {title}"
+    )
 
 session = requests.Session()
 
