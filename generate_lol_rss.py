@@ -416,6 +416,72 @@ print(
 )
 print("########################################")
 
+# ============================================================
+# FILTRAGE DES URL
+# ============================================================
+
+def is_excluded_url(url):
+
+    value = url.lower()
+
+    # ========================================================
+    # PAGES CATEGORIES / NAVIGATION
+    # ========================================================
+
+    excluded_paths = [
+        "/news/game-updates/",
+        "/news/media/",
+        "/news/community/",
+        "/news/esports/",
+        "/news/products/",
+        "/news/tags/",
+    ]
+
+    for path in excluded_paths:
+
+        if path in value:
+            return True
+
+    # ========================================================
+    # TFT
+    # ========================================================
+
+    tft_patterns = [
+        "teamfight-tactics",
+        "team-fight-tactics",
+        "/tft/",
+        "tft-",
+        "-tft-",
+    ]
+
+    for pattern in tft_patterns:
+
+        if pattern in value:
+            return True
+
+    # ========================================================
+    # WILD RIFT
+    # ========================================================
+
+    if "wild-rift" in value:
+        return True
+
+    # ========================================================
+    # PATCH NOTES
+    # ========================================================
+
+    patch_patterns = [
+        "patch-notes",
+        "patchnote",
+        "patch-notes-",
+    ]
+
+    for pattern in patch_patterns:
+
+        if pattern in value:
+            return True
+
+    return False
 
 # ============================================================
 # FILTRAGE URL
