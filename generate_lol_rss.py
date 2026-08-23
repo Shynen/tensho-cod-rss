@@ -31,7 +31,6 @@ CACHE_FILE = "lol_cache.json"
 
 MAX_ARTICLES = 20
 
-
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; TenshoLoLRSS/1.0)"
 }
@@ -60,13 +59,11 @@ def load_cache():
         return {}
 
     try:
-
         with open(
             CACHE_FILE,
             "r",
             encoding="utf-8"
         ) as f:
-
             cache = json.load(f)
 
         if not isinstance(cache, dict):
@@ -110,19 +107,44 @@ cache = load_cache()
 # DATE
 # ============================================================
 
-def parse_date(date_text):
+def parse_date(value):
 
-    if not date_text:
+    if not value:
         return None
+
+    value = value.strip()
 
     # ISO 8601
     try:
 
         dt = datetime.fromisoformat(
-            date_text.replace(
+            value.replace(
                 "Z",
                 "+00:00"
             )
+        )
+
+        if dt.tzinfo is None:
+            dt = dt.replace(
+                tzinfo=timezone.utc
+            )
+
+        return formatdate(
+            dt.timestamp(),
+            usegmt=True
+        )
+
+    except Exception:
+        pass
+
+    # Format RSS classique
+    try:
+
+        dt = datetime.strptime(
+            value,
+            "%a, %d %b %Y %H:%M:%S GMT"
+        ).replace(
+            tzinfo=timezone.utc
         )
 
         return formatdate(
@@ -133,75 +155,107 @@ def parse_date(date_text):
     except Exception:
         pass
 
-    # Date française éventuelle
-    months = {
-        "janvier": 1,
-        "février": 2,
-        "mars": 3,
-        "avril": 4,
-        "mai": 5,
-        "juin": 6,
-        "juillet": 7,
-        "août": 8,
-        "septembre": 9,
-        "octobre": 10,
-        "novembre": 11,
-        "décembre": 12,
-    }
-
-    match = re.search(
-        r"(\d{1,2})\s+([a-zéû]+)\s+(\d{4})",
-        date_text.lower()
-    )
-
-    if match:
-
-        day = int(match.group(1))
-        month_name = match.group(2)
-        year = int(match.group(3))
-
-        month = months.get(
-            month_name
-        )
-
-        if month:
-
-            try:
-
-                dt = datetime(
-                    year,
-                    month,
-                    day,
-                    12,
-                    0,
-                    0,
-                    tzinfo=timezone.utc
-                )
-
-                return formatdate(
-                    dt.timestamp(),
-                    usegmt=True
-                )
-
-            except Exception:
-                pass
-
     return None
 
 
 # ============================================================
-# EXTRACTION DATE
+# EXTRACTION DATE DEPUIS UNE PAGE ARTICLE
 # ============================================================
 
-def extract_date_from_element(element):
+def extract_article_date(soup):
 
-    if not element:
-        return None
+    # --------------------------------------------------------
+    # 1. JSON-LD
+    # --------------------------------------------------------
 
-    # Balises time
-    time_node = element.find("time")
+    for script in soup.find_all(
+        "script",
+        type="application/ld+json"
+    ):
 
-    if time_node:
+        try:
+
+            data = json.loads(
+                script.string or script.get_text()
+            )
+
+            data_list = (
+                data
+                if isinstance(data, list)
+                else [data]
+            )
+
+            for obj in data_list:
+
+                if not isinstance(obj, dict):
+                    continue
+
+                date_value = (
+                    obj.get("datePublished")
+                    or obj.get("dateCreated")
+                )
+
+                parsed = parse_date(
+                    date_value
+                )
+
+                if parsed:
+                    return parsed
+
+        except Exception:
+            continue
+
+    # --------------------------------------------------------
+    # 2. Meta article:published_time
+    # --------------------------------------------------------
+
+    meta_selectors = [
+
+        {
+            "property":
+            "article:published_time"
+        },
+
+        {
+            "name":
+            "article:published_time"
+        },
+
+        {
+            "property":
+            "og:published_time"
+        },
+
+        {
+            "name":
+            "date"
+        },
+
+    ]
+
+    for attrs in meta_selectors:
+
+        node = soup.find(
+            "meta",
+            attrs=attrs
+        )
+
+        if node:
+
+            parsed = parse_date(
+                node.get("content")
+            )
+
+            if parsed:
+                return parsed
+
+    # --------------------------------------------------------
+    # 3. Balises <time>
+    # --------------------------------------------------------
+
+    for time_node in soup.find_all(
+        "time"
+    ):
 
         value = (
             time_node.get("datetime")
@@ -212,111 +266,46 @@ def extract_date_from_element(element):
             )
         )
 
-        parsed = parse_date(value)
+        parsed = parse_date(
+            value
+        )
 
         if parsed:
             return parsed
 
-    # Recherche dans le texte
-    text = element.get_text(
-        " ",
-        strip=True
+    # --------------------------------------------------------
+    # 4. Recherche ISO dans le HTML
+    # --------------------------------------------------------
+
+    html_text = str(soup)
+
+    matches = re.findall(
+        r"\d{4}-\d{2}-\d{2}T"
+        r"\d{2}:\d{2}:\d{2}"
+        r"(?:\.\d+)?"
+        r"(?:Z|[+-]\d{2}:\d{2})",
+        html_text
     )
 
-    # ISO 8601
-    match = re.search(
-        r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z",
-        text
-    )
+    for value in matches:
 
-    if match:
-
-        return parse_date(
-            match.group(0)
+        parsed = parse_date(
+            value
         )
 
-    # Date française
-    match = re.search(
-        r"\d{1,2}\s+"
-        r"(?:janvier|février|mars|avril|mai|juin|"
-        r"juillet|août|septembre|octobre|novembre|décembre)"
-        r"\s+\d{4}",
-        text,
-        re.IGNORECASE
-    )
-
-    if match:
-
-        return parse_date(
-            match.group(0)
-        )
+        if parsed:
+            return parsed
 
     return None
 
 
 # ============================================================
-# TITRES À EXCLURE
-# ============================================================
-
-EXCLUDED_TITLE_PATTERNS = [
-
-    # Patch notes
-    r"\bnotes?\s+de\s+patch\b",
-    r"\bpatch\s+\d+\.\d+\b",
-
-    # Guides
-    r"\bguide\b",
-    r"\bcomment\b",
-    r"\bastuces?\b",
-    r"\bbuild\b",
-
-    # E-sport
-    r"\besport\b",
-    r"\be-sport\b",
-    r"\blec\b",
-    r"\bmsi\b",
-    r"\bworlds\b",
-    r"\bhall of legends\b",
-    r"\bcompétition\b",
-    r"\bcompétitions\b",
-    r"\bwatch party\b",
-
-    # Wild Rift
-    r"\bwild rift\b",
-
-]
-
-
-def is_excluded(title, url):
-
-    value = (
-        title
-        + " "
-        + url
-    ).lower()
-
-    for pattern in EXCLUDED_TITLE_PATTERNS:
-
-        if re.search(
-            pattern,
-            value,
-            re.IGNORECASE
-        ):
-            return True
-
-    # Exclure explicitement les notes de patch
-    if "/news/tags/patch-notes/" in url:
-        return True
-
-    return False
-
-
-# ============================================================
-# EXTRACTION DES ARTICLES
+# EXTRACTION DES ARTICLES DEPUIS UNE LISTE
 # ============================================================
 
 def extract_listing_articles(page_url):
 
+    print("")
     print(
         f"Téléchargement : {page_url}"
     )
@@ -354,14 +343,13 @@ def extract_listing_articles(page_url):
             href
         )
 
-        # Eviter les pages de catégories
+        # Pages de catégories
         if url.rstrip("/") in (
             NEWS_URL.rstrip("/"),
             DEV_URL.rstrip("/")
         ):
             continue
 
-        # Eviter les doublons
         if url in seen:
             continue
 
@@ -373,42 +361,76 @@ def extract_listing_articles(page_url):
         if not title or len(title) < 8:
             continue
 
-        # Filtrage
-        if is_excluded(
-            title,
-            url
-        ):
+        # ----------------------------------------------------
+        # FILTRAGE DES CONTENUS INUTILES
+        # ----------------------------------------------------
+
+        value = (
+            title
+            + " "
+            + url
+        ).lower()
+
+        excluded = False
+
+        excluded_patterns = [
+
+            # Patch notes
+            r"notes?\s+de\s+patch",
+            r"patch\s+\d+\.\d+",
+            r"patch-\d+-\d+",
+            r"patch-notes",
+
+            # Guides
+            r"\bguide\b",
+            r"\bbuild\b",
+            r"\bastuces?\b",
+            r"comment avoir",
+            r"comment bien",
+            r"survivre dans",
+            r"phase de laning",
+
+            # Esport
+            r"\besport\b",
+            r"\be-sport\b",
+            r"\blec\b",
+            r"\bmsi\b",
+            r"\bworlds\b",
+            r"hall of legends",
+            r"watch party",
+            r"compétition",
+            r"compétitions",
+
+            # Wild Rift
+            r"wild rift",
+
+        ]
+
+        for pattern in excluded_patterns:
+
+            if re.search(
+                pattern,
+                value,
+                re.IGNORECASE
+            ):
+
+                excluded = True
+                break
+
+        if excluded:
+
             print(
-                f"   ❌ Exclu : {title}"
+                f"❌ Exclu : {title}"
             )
+
             continue
-
-        # Date depuis le bloc parent
-        pub_date = None
-
-        parent = link
-
-        for _ in range(6):
-
-            parent = parent.parent
-
-            if parent is None:
-                break
-
-            pub_date = extract_date_from_element(
-                parent
-            )
-
-            if pub_date:
-                break
 
         seen.add(url)
 
         articles.append(
             {
                 "url": url,
-                "title": title,
-                "pubDate": pub_date
+                "title": title
             }
         )
 
@@ -416,7 +438,7 @@ def extract_listing_articles(page_url):
 
 
 # ============================================================
-# RECUPERATION NEWS + DEV
+# RECUPERATION DES LISTES
 # ============================================================
 
 all_articles = []
@@ -455,60 +477,21 @@ for article in all_articles:
     )
 
 
-# ============================================================
-# TRI
-# ============================================================
-
-def sort_key(article):
-
-    if article.get("pubDate"):
-
-        try:
-
-            return datetime.strptime(
-                article["pubDate"],
-                "%a, %d %b %Y %H:%M:%S GMT"
-            ).replace(
-                tzinfo=timezone.utc
-            )
-
-        except Exception:
-            pass
-
-    return datetime(
-        1970,
-        1,
-        1,
-        tzinfo=timezone.utc
-    )
-
-
-unique_articles.sort(
-    key=sort_key,
-    reverse=True
-)
-
-
-articles = unique_articles[
-    :MAX_ARTICLES
-]
-
-
 print("")
 print(
-    f"{len(articles)} actualités LoL retenues."
+    f"{len(unique_articles)} articles candidats."
 )
 
 
 # ============================================================
-# RECUPERATION DES PAGES POUR DESCRIPTION
+# RECUPERATION DES VRAIES DATES
 # ============================================================
 
-processed_articles = []
+dated_articles = []
 
 
 for index, article in enumerate(
-    articles,
+    unique_articles,
     start=1
 ):
 
@@ -516,7 +499,7 @@ for index, article in enumerate(
 
     print("")
     print(
-        f"[{index}/{len(articles)}] "
+        f"[{index}/{len(unique_articles)}] "
         f"{article['title']}"
     )
 
@@ -528,37 +511,38 @@ for index, article in enumerate(
 
         cached = cache[url]
 
-        print(
-            "🟢 Cache utilisé."
+        cached_date = cached.get(
+            "pubDate"
         )
 
-        processed_articles.append(
-            {
-                "url": url,
-                "title": cached.get(
-                    "title",
-                    article["title"]
-                ),
-                "description": cached.get(
-                    "description",
-                    article["title"]
-                ),
-                "pubDate": (
-                    cached.get(
-                        "pubDate"
-                    )
-                    or
-                    article.get(
-                        "pubDate"
-                    )
-                )
-            }
-        )
+        # Si le cache possède déjà une vraie date,
+        # on la réutilise.
+        if cached_date:
 
-        continue
+            print(
+                f"🟢 Cache utilisé : "
+                f"{cached_date}"
+            )
+
+            dated_articles.append(
+                {
+                    "url": url,
+                    "title": cached.get(
+                        "title",
+                        article["title"]
+                    ),
+                    "description": cached.get(
+                        "description",
+                        article["title"]
+                    ),
+                    "pubDate": cached_date
+                }
+            )
+
+            continue
 
     # --------------------------------------------------------
-    # NOUVEL ARTICLE
+    # TELECHARGEMENT ARTICLE
     # --------------------------------------------------------
 
     try:
@@ -576,7 +560,10 @@ for index, article in enumerate(
             "html.parser"
         )
 
-        # Titre
+        # ----------------------------------------------------
+        # TITRE
+        # ----------------------------------------------------
+
         title_node = soup.find(
             "h1"
         )
@@ -590,10 +577,34 @@ for index, article in enumerate(
             else article["title"]
         )
 
-        # Description
+        # ----------------------------------------------------
+        # DATE REELLE
+        # ----------------------------------------------------
+
+        pub_date = extract_article_date(
+            soup
+        )
+
+        if not pub_date:
+
+            print(
+                "⚠️ Date introuvable."
+            )
+
+            # On ne met surtout PAS la date actuelle.
+            # L'article serait alors considéré comme nouveau.
+            continue
+
+        print(
+            f"📅 Date : {pub_date}"
+        )
+
+        # ----------------------------------------------------
+        # DESCRIPTION
+        # ----------------------------------------------------
+
         description = ""
 
-        # Meta description
         meta = soup.find(
             "meta",
             attrs={
@@ -608,7 +619,23 @@ for index, article in enumerate(
                 or ""
             )
 
-        # Sinon premier paragraphe intéressant
+        if not description:
+
+            meta = soup.find(
+                "meta",
+                attrs={
+                    "property":
+                    "og:description"
+                }
+            )
+
+            if meta:
+
+                description = (
+                    meta.get("content")
+                    or ""
+                )
+
         if not description:
 
             for paragraph in soup.find_all(
@@ -623,30 +650,11 @@ for index, article in enumerate(
                 if len(text) >= 60:
 
                     description = text
-
                     break
 
         if not description:
 
             description = title
-
-        # Date
-        pub_date = (
-            article.get("pubDate")
-            or
-            extract_date_from_element(
-                soup
-            )
-        )
-
-        if not pub_date:
-
-            pub_date = formatdate(
-                datetime.now(
-                    timezone.utc
-                ).timestamp(),
-                usegmt=True
-            )
 
         processed = {
             "url": url,
@@ -665,46 +673,77 @@ for index, article in enumerate(
             cache
         )
 
-        processed_articles.append(
+        dated_articles.append(
             processed
         )
 
     except Exception as e:
 
         print(
-            f"⚠️ Erreur article : {e}"
-        )
-
-        # Même en cas d'erreur, on garde
-        # l'article pour éviter de perdre
-        # une actualité.
-
-        fallback_date = (
-            article.get(
-                "pubDate"
-            )
-            or
-            formatdate(
-                datetime.now(
-                    timezone.utc
-                ).timestamp(),
-                usegmt=True
-            )
-        )
-
-        processed_articles.append(
-            {
-                "url": url,
-                "title": article["title"],
-                "description": article["title"],
-                "pubDate": fallback_date
-            }
+            f"⚠️ Erreur : {e}"
         )
 
 
-save_cache(
-    cache
+# ============================================================
+# TRI PAR DATE REELLE
+# ============================================================
+
+def sort_key(article):
+
+    try:
+
+        dt = datetime.strptime(
+            article["pubDate"],
+            "%a, %d %b %Y %H:%M:%S GMT"
+        )
+
+        return dt.replace(
+            tzinfo=timezone.utc
+        )
+
+    except Exception:
+
+        return datetime(
+            1970,
+            1,
+            1,
+            tzinfo=timezone.utc
+        )
+
+
+dated_articles.sort(
+    key=sort_key,
+    reverse=True
 )
+
+
+# ============================================================
+# 20 PLUS RECENTS
+# ============================================================
+
+articles = dated_articles[
+    :MAX_ARTICLES
+]
+
+
+print("")
+print("########################################")
+print(
+    f"# {len(articles)} actualités retenues"
+)
+print("########################################")
+
+
+for index, article in enumerate(
+    articles,
+    start=1
+):
+
+    print(
+        f"{index:02d}. "
+        f"{article['pubDate']} - "
+        f"{article['title']}"
+    )
 
 
 # ============================================================
@@ -727,14 +766,15 @@ def create_rss(
     output_file,
     title,
     description,
-    feed_url,
     articles_to_include
 ):
 
     rss = Element(
         "rss",
         {
-            "version": "2.0"
+            "version": "2.0",
+            "xmlns:atom":
+                "http://www.w3.org/2005/Atom"
         }
     )
 
@@ -758,6 +798,35 @@ def create_rss(
         "description"
     ).text = description
 
+    # --------------------------------------------------------
+    # ATOM SELF
+    # --------------------------------------------------------
+
+    self_url = (
+        "https://shynen.github.io/"
+        "tensho-cod-rss/"
+        f"{output_file}"
+    )
+
+    SubElement(
+        channel,
+        "atom:link",
+        {
+            "href": self_url,
+            "rel": "self",
+            "type": "application/rss+xml"
+        }
+    )
+
+    SubElement(
+        channel,
+        "lastBuildDate"
+    ).text = now
+
+    # --------------------------------------------------------
+    # ARTICLES
+    # --------------------------------------------------------
+
     for article in articles_to_include:
 
         item = SubElement(
@@ -777,24 +846,27 @@ def create_rss(
 
         SubElement(
             item,
-            "guid"
+            "guid",
+            {
+                "isPermaLink": "true"
+            }
         ).text = article["url"]
 
-        # Readybot aime avoir un timestamp
+        # IMPORTANT POUR READYBOT
         SubElement(
             item,
             "pubDate"
-        ).text = (
-            article.get("pubDate")
-            or now
-        )
+        ).text = article["pubDate"]
 
         SubElement(
             item,
             "description"
         ).text = (
-            article.get("description")
-            or article["title"]
+            article.get(
+                "description"
+            )
+            or
+            article["title"]
         )
 
     tree = ElementTree(
@@ -818,21 +890,17 @@ def create_rss(
 # ============================================================
 
 print("")
-print("########################################")
-print("# Génération LoL News")
-print("########################################")
+print("Génération de lol-news.xml...")
 
 create_rss(
     OUTPUT,
     "League of Legends — Actualités",
     "Actualités officielles françaises de League of Legends.",
-    "https://shynen.github.io/tensho-cod-rss/lol-news.xml",
-    processed_articles
+    articles
 )
 
 print(
-    f"🟢 {len(processed_articles)} articles "
-    f"écrits dans {OUTPUT}"
+    f"🟢 {OUTPUT} généré."
 )
 
 
@@ -841,30 +909,35 @@ print(
 # ============================================================
 
 print("")
-print("########################################")
-print("# Génération LoL Discord")
-print("########################################")
+print("Génération de lol-news-discord.xml...")
 
 discord_articles = []
 
-if processed_articles:
+if articles:
 
+    # UNE SEULE ACTUALITE
     discord_articles = [
-        processed_articles[0]
+        articles[0]
     ]
-
 
 create_rss(
     DISCORD_OUTPUT,
     "League of Legends Actualités",
-    "Dernières actualités officielles de League of Legends.",
-    "https://shynen.github.io/tensho-cod-rss/lol-news-discord.xml",
+    "Dernière actualité officielle de League of Legends.",
     discord_articles
 )
 
 print(
-    f"🟢 Flux Discord généré : "
-    f"{DISCORD_OUTPUT}"
+    f"🟢 {DISCORD_OUTPUT} généré."
+)
+
+
+# ============================================================
+# SAUVEGARDE CACHE
+# ============================================================
+
+save_cache(
+    cache
 )
 
 
@@ -874,6 +947,6 @@ print(
 
 print("")
 print("########################################")
-print("# TERMINÉ")
+print("# LOl RSS TERMINÉ")
 print("########################################")
 print("")
