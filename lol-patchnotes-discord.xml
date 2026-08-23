@@ -1,10 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0">
   <channel>
     <title>League of Legends — Patch Notes</title>
     <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/</link>
     <description>Dernière note de patch officielle française de League of Legends.</description>
-    <atom:link href="https://shynen.github.io/tensho-cod-rss/lol-patchnotes-discord.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sun, 23 Aug 2026 11:40:49 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2026 11:50:28 GMT</lastBuildDate>
+    <item>
+      <title>Notes de patch 26.16 de League of Legends</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-16-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-16-notes</guid>
+      <pubDate>Tue, 11 Aug 2026 18:00:00 GMT</pubDate>
+      <description>Mises à jour des champions et des systèmes, des ninjas dans le mode Classic, et bien plus encore !</description>
+    </item>
   </channel>
 </rss>

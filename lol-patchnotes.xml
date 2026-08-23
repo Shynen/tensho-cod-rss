@@ -1,10 +1,149 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0">
   <channel>
     <title>League of Legends — Patch Notes</title>
     <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/</link>
     <description>Notes de patch officielles françaises de League of Legends.</description>
-    <atom:link href="https://shynen.github.io/tensho-cod-rss/lol-patchnotes.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sun, 23 Aug 2026 11:40:49 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2026 11:50:28 GMT</lastBuildDate>
+    <item>
+      <title>Notes de patch 26.16 de League of Legends</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-16-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-16-notes</guid>
+      <pubDate>Tue, 11 Aug 2026 18:00:00 GMT</pubDate>
+      <description>Mises à jour des champions et des systèmes, des ninjas dans le mode Classic, et bien plus encore !</description>
+    </item>
+    <item>
+      <title>Notes de patch 26.15 de League of Legends</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-15-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-15-notes</guid>
+      <pubDate>Tue, 28 Jul 2026 18:00:00 GMT</pubDate>
+      <description>We’re kicking off Season 3…but of what year?!</description>
+    </item>
+    <item>
+      <title>Notes de patch 26.14 de League of Legends</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-14-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-14-notes</guid>
+      <pubDate>Tue, 14 Jul 2026 18:00:00 GMT</pubDate>
+      <description>Glory to the victorious three-peat champions!</description>
+    </item>
+    <item>
+      <title>Notes de patch 26.13 de League of Legends</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-13-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-13-notes</guid>
+      <pubDate>Tue, 23 Jun 2026 18:00:00 GMT</pubDate>
+      <description>Interdit aux démons. – Locke</description>
+    </item>
+    <item>
+      <title>Notes de patch 26.12 de League of Legends</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-12-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-12-notes</guid>
+      <pubDate>Tue, 09 Jun 2026 18:00:00 GMT</pubDate>
+      <description>A spicy start to Season 2 Act 2</description>
+    </item>
+    <item>
+      <title>Notes de patch 26.11 de League of Legends</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-11-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-11-notes</guid>
+      <pubDate>Wed, 27 May 2026 18:00:00 GMT</pubDate>
+      <description>*slaps patch notes* This bad boy can fit so much spaghetti.</description>
+    </item>
+    <item>
+      <title>Notes de patch 26.10</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-10-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-10-notes</guid>
+      <pubDate>Tue, 12 May 2026 18:00:00 GMT</pubDate>
+      <description>La saison des démons continue avec le patch 26.10 !</description>
+    </item>
+    <item>
+      <title>Notes de patch 26.9 de League of Legends</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-9-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-9-notes</guid>
+      <pubDate>Tue, 28 Apr 2026 18:00:00 GMT</pubDate>
+      <description>Il est temps de chasser les démons avec le patch 26.9 !</description>
+    </item>
+    <item>
+      <title>Notes de patch 17.2 de TFT</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-17-2</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-17-2</guid>
+      <pubDate>Tue, 28 Apr 2026 18:00:00 GMT</pubDate>
+      <description>Ne passez pas à côté de l'expérience céleste que propose le patch 17.2 avec les rencontres d'ouverture et les nouvelles bénédictions divines.</description>
+    </item>
+    <item>
+      <title>Notes de patch 17.1 de TFT</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-17-1</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-17-1</guid>
+      <pubDate>Tue, 14 Apr 2026 18:00:00 GMT</pubDate>
+      <description>Choose your Space God, earn their powerful boon, and assemble your galactic roster!</description>
+    </item>
+    <item>
+      <title>Notes de patch 26.8 de League of Legends</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-8-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-8-notes</guid>
+      <pubDate>Tue, 14 Apr 2026 18:00:00 GMT</pubDate>
+      <description>Let’s get groovy with Patch 26.8!</description>
+    </item>
+    <item>
+      <title>Notes de patch 26.7 de League of Legends</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-7-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-7-notes</guid>
+      <pubDate>Tue, 31 Mar 2026 18:00:00 GMT</pubDate>
+      <description>Tons of fun and fried chicken to be had!</description>
+    </item>
+    <item>
+      <title>Notes de patch 16.8 de TFT</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-8</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-8</guid>
+      <pubDate>Tue, 31 Mar 2026 18:00:00 GMT</pubDate>
+      <description>It’s our final patch before this set becomes the stuff of legend and lore.</description>
+    </item>
+    <item>
+      <title>Notes de patch 16.7 de TFT</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-7</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-7</guid>
+      <pubDate>Tue, 17 Mar 2026 18:00:00 GMT</pubDate>
+      <description>Le patch 16.7 est une mise à jour plus légère qui fait suite aux changements du patch 16.6, en préparation de la Tactician's Crown !</description>
+    </item>
+    <item>
+      <title>Notes de patch 26.6 de League of Legends</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-6-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-6-notes</guid>
+      <pubDate>Tue, 17 Mar 2026 18:00:00 GMT</pubDate>
+      <description>C'est l'heure du First Stand et de la mise à jour de Shyvana !</description>
+    </item>
+    <item>
+      <title>Notes de patch 16.6 de TFT</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-6</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-6</guid>
+      <pubDate>Tue, 03 Mar 2026 19:00:00 GMT</pubDate>
+      <description>Unlocks unlocked! 16.6 brings sweeping changes to Unlock access.</description>
+    </item>
+    <item>
+      <title>Notes de patch 26.5</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-5-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-5-notes</guid>
+      <pubDate>Tue, 03 Mar 2026 19:00:00 GMT</pubDate>
+      <description>Bienvenue sur le patch officiel du First Stand, le premier grand tournoi international de l'année !</description>
+    </item>
+    <item>
+      <title>Notes de patch 26.4 de League of Legends</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-4-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-4-notes</guid>
+      <pubDate>Wed, 18 Feb 2026 19:00:00 GMT</pubDate>
+      <description>Happy Lunar Revel, welcome to patch 26.4!</description>
+    </item>
+    <item>
+      <title>Notes de patch 16.4 de TFT</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-4</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-4</guid>
+      <pubDate>Tue, 03 Feb 2026 19:00:00 GMT</pubDate>
+      <description>Le patch 16.4 introduit des optimisations, des ajustements aux niveaux et des modifs d'équilibrage.</description>
+    </item>
+    <item>
+      <title>Notes de patch 26.3</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-26-3-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-26-3-notes</guid>
+      <pubDate>Tue, 03 Feb 2026 19:00:00 GMT</pubDate>
+      <description>Célébrez la nouvelle année et plongez-vous dans le patch 26.3 🎊</description>
+    </item>
   </channel>
 </rss>
