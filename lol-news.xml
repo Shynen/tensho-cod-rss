@@ -5,7 +5,7 @@
     <link>https://www.leagueoflegends.com/fr-fr/news/</link>
     <description>Actualités officielles françaises de League of Legends.</description>
     <atom:link href="https://shynen.github.io/tensho-cod-rss/lol-news.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sun, 23 Aug 2026 09:41:43 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2026 10:09:45 GMT</lastBuildDate>
     <item>
       <title>Mises à jour du jeu</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/game-updates</link>
@@ -28,13 +28,6 @@
       <description>Explorez le côté créatif et les coulisses des cinématiques, musiques et plus encore.</description>
     </item>
     <item>
-      <title>Résumé Dev Update : Classic, ARAM du chaos et plus</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-classic-mayhem-more-dev-update</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-classic-mayhem-more-dev-update</guid>
-      <pubDate>Tue, 14 Jul 2026 15:00:00 GMT</pubDate>
-      <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
-    </item>
-    <item>
       <title>/dev: League of Legends Classic</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic</link>
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic</guid>
@@ -42,18 +35,18 @@
       <description>Bon retour parmi nous, invocateurs.</description>
     </item>
     <item>
+      <title>Résumé Dev Update : Classic, ARAM du chaos et plus</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-classic-mayhem-more-dev-update</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-classic-mayhem-more-dev-update</guid>
+      <pubDate>Tue, 14 Jul 2026 15:00:00 GMT</pubDate>
+      <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
+    </item>
+    <item>
       <title>Focus artistique sur Locke</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/art-spotlight-for-locke</link>
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/art-spotlight-for-locke</guid>
       <pubDate>Tue, 23 Jun 2026 14:00:00 GMT</pubDate>
       <description>Une collection d'œuvres originales pour célébrer notre nouveau champion</description>
-    </item>
-    <item>
-      <title>Célébrons la Pride 2026 !</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/community/celebrate-pride-2026</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/community/celebrate-pride-2026</guid>
-      <pubDate>Thu, 28 May 2026 17:30:00 GMT</pubDate>
-      <description>Fêtez la Pride et la communauté avec nous !</description>
     </item>
     <item>
       <title>Communauté</title>
@@ -70,18 +63,18 @@
       <description>Encore plus de chaos vous attend à partir de la 26.12 !</description>
     </item>
     <item>
-      <title>/dev : Le retour du mode Classé 5c5</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-return-of-ranked-5s</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-return-of-ranked-5s</guid>
-      <pubDate>Wed, 27 May 2026 20:00:00 GMT</pubDate>
-      <description>Nous essayons une nouvelle file classée.</description>
-    </item>
-    <item>
       <title>Résumé Dev Update</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-mayhem-ranked-5s-more-dev-update</link>
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-mayhem-ranked-5s-more-dev-update</guid>
       <pubDate>Wed, 27 May 2026 20:00:00 GMT</pubDate>
       <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
+    </item>
+    <item>
+      <title>/dev : Le retour du mode Classé 5c5</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-return-of-ranked-5s</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-return-of-ranked-5s</guid>
+      <pubDate>Wed, 27 May 2026 20:00:00 GMT</pubDate>
+      <description>Nous essayons une nouvelle file classée.</description>
     </item>
     <item>
       <title>Les Game Changers League of Legends sont de retour !</title>
@@ -91,13 +84,6 @@
       <description>Les Game Changers League of Legends sont de retour !</description>
     </item>
     <item>
-      <title>/dev : déploiement du ZQSD en mode classé</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-wasds-ranked-release</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-wasds-ranked-release</guid>
-      <pubDate>Tue, 14 Apr 2026 18:00:00 GMT</pubDate>
-      <description>Après des mois d'ajustement, le système de déplacement ZQSD est prêt à faire son show !</description>
-    </item>
-    <item>
       <title>Résumé : Dev Update Pandémonium, Arena et plus encore</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-pandemonium-arena-more-dev-update</link>
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-pandemonium-arena-more-dev-update</guid>
@@ -105,18 +91,18 @@
       <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
     </item>
     <item>
+      <title>/dev : déploiement du ZQSD en mode classé</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-wasds-ranked-release</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-wasds-ranked-release</guid>
+      <pubDate>Tue, 14 Apr 2026 18:00:00 GMT</pubDate>
+      <description>Après des mois d'ajustement, le système de déplacement ZQSD est prêt à faire son show !</description>
+    </item>
+    <item>
       <title>/dev : Arena passe au niveau supérieur</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-leveling-up-arena</link>
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-leveling-up-arena</guid>
       <pubDate>Tue, 14 Apr 2026 17:00:00 GMT</pubDate>
       <description>Un aperçu de tous les changements apportés à Arena lors de la saison 2.</description>
-    </item>
-    <item>
-      <title>Produits dérivés</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/merch</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/merch</guid>
-      <pubDate>Fri, 10 Apr 2026 21:00:00 GMT</pubDate>
-      <description>Découvrez les produits dérivés officiels et parcourez les dernières collections de la boutique.</description>
     </item>
     <item>
       <title>/dev : Chat vocal d'équipe dans League</title>
@@ -145,6 +131,20 @@
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-for-demacia-dev-update</guid>
       <pubDate>Thu, 08 Jan 2026 16:00:00 GMT</pubDate>
       <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
+    </item>
+    <item>
+      <title>Dev Update S1 2026 : thématique, gameplay et plus</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-s1-2026-theme-gameplay-more-dev-update</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-s1-2026-theme-gameplay-more-dev-update</guid>
+      <pubDate>Mon, 01 Dec 2025 16:00:00 GMT</pubDate>
+      <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
+    </item>
+    <item>
+      <title>/dev : Aperçu du gameplay de la saison 1 2026</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-2026-season-one-gameplay-preview</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-2026-season-one-gameplay-preview</guid>
+      <pubDate>Mon, 01 Dec 2025 16:00:00 GMT</pubDate>
+      <description>Un aperçu des changements de gameplay de la Faille de l'invocateur en 2026</description>
     </item>
   </channel>
 </rss>
