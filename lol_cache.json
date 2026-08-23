@@ -108,5 +108,25 @@
     "title": "/dev : Aperçu du gameplay de la saison 1 2026",
     "description": "Un aperçu des changements de gameplay de la Faille de l'invocateur en 2026",
     "pubDate": "Mon, 01 Dec 2025 16:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/dev-a-swifter-swiftplay": {
+    "title": "/dev : Accélération de Partie accélérée",
+    "description": "On passe à la vitesse supérieure l'an prochain.",
+    "pubDate": "Mon, 01 Dec 2025 16:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/dev-ranked-2026": {
+    "title": "/dev : mode classé 2026",
+    "description": "Les changements apportés au mode compétitif pour la nouvelle année.",
+    "pubDate": "Mon, 01 Dec 2025 16:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/dev-bringing-mayhem-to-aram": {
+    "title": "/dev : le chaos s'empare de l'ARAM",
+    "description": "L'ARAM avec une pointe de chaos.",
+    "pubDate": "Mon, 06 Oct 2025 15:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/tldw-aram-mayhem-smurfing--more-dev-update": {
+    "title": "Résumé du Dev Update : ARAM du chaos, smurfs et +",
+    "description": "Un petit résumé des changements discutés dans le Dev Update du jour.",
+    "pubDate": "Mon, 06 Oct 2025 15:00:00 GMT"
   }
 }
