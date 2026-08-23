@@ -2,16 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>League of Legends — Patch Notes</title>
-    <link>https://www.leagueoflegends.com/fr-fr/news/tags/patch-notes/</link>
+    <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/</link>
     <description>Notes de patch officielles françaises de League of Legends.</description>
     <atom:link href="https://shynen.github.io/tensho-cod-rss/lol-patchnotes.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sun, 23 Aug 2026 11:32:12 GMT</lastBuildDate>
-    <item>
-      <title>Notes de patch</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/tags/patch-notes</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/tags/patch-notes</guid>
-      <pubDate>Tue, 11 Aug 2026 18:00:00 GMT</pubDate>
-      <description>League of Legends est un jeu en équipe avec plus de 140 champions, pour des actions à couper le souffle. Jouez gratuitement dès maintenant.</description>
-    </item>
+    <lastBuildDate>Sun, 23 Aug 2026 11:40:49 GMT</lastBuildDate>
   </channel>
 </rss>
