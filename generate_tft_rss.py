@@ -893,19 +893,26 @@ for index, url in enumerate(
         r"notes?\s+du\s+patch",
     ]
 
-    # ========================================================
-    # ESPORT
-    # ========================================================
+# ========================================================
+# ESPORT
+# ========================================================
 
-    esport_patterns = [
-        r"\besport\b",
-        r"\be-sport\b",
-        r"\bworlds\b",
-        r"\bregional\b",
-        r"championship",
-        r"compétition",
-        r"compétitions",
-    ]
+esport_patterns = [
+    r"/esports/",
+    r"\besports\b",
+    r"\besport\b",
+    r"\be-sport\b",
+    r"\bworlds\b",
+    r"\bregional\b",
+    r"championship",
+    r"tactician.?s crown",
+    r"pro circuit",
+    r"paris open",
+    r"vegas open",
+    r"compete tft",
+    r"\bcompétition\b",
+    r"\bcompétitions\b",
+]
 
     # ========================================================
     # GUIDES
