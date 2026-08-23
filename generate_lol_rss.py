@@ -9,6 +9,8 @@ from email.utils import formatdate
 from urllib.parse import urljoin
 from xml.etree.ElementTree import Element, SubElement, ElementTree, indent
 
+from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+
 
 # ============================================================
 # CONFIGURATION
@@ -16,9 +18,9 @@ from xml.etree.ElementTree import Element, SubElement, ElementTree, indent
 
 BASE_URL = "https://www.leagueoflegends.com"
 
-TAG_URLS = [
-    "https://www.leagueoflegends.com/fr-fr/news/tags/dev/",
-    "https://www.leagueoflegends.com/fr-fr/news/game-updates/",
+SOURCE_URLS = [
+    "https://www.leagueoflegends.com/fr-fr/news/",
+    "https://www.leagueoflegends.com/fr-fr/news/dev/",
 ]
 
 OUTPUT = "lol-news.xml"
@@ -27,8 +29,15 @@ CACHE_FILE = "lol_cache.json"
 
 MAX_ARTICLES = 20
 
+# Nombre maximum de clics sur "VOIR PLUS"
+MAX_LOAD_MORE_CLICKS = 8
+
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (compatible; TenshoLoLRSS/1.0)",
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/149.0 Safari/537.36"
+    ),
     "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.8",
 }
 
@@ -56,24 +65,41 @@ def load_cache():
         return {}
 
     try:
-        with open(CACHE_FILE, "r", encoding="utf-8") as f:
+
+        with open(
+            CACHE_FILE,
+            "r",
+            encoding="utf-8"
+        ) as f:
+
             data = json.load(f)
 
         if not isinstance(data, dict):
             return {}
 
-        print(f"Cache LoL chargé : {len(data)} articles.")
+        print(
+            f"Cache LoL chargé : {len(data)} articles."
+        )
+
         return data
 
     except Exception as e:
 
-        print(f"⚠️ Erreur lecture cache : {e}")
+        print(
+            f"⚠️ Erreur lecture cache : {e}"
+        )
+
         return {}
 
 
 def save_cache(cache):
 
-    with open(CACHE_FILE, "w", encoding="utf-8") as f:
+    with open(
+        CACHE_FILE,
+        "w",
+        encoding="utf-8"
+    ) as f:
+
         json.dump(
             cache,
             f,
@@ -86,24 +112,7 @@ cache = load_cache()
 
 
 # ============================================================
-# HTTP
-# ============================================================
-
-def get_page(url):
-
-    response = requests.get(
-        url,
-        headers=HEADERS,
-        timeout=30
-    )
-
-    response.raise_for_status()
-
-    return response.text
-
-
-# ============================================================
-# NETTOYAGE
+# OUTILS
 # ============================================================
 
 def clean_text(value):
@@ -111,18 +120,12 @@ def clean_text(value):
     if not value:
         return ""
 
-    value = re.sub(
+    return re.sub(
         r"\s+",
         " ",
         str(value)
-    )
+    ).strip()
 
-    return value.strip()
-
-
-# ============================================================
-# DATE
-# ============================================================
 
 def parse_date(value):
 
@@ -141,6 +144,7 @@ def parse_date(value):
         )
 
         if dt.tzinfo is None:
+
             dt = dt.replace(
                 tzinfo=timezone.utc
             )
@@ -160,365 +164,582 @@ def format_pubdate(dt):
 
 
 # ============================================================
-# EXTRACTION DES ARTICLES
+# PLAYWRIGHT : RECUPERATION DE TOUS LES ARTICLES
 # ============================================================
 
-def extract_articles(page_url):
+def collect_article_urls(page_url):
 
     print("")
-    print(f"Lecture : {page_url}")
+    print("========================================")
+    print(f"Ouverture avec Playwright :")
+    print(page_url)
+    print("========================================")
 
-    source = get_page(page_url)
+    urls = set()
 
-    soup = BeautifulSoup(
-        source,
-        "html.parser"
-    )
+    with sync_playwright() as p:
 
-    articles = []
-    seen = set()
-
-    # --------------------------------------------------------
-    # RECHERCHE DES DATES ISO DANS LE HTML
-    # --------------------------------------------------------
-
-    html_source = str(soup)
-
-    date_pattern = re.compile(
-        r"\d{4}-\d{2}-\d{2}T"
-        r"\d{2}:\d{2}:\d{2}"
-        r"(?:\.\d+)?Z"
-    )
-
-    dates = date_pattern.findall(
-        html_source
-    )
-
-    # --------------------------------------------------------
-    # EXTRACTION DES BLOCS D'ARTICLES
-    # --------------------------------------------------------
-
-    for link in soup.find_all(
-        "a",
-        href=True
-    ):
-
-        href = link.get("href")
-
-        if not href:
-            continue
-
-        if "/fr-fr/news/" not in href:
-            continue
-
-        url = urljoin(
-            BASE_URL,
-            href
+        browser = p.chromium.launch(
+            headless=True
         )
 
-        if url in seen:
-            continue
-
-        title = clean_text(
-            link.get_text(
-                " ",
-                strip=True
-            )
+        page = browser.new_page(
+            locale="fr-FR",
+            user_agent=HEADERS["User-Agent"]
         )
 
-        if not title:
-            continue
+        try:
 
-        if len(title) < 8:
-            continue
-
-        # ----------------------------------------------------
-        # CHERCHE LA DATE DANS LE CONTENEUR DU LIEN
-        # ----------------------------------------------------
-
-        date_value = None
-
-        parent = link
-
-        for _ in range(5):
-
-            if parent is None:
-                break
-
-            text = str(parent)
-
-            match = date_pattern.search(
-                text
+            page.goto(
+                page_url,
+                wait_until="domcontentloaded",
+                timeout=60000
             )
 
-            if match:
-
-                date_value = match.group(0)
-                break
-
-            parent = parent.parent
-
-        dt = parse_date(
-            date_value
-        )
-
-        # ----------------------------------------------------
-        # FALLBACK : CACHE
-        # ----------------------------------------------------
-
-        if dt is None and url in cache:
-
-            dt = parse_date(
-                cache[url].get(
-                    "pubDate"
-                )
+            page.wait_for_timeout(
+                3000
             )
 
-        # ----------------------------------------------------
-        # FALLBACK : PAGE ARTICLE
-        # ----------------------------------------------------
-
-        if dt is None:
-
-            try:
-
-                article_source = get_page(
-                    url
-                )
-
-                article_soup = BeautifulSoup(
-                    article_source,
-                    "html.parser"
-                )
-
-                # JSON-LD
-                for script in article_soup.find_all(
-                    "script",
-                    type="application/ld+json"
-                ):
-
-                    raw = (
-                        script.string
-                        or
-                        script.get_text()
-                    )
-
-                    if not raw:
-                        continue
-
-                    match = re.search(
-                        r'"datePublished"\s*:\s*'
-                        r'"([^"]+)"',
-                        raw
-                    )
-
-                    if match:
-
-                        dt = parse_date(
-                            match.group(1)
-                        )
-
-                        if dt:
-                            break
-
-                # Meta
-                if dt is None:
-
-                    meta = article_soup.find(
-                        "meta",
-                        attrs={
-                            "property":
-                            "article:published_time"
-                        }
-                    )
-
-                    if meta:
-
-                        dt = parse_date(
-                            meta.get(
-                                "content"
-                            )
-                        )
-
-            except Exception as e:
-
-                print(
-                    f"⚠️ Date impossible à récupérer : "
-                    f"{title} ({e})"
-                )
-
-        if dt is None:
+        except Exception as e:
 
             print(
-                f"⚠️ Date inconnue : {title}"
+                f"⚠️ Erreur ouverture page : {e}"
             )
 
-            continue
+            browser.close()
+            return []
 
         # ----------------------------------------------------
-        # DESCRIPTION
+        # FONCTION DE RECUPERATION DES URL
         # ----------------------------------------------------
 
-        description = ""
+        def collect_urls():
 
-        if url in cache:
+            links = page.locator(
+                'a[href*="/fr-fr/news/"]'
+            )
 
-            description = clean_text(
-                cache[url].get(
-                    "description",
-                    ""
+            count = links.count()
+
+            before = len(urls)
+
+            for i in range(count):
+
+                try:
+
+                    href = links.nth(i).get_attribute(
+                        "href"
+                    )
+
+                    if not href:
+                        continue
+
+                    full_url = urljoin(
+                        BASE_URL,
+                        href
+                    )
+
+                    # On ne veut pas les pages catégories
+                    if full_url.rstrip("/") in [
+                        SOURCE_URLS[0].rstrip("/"),
+                        SOURCE_URLS[1].rstrip("/"),
+                    ]:
+                        continue
+
+                    if "/fr-fr/news/" not in full_url:
+                        continue
+
+                    urls.add(
+                        full_url
+                    )
+
+                except Exception:
+                    continue
+
+            added = len(urls) - before
+
+            return added
+
+        # Premier lot
+        added = collect_urls()
+
+        print(
+            f"Premier lot : {len(urls)} articles."
+        )
+
+        # ----------------------------------------------------
+        # CLICS "VOIR PLUS"
+        # ----------------------------------------------------
+
+        for click_number in range(
+            1,
+            MAX_LOAD_MORE_CLICKS + 1
+        ):
+
+            print(
+                f"🔄 Recherche du bouton "
+                f"VOIR PLUS ({click_number}/"
+                f"{MAX_LOAD_MORE_CLICKS})..."
+            )
+
+            # Plusieurs variantes pour être robuste
+            buttons = page.get_by_text(
+                "VOIR PLUS",
+                exact=True
+            )
+
+            count = buttons.count()
+
+            if count == 0:
+
+                print(
+                    "ℹ️ Plus de bouton VOIR PLUS."
                 )
-            )
 
-        if not description:
+                break
+
+            clicked = False
+
+            for i in range(count):
+
+                try:
+
+                    button = buttons.nth(i)
+
+                    if not button.is_visible():
+                        continue
+
+                    button.scroll_into_view_if_needed()
+
+                    page.wait_for_timeout(
+                        500
+                    )
+
+                    button.click(
+                        timeout=10000
+                    )
+
+                    clicked = True
+
+                    print(
+                        "🟢 VOIR PLUS cliqué."
+                    )
+
+                    break
+
+                except Exception:
+                    continue
+
+            if not clicked:
+
+                print(
+                    "ℹ️ Impossible de cliquer "
+                    "sur VOIR PLUS."
+                )
+
+                break
+
+            # Laisse Riot charger les nouvelles cartes
+            page.wait_for_timeout(
+                2500
+            )
 
             try:
 
-                article_source = get_page(
-                    url
+                page.wait_for_load_state(
+                    "networkidle",
+                    timeout=10000
                 )
 
-                article_soup = BeautifulSoup(
-                    article_source,
-                    "html.parser"
-                )
-
-                meta = article_soup.find(
-                    "meta",
-                    attrs={
-                        "name":
-                        "description"
-                    }
-                )
-
-                if meta:
-
-                    description = clean_text(
-                        meta.get(
-                            "content"
-                        )
-                    )
-
-                if not description:
-
-                    meta = article_soup.find(
-                        "meta",
-                        attrs={
-                            "property":
-                            "og:description"
-                        }
-                    )
-
-                    if meta:
-
-                        description = clean_text(
-                            meta.get(
-                                "content"
-                            )
-                        )
-
-            except Exception:
+            except PlaywrightTimeoutError:
                 pass
 
-        if not description:
-            description = title
+            added = collect_urls()
 
-        # ----------------------------------------------------
-        # AJOUT
-        # ----------------------------------------------------
+            print(
+                f"Articles actuellement trouvés : "
+                f"{len(urls)} "
+                f"(+{added})"
+            )
 
-        articles.append(
-            {
-                "title": title,
-                "url": url,
-                "date": dt,
-                "description": description
-            }
-        )
+            # Si aucun nouvel article n'arrive,
+            # on arrête pour éviter une boucle.
+            if added == 0:
 
-        seen.add(url)
+                print(
+                    "ℹ️ Aucun nouvel article chargé."
+                )
 
-    return articles
+                break
+
+        browser.close()
+
+    print("")
+    print(
+        f"🟢 Total récupéré depuis cette page : "
+        f"{len(urls)} URLs"
+    )
+
+    return list(urls)
 
 
 # ============================================================
-# COLLECTE
+# COLLECTE DES URL
 # ============================================================
 
-all_articles = []
+all_urls = set()
 
-for url in TAG_URLS:
+for source_url in SOURCE_URLS:
 
     try:
 
-        all_articles.extend(
-            extract_articles(url)
+        urls = collect_article_urls(
+            source_url
+        )
+
+        all_urls.update(
+            urls
         )
 
     except Exception as e:
 
         print(
-            f"⚠️ Erreur page : {url}"
+            f"⚠️ Erreur collecte : {e}"
         )
-
-        print(e)
 
 
 print("")
+print("########################################")
 print(
-    f"Articles bruts trouvés : "
-    f"{len(all_articles)}"
+    f"# URLs uniques trouvées : "
+    f"{len(all_urls)}"
+)
+print("########################################")
+
+
+# ============================================================
+# FILTRAGE URL
+# ============================================================
+
+def is_excluded_url(url):
+
+    value = url.lower()
+
+    # Wild Rift
+    if "wild-rift" in value:
+        return True
+
+    # Patch notes
+    if "patch-notes" in value:
+        return True
+
+    if "patchnote" in value:
+        return True
+
+    return False
+
+
+candidate_urls = []
+
+for url in all_urls:
+
+    if is_excluded_url(url):
+        continue
+
+    candidate_urls.append(
+        url
+    )
+
+
+print(
+    f"URLs candidates après premier filtrage : "
+    f"{len(candidate_urls)}"
 )
 
 
 # ============================================================
-# DEDOUBLONNAGE
+# RECUPERATION DES PAGES ARTICLES
 # ============================================================
 
-unique = {}
+session = requests.Session()
 
-for article in all_articles:
+session.headers.update(
+    HEADERS
+)
 
-    url = article["url"]
+articles = []
 
-    if url not in unique:
+for index, url in enumerate(
+    candidate_urls,
+    start=1
+):
 
-        unique[url] = article
+    print("")
+    print(
+        f"[{index}/{len(candidate_urls)}] "
+        f"{url}"
+    )
+
+    # --------------------------------------------------------
+    # CACHE
+    # --------------------------------------------------------
+
+    cached = cache.get(
+        url
+    )
+
+    cached_date = None
+
+    if cached:
+
+        cached_date = parse_date(
+            cached.get(
+                "pubDate"
+            )
+        )
+
+    # --------------------------------------------------------
+    # PAGE ARTICLE
+    # --------------------------------------------------------
+
+    try:
+
+        response = session.get(
+            url,
+            timeout=30
+        )
+
+        response.raise_for_status()
+
+        soup = BeautifulSoup(
+            response.text,
+            "html.parser"
+        )
+
+    except Exception as e:
+
+        print(
+            f"⚠️ Impossible de charger : {e}"
+        )
 
         continue
 
-    # On garde celui avec la date la plus récente
-    if article["date"] > unique[url]["date"]:
+    # --------------------------------------------------------
+    # TITRE
+    # --------------------------------------------------------
 
-        unique[url] = article
+    title = ""
 
+    h1 = soup.find(
+        "h1"
+    )
 
-all_articles = list(
-    unique.values()
-)
+    if h1:
 
+        title = clean_text(
+            h1.get_text(
+                " ",
+                strip=True
+            )
+        )
 
-# ============================================================
-# FILTRAGE
-# ============================================================
+    if not title:
 
-def excluded(title, url):
+        og_title = soup.find(
+            "meta",
+            attrs={
+                "property":
+                "og:title"
+            }
+        )
 
-    text = (
+        if og_title:
+
+            title = clean_text(
+                og_title.get(
+                    "content"
+                )
+            )
+
+    if not title:
+
+        title = (
+            url.rstrip("/")
+            .split("/")
+            [-1]
+            .replace(
+                "-",
+                " "
+            )
+            .strip()
+            .title()
+        )
+
+    # --------------------------------------------------------
+    # DATE
+    # --------------------------------------------------------
+
+    dt = None
+
+    # JSON-LD
+    for script in soup.find_all(
+        "script",
+        type="application/ld+json"
+    ):
+
+        raw = (
+            script.string
+            or
+            script.get_text()
+        )
+
+        if not raw:
+            continue
+
+        matches = re.findall(
+            r'"datePublished"\s*:\s*"([^"]+)"',
+            raw
+        )
+
+        for value in matches:
+
+            dt = parse_date(
+                value
+            )
+
+            if dt:
+                break
+
+        if dt:
+            break
+
+    # Meta
+    if not dt:
+
+        for attrs in [
+            {
+                "property":
+                "article:published_time"
+            },
+            {
+                "property":
+                "og:published_time"
+            },
+        ]:
+
+            meta = soup.find(
+                "meta",
+                attrs=attrs
+            )
+
+            if meta:
+
+                dt = parse_date(
+                    meta.get(
+                        "content"
+                    )
+                )
+
+                if dt:
+                    break
+
+    # time
+    if not dt:
+
+        for node in soup.find_all(
+            "time"
+        ):
+
+            dt = parse_date(
+                node.get(
+                    "datetime"
+                )
+            )
+
+            if dt:
+                break
+
+    # Cache en dernier recours
+    if not dt:
+
+        dt = cached_date
+
+    if not dt:
+
+        print(
+            "⚠️ Date introuvable."
+        )
+
+        continue
+
+    # --------------------------------------------------------
+    # DESCRIPTION
+    # --------------------------------------------------------
+
+    description = ""
+
+    meta = soup.find(
+        "meta",
+        attrs={
+            "name":
+            "description"
+        }
+    )
+
+    if meta:
+
+        description = clean_text(
+            meta.get(
+                "content"
+            )
+        )
+
+    if not description:
+
+        meta = soup.find(
+            "meta",
+            attrs={
+                "property":
+                "og:description"
+            }
+        )
+
+        if meta:
+
+            description = clean_text(
+                meta.get(
+                    "content"
+                )
+            )
+
+    if not description:
+
+        description = title
+
+    # --------------------------------------------------------
+    # CATEGORIES / FILTRES
+    # --------------------------------------------------------
+
+    combined = (
         title
         + " "
         + url
+        + " "
+        + description
     ).lower()
 
-    # PATCH NOTES
+    excluded = False
+
+    # Patch notes
     patch_patterns = [
         r"notes?\s+de\s+patch",
         r"patch\s+\d+\.\d+",
         r"patch[-_]\d+[-_]\d+",
-        r"/patch[-_]?notes",
+        r"patch-notes",
+        r"patchnote",
     ]
 
-    # ESPORT
+    # Esport
     esport_patterns = [
         r"\blec\b",
         r"\bmsi\b",
@@ -531,7 +752,7 @@ def excluded(title, url):
         r"compétitions",
     ]
 
-    # GUIDES
+    # Guides
     guide_patterns = [
         r"\bguide\b",
         r"\bbuild\b",
@@ -552,44 +773,65 @@ def excluded(title, url):
 
         if re.search(
             pattern,
-            text,
+            combined,
             re.IGNORECASE
         ):
 
-            return True
+            excluded = True
+            break
 
-    # Wild Rift
-    if "wild rift" in text:
-        return True
-
-    return False
-
-
-filtered = []
-
-for article in all_articles:
-
-    if excluded(
-        article["title"],
-        article["url"]
-    ):
+    if excluded:
 
         print(
-            f"❌ Exclu : "
-            f"{article['title']}"
+            f"❌ Exclu : {title}"
         )
 
         continue
 
-    filtered.append(
-        article
+    # --------------------------------------------------------
+    # AJOUT
+    # --------------------------------------------------------
+
+    articles.append(
+        {
+            "title": title,
+            "url": url,
+            "description": description,
+            "date": dt
+        }
+    )
+
+    print(
+        f"🟢 {format_pubdate(dt)} "
+        f"- {title}"
     )
 
 
-print("")
-print(
-    f"Articles après filtrage : "
-    f"{len(filtered)}"
+# ============================================================
+# DEDOUBLONNAGE
+# ============================================================
+
+unique_articles = {}
+
+for article in articles:
+
+    url = article["url"]
+
+    if url not in unique_articles:
+
+        unique_articles[url] = article
+
+    else:
+
+        existing = unique_articles[url]
+
+        if article["date"] > existing["date"]:
+
+            unique_articles[url] = article
+
+
+articles = list(
+    unique_articles.values()
 )
 
 
@@ -597,8 +839,9 @@ print(
 # TRI
 # ============================================================
 
-filtered.sort(
-    key=lambda x: x["date"],
+articles.sort(
+    key=lambda article:
+    article["date"],
     reverse=True
 )
 
@@ -607,7 +850,7 @@ filtered.sort(
 # 20 PLUS RECENTS
 # ============================================================
 
-articles = filtered[
+articles = articles[
     :MAX_ARTICLES
 ]
 
@@ -628,8 +871,8 @@ for index, article in enumerate(
 
     print(
         f"{index:02d}. "
-        f"{format_pubdate(article['date'])} - "
-        f"{article['title']}"
+        f"{format_pubdate(article['date'])} "
+        f"- {article['title']}"
     )
 
 
@@ -642,9 +885,14 @@ for article in articles:
     cache[
         article["url"]
     ] = {
-        "title": article["title"],
-        "description": article["description"],
-        "pubDate": format_pubdate(
+        "title":
+        article["title"],
+
+        "description":
+        article["description"],
+
+        "pubDate":
+        format_pubdate(
             article["date"]
         )
     }
@@ -656,7 +904,7 @@ save_cache(
 
 
 # ============================================================
-# GENERATION RSS
+# RSS
 # ============================================================
 
 now = formatdate(
@@ -716,9 +964,14 @@ def create_rss(
         channel,
         "atom:link",
         {
-            "href": self_url,
-            "rel": "self",
-            "type": "application/rss+xml"
+            "href":
+            self_url,
+
+            "rel":
+            "self",
+
+            "type":
+            "application/rss+xml"
         }
     )
 
@@ -786,7 +1039,9 @@ def create_rss(
 # ============================================================
 
 print("")
-print("Génération de lol-news.xml...")
+print(
+    "Génération de lol-news.xml..."
+)
 
 create_rss(
     OUTPUT,
