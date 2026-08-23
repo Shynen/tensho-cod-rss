@@ -5,7 +5,7 @@
     <link>https://www.leagueoflegends.com/fr-fr/news/</link>
     <description>Actualités officielles françaises de League of Legends.</description>
     <atom:link href="https://shynen.github.io/tensho-cod-rss/lol-news.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sun, 23 Aug 2026 14:16:58 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2026 14:50:02 GMT</lastBuildDate>
     <item>
       <title>/dev: League of Legends Classic</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic</link>
@@ -35,13 +35,6 @@
       <description>Fêtez la Pride et la communauté avec nous !</description>
     </item>
     <item>
-      <title>/dev : Optimisation maximale des optimisations en ARAM du chaos</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-augmentmaxxing-aram-mayhem</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-augmentmaxxing-aram-mayhem</guid>
-      <pubDate>Wed, 27 May 2026 20:00:00 GMT</pubDate>
-      <description>Encore plus de chaos vous attend à partir de la 26.12 !</description>
-    </item>
-    <item>
       <title>Résumé Dev Update</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-mayhem-ranked-5s-more-dev-update</link>
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-mayhem-ranked-5s-more-dev-update</guid>
@@ -54,6 +47,13 @@
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-return-of-ranked-5s</guid>
       <pubDate>Wed, 27 May 2026 20:00:00 GMT</pubDate>
       <description>Nous essayons une nouvelle file classée.</description>
+    </item>
+    <item>
+      <title>/dev : Optimisation maximale des optimisations en ARAM du chaos</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-augmentmaxxing-aram-mayhem</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-augmentmaxxing-aram-mayhem</guid>
+      <pubDate>Wed, 27 May 2026 20:00:00 GMT</pubDate>
+      <description>Encore plus de chaos vous attend à partir de la 26.12 !</description>
     </item>
   </channel>
 </rss>
