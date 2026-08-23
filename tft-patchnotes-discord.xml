@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0">
+  <channel>
+    <title>Teamfight Tactics — Patch Notes</title>
+    <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/</link>
+    <description>Dernière note de patch officielle française de Teamfight Tactics.</description>
+    <lastBuildDate>Sun, 23 Aug 2026 12:34:04 GMT</lastBuildDate>
+    <item>
+      <title>Notes de patch 17.9 de TFT</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-17-9</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-17-9</guid>
+      <pubDate>Tue, 11 Aug 2026 18:00:00 GMT</pubDate>
+      <description>Voici la dernière mise à jour dédiée à Space Gods avant l'arrivée d'Enchanted Wilds.</description>
+    </item>
+  </channel>
+</rss>
