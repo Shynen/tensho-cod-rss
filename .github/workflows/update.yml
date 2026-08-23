@@ -22,10 +22,6 @@ jobs:
           python-version: "3.x"
           cache: "pip"
 
-      # ======================================================
-      # ARGOS — nécessaire uniquement pour COD
-      # ======================================================
-
       - name: Restore Argos cache
         uses: actions/cache@v5
         with:
@@ -36,31 +32,21 @@ jobs:
           restore-keys: |
             argos-en-fr-${{ runner.os }}-
 
-      # ======================================================
-      # DEPENDANCES
-      # ======================================================
-
       - name: Install dependencies
         run: |
           python -m pip install -r requirements.txt
-          python -m playwright install chromium --with-deps
-
-      # ======================================================
-      # CALL OF DUTY
-      # ======================================================
 
       - name: Generate COD RSS
         run: python generate_cod_rss.py
-
-      # ======================================================
-      # LEAGUE OF LEGENDS
-      # ======================================================
 
       - name: Generate LoL RSS
         run: python generate_lol_rss.py
 
       - name: Generate TFT RSS
         run: python generate_tft_rss.py
+
+      - name: Generate LoL Patch Notes
+        run: python generate_lol_patchnotes.py
 
       - name: Commit generated feeds
         run: |
@@ -76,7 +62,10 @@ jobs:
             lol_cache.json \
             tft-news.xml \
             tft-news-discord.xml \
-            tft_cache.json
+            tft_cache.json \
+            lol-patchnotes.xml \
+            lol-patchnotes-discord.xml \
+            lol_patchnotes_cache.json
 
-          git diff --cached --quiet || git commit -m "Update RSS feeds"
+          git diff --cached --quiet || git commit -m "Update game RSS feeds"
           git push
