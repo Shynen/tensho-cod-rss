@@ -1,0 +1,32 @@
+{
+  "https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic": {
+    "title": "/dev: League of Legends Classic",
+    "description": "Bon retour parmi nous, invocateurs.",
+    "pubDate": "Tue, 14 Jul 2026 15:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/tldw-classic-mayhem-more-dev-update": {
+    "title": "Résumé Dev Update : Classic, ARAM du chaos et plus",
+    "description": "Un petit résumé des changements discutés dans le Dev Update du jour.",
+    "pubDate": "Tue, 14 Jul 2026 15:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-return-of-ranked-5s": {
+    "title": "/dev : Le retour du mode Classé 5c5",
+    "description": "Nous essayons une nouvelle file classée.",
+    "pubDate": "Wed, 27 May 2026 20:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/tldw-mayhem-ranked-5s-more-dev-update": {
+    "title": "Résumé Dev Update",
+    "description": "Un petit résumé des changements discutés dans le Dev Update du jour.",
+    "pubDate": "Wed, 27 May 2026 20:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/dev-augmentmaxxing-aram-mayhem": {
+    "title": "/dev : Optimisation maximale des optimisations en ARAM du chaos",
+    "description": "Encore plus de chaos vous attend à partir de la 26.12 !",
+    "pubDate": "Wed, 27 May 2026 20:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/tldw-pandemonium-arena-more-dev-update": {
+    "title": "Résumé : Dev Update Pandémonium, Arena et plus encore",
+    "description": "Un petit résumé des changements discutés dans le Dev Update du jour.",
+    "pubDate": "Tue, 14 Apr 2026 18:00:00 GMT"
+  }
+}
