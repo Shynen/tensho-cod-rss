@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0">
+  <channel>
+    <title>League of Legends — Actualités</title>
+    <link>https://www.leagueoflegends.com/fr-fr/news/</link>
+    <description>Actualités officielles françaises de League of Legends.</description>
+    <item>
+      <title>/dev: League of Legends Classic</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic</link>
+      <guid>https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Bon retour parmi nous, invocateurs.</description>
+    </item>
+    <item>
+      <title>Résumé Dev Update : Classic, ARAM du chaos et plus</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-classic-mayhem-more-dev-update</link>
+      <guid>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-classic-mayhem-more-dev-update</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
+    </item>
+    <item>
+      <title>/dev : Le retour du mode Classé 5c5</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-return-of-ranked-5s</link>
+      <guid>https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-return-of-ranked-5s</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Nous essayons une nouvelle file classée.</description>
+    </item>
+    <item>
+      <title>Résumé Dev Update</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-mayhem-ranked-5s-more-dev-update</link>
+      <guid>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-mayhem-ranked-5s-more-dev-update</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
+    </item>
+    <item>
+      <title>/dev : Optimisation maximale des optimisations en ARAM du chaos</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-augmentmaxxing-aram-mayhem</link>
+      <guid>https://www.leagueoflegends.com/fr-fr/news/dev/dev-augmentmaxxing-aram-mayhem</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Encore plus de chaos vous attend à partir de la 26.12 !</description>
+    </item>
+    <item>
+      <title>Résumé : Dev Update Pandémonium, Arena et plus encore</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-pandemonium-arena-more-dev-update</link>
+      <guid>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-pandemonium-arena-more-dev-update</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
+    </item>
+  </channel>
+</rss>
