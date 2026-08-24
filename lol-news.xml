@@ -5,7 +5,7 @@
     <link>https://www.leagueoflegends.com/fr-fr/news/</link>
     <description>Actualités officielles françaises de League of Legends.</description>
     <atom:link href="https://shynen.github.io/tensho-cod-rss/lol-news.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Mon, 24 Aug 2026 02:20:26 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2026 03:32:03 GMT</lastBuildDate>
     <item>
       <title>Résumé Dev Update : Classic, ARAM du chaos et plus</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-classic-mayhem-more-dev-update</link>
@@ -35,18 +35,18 @@
       <description>Fêtez la Pride et la communauté avec nous !</description>
     </item>
     <item>
-      <title>/dev : Optimisation maximale des optimisations en ARAM du chaos</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-augmentmaxxing-aram-mayhem</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-augmentmaxxing-aram-mayhem</guid>
-      <pubDate>Wed, 27 May 2026 20:00:00 GMT</pubDate>
-      <description>Encore plus de chaos vous attend à partir de la 26.12 !</description>
-    </item>
-    <item>
       <title>/dev : Le retour du mode Classé 5c5</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-return-of-ranked-5s</link>
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-return-of-ranked-5s</guid>
       <pubDate>Wed, 27 May 2026 20:00:00 GMT</pubDate>
       <description>Nous essayons une nouvelle file classée.</description>
+    </item>
+    <item>
+      <title>/dev : Optimisation maximale des optimisations en ARAM du chaos</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-augmentmaxxing-aram-mayhem</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-augmentmaxxing-aram-mayhem</guid>
+      <pubDate>Wed, 27 May 2026 20:00:00 GMT</pubDate>
+      <description>Encore plus de chaos vous attend à partir de la 26.12 !</description>
     </item>
     <item>
       <title>Résumé Dev Update</title>
