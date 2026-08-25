@@ -5,7 +5,7 @@
     <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/</link>
     <description>Actualités officielles françaises de Teamfight Tactics.</description>
     <atom:link href="https://shynen.github.io/tensho-cod-rss/tft-news.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Tue, 25 Aug 2026 16:10:37 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 25 Aug 2026 17:08:28 GMT</lastBuildDate>
     <item>
       <title>Dev TFT : Leçons de Space Gods</title>
       <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/dev/dev-tft-space-gods-reviewed</link>
@@ -33,13 +33,6 @@
       <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/faq-tft-unreal-migration</guid>
       <pubDate>Fri, 12 Jun 2026 19:00:08 GMT</pubDate>
       <description>TFT is moving to Unreal! Here’s what you need to know, and what you might ask.</description>
-    </item>
-    <item>
-      <title>Fête des 7 ans de TFT</title>
-      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/tft-7-year-bash</link>
-      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/tft-7-year-bash</guid>
-      <pubDate>Wed, 27 May 2026 17:00:00 GMT</pubDate>
-      <description>Pengu organise une fiesta et vous êtes tous invités.</description>
     </item>
   </channel>
 </rss>
