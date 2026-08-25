@@ -5,13 +5,13 @@
     <link>https://www.leagueoflegends.com/fr-fr/news/</link>
     <description>Dernière actualité officielle de League of Legends.</description>
     <atom:link href="https://shynen.github.io/tensho-cod-rss/lol-news-discord.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Tue, 25 Aug 2026 22:19:42 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 25 Aug 2026 22:54:59 GMT</lastBuildDate>
     <item>
-      <title>/dev: League of Legends Classic</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic</guid>
+      <title>Résumé Dev Update : Classic, ARAM du chaos et plus</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-classic-mayhem-more-dev-update</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-classic-mayhem-more-dev-update</guid>
       <pubDate>Tue, 14 Jul 2026 15:00:00 GMT</pubDate>
-      <description>Bon retour parmi nous, invocateurs.</description>
+      <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
     </item>
   </channel>
 </rss>
