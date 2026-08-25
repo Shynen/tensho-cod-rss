@@ -4,7 +4,14 @@
     <title>League of Legends — Patch Notes</title>
     <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/</link>
     <description>Notes de patch officielles françaises de League of Legends.</description>
-    <lastBuildDate>Tue, 25 Aug 2026 17:58:35 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 25 Aug 2026 18:29:30 GMT</lastBuildDate>
+    <item>
+      <title>Notes de patch 26.17</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-17-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-17-notes</guid>
+      <pubDate>Tue, 25 Aug 2026 18:00:00 GMT</pubDate>
+      <description>Arena, ARAM, Faille de l'invocateur, ancienne comme nouvelle... personne n'est à l'abri du changement.</description>
+    </item>
     <item>
       <title>Notes de patch 26.16 de League of Legends</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-16-notes</link>
@@ -137,13 +144,6 @@
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-25-22-notes</guid>
       <pubDate>Tue, 04 Nov 2025 19:00:00 GMT</pubDate>
       <description>Nous partons à Chengdu avec le patch 25.22 !</description>
-    </item>
-    <item>
-      <title>Notes de patch 25.21</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-25-21-notes</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-25-21-notes</guid>
-      <pubDate>Tue, 21 Oct 2025 18:00:00 GMT</pubDate>
-      <description>Le patch 25.21 est ruchement intéressant ! 🐝</description>
     </item>
   </channel>
 </rss>
