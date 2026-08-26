@@ -5,7 +5,7 @@
     <link>https://www.leagueoflegends.com/fr-fr/news/</link>
     <description>Actualités officielles françaises de League of Legends.</description>
     <atom:link href="https://shynen.github.io/tensho-cod-rss/lol-news.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Wed, 26 Aug 2026 16:13:24 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2026 18:15:41 GMT</lastBuildDate>
     <item>
       <title>/dev : le Conseil</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-council</link>
@@ -33,13 +33,6 @@
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/art-spotlight-for-locke</guid>
       <pubDate>Tue, 23 Jun 2026 14:00:00 GMT</pubDate>
       <description>Une collection d'œuvres originales pour célébrer notre nouveau champion</description>
-    </item>
-    <item>
-      <title>Célébrons la Pride 2026 !</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/community/celebrate-pride-2026</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/community/celebrate-pride-2026</guid>
-      <pubDate>Thu, 28 May 2026 17:30:00 GMT</pubDate>
-      <description>Fêtez la Pride et la communauté avec nous !</description>
     </item>
   </channel>
 </rss>
