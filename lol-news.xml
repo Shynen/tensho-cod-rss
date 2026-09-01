@@ -5,7 +5,7 @@
     <link>https://www.leagueoflegends.com/fr-fr/news/</link>
     <description>Actualités officielles françaises de League of Legends.</description>
     <atom:link href="https://shynen.github.io/tensho-cod-rss/lol-news.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Tue, 01 Sep 2026 15:03:14 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 01 Sep 2026 18:18:36 GMT</lastBuildDate>
     <item>
       <title>/dev : le Conseil</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-council</link>
@@ -14,18 +14,18 @@
       <description>À vous de façonner l'avenir de League Classic.</description>
     </item>
     <item>
-      <title>/dev: League of Legends Classic</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic</guid>
-      <pubDate>Tue, 14 Jul 2026 15:00:00 GMT</pubDate>
-      <description>Bon retour parmi nous, invocateurs.</description>
-    </item>
-    <item>
       <title>Résumé Dev Update : Classic, ARAM du chaos et plus</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-classic-mayhem-more-dev-update</link>
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-classic-mayhem-more-dev-update</guid>
       <pubDate>Tue, 14 Jul 2026 15:00:00 GMT</pubDate>
       <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
+    </item>
+    <item>
+      <title>/dev: League of Legends Classic</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-of-legends-classic</guid>
+      <pubDate>Tue, 14 Jul 2026 15:00:00 GMT</pubDate>
+      <description>Bon retour parmi nous, invocateurs.</description>
     </item>
     <item>
       <title>Focus artistique sur Locke</title>
