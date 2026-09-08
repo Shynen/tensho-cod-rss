@@ -5,13 +5,13 @@
     <link>https://www.leagueoflegends.com/fr-fr/news/</link>
     <description>Dernière actualité officielle de League of Legends.</description>
     <atom:link href="https://shynen.github.io/tensho-cod-rss/lol-news-discord.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Tue, 08 Sep 2026 14:03:09 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 08 Sep 2026 17:56:16 GMT</lastBuildDate>
     <item>
-      <title>/dev : le Conseil</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-council</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/dev-the-council</guid>
-      <pubDate>Wed, 26 Aug 2026 15:00:00 GMT</pubDate>
-      <description>À vous de façonner l'avenir de League Classic.</description>
+      <title>Résumé : chat vocal d'équipe, Classic et plus</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/dev/tldw-team-voice-classic-more-dev-update</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/dev/tldw-team-voice-classic-more-dev-update</guid>
+      <pubDate>Tue, 08 Sep 2026 15:00:00 GMT</pubDate>
+      <description>Un petit résumé des changements discutés dans le Dev Update du jour.</description>
     </item>
   </channel>
 </rss>

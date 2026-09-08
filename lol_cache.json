@@ -133,5 +133,10 @@
     "title": "/dev : le Conseil",
     "description": "À vous de façonner l'avenir de League Classic.",
     "pubDate": "Wed, 26 Aug 2026 15:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/tldw-team-voice-classic-more-dev-update": {
+    "title": "Résumé : chat vocal d'équipe, Classic et plus",
+    "description": "Un petit résumé des changements discutés dans le Dev Update du jour.",
+    "pubDate": "Tue, 08 Sep 2026 15:00:00 GMT"
   }
 }
