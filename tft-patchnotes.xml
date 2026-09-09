@@ -4,7 +4,14 @@
     <title>Teamfight Tactics — Patch Notes</title>
     <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/</link>
     <description>Notes de patch officielles françaises de Teamfight Tactics.</description>
-    <lastBuildDate>Wed, 09 Sep 2026 18:16:18 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 09 Sep 2026 21:07:28 GMT</lastBuildDate>
+    <item>
+      <title>Notes de patch 18.2 de TFT</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-18-2</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-18-2</guid>
+      <pubDate>Wed, 09 Sep 2026 18:00:00 GMT</pubDate>
+      <description>It’s the first main patch of Enchanted Wilds and we’ve got a patch full of buffs and cost reductions for Wisps.</description>
+    </item>
     <item>
       <title>Notes de patch 18.1 de TFT</title>
       <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-18-1</link>
@@ -137,13 +144,6 @@
       <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-15-9-notes</guid>
       <pubDate>Tue, 18 Nov 2025 19:00:00 GMT</pubDate>
       <description>Choncc’s Treasure returns with our final patch of the set before Lore &amp; Legends goes live on December 3rd with patch 16.1!</description>
-    </item>
-    <item>
-      <title>Notes de patch 15.8 de Teamfight Tactics</title>
-      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-15-8-notes</link>
-      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-15-8-notes</guid>
-      <pubDate>Tue, 04 Nov 2025 19:00:00 GMT</pubDate>
-      <description>Petit patch d'équilibrage pour la Tactician's Crown et un plus gros pour Royaumes inconnus.</description>
     </item>
   </channel>
 </rss>
