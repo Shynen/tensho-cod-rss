@@ -5,7 +5,7 @@
     <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/</link>
     <description>Actualités officielles françaises de Teamfight Tactics.</description>
     <atom:link href="https://shynen.github.io/tensho-cod-rss/tft-news.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Thu, 10 Sep 2026 18:41:40 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 10 Sep 2026 21:23:05 GMT</lastBuildDate>
     <item>
       <title>Dev TFT : Leçons de Space Gods</title>
       <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/dev/dev-tft-space-gods-reviewed</link>
@@ -26,13 +26,6 @@
       <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/announcements/celebrate-tft-and-riftbound-at-convergence-fest</guid>
       <pubDate>Fri, 10 Jul 2026 13:00:00 GMT</pubDate>
       <description>Rejoignez-nous du 11 au 13 décembre pour vivre une expérience communautaire inoubliable à Las Vegas.</description>
-    </item>
-    <item>
-      <title>FAQ Migration de TFT vers Unreal</title>
-      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/faq-tft-unreal-migration</link>
-      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/faq-tft-unreal-migration</guid>
-      <pubDate>Fri, 12 Jun 2026 19:00:08 GMT</pubDate>
-      <description>TFT is moving to Unreal! Here’s what you need to know, and what you might ask.</description>
     </item>
   </channel>
 </rss>
