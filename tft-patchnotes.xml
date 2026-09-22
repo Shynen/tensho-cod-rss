@@ -4,7 +4,14 @@
     <title>Teamfight Tactics — Patch Notes</title>
     <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/</link>
     <description>Notes de patch officielles françaises de Teamfight Tactics.</description>
-    <lastBuildDate>Tue, 22 Sep 2026 17:33:44 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 22 Sep 2026 20:27:31 GMT</lastBuildDate>
+    <item>
+      <title>Notes de patch 18.3 de TFT</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-18-3</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-18-3</guid>
+      <pubDate>Tue, 22 Sep 2026 18:00:00 GMT</pubDate>
+      <description>18.3 is a smaller patch with sharper changes to Champs/Traits and broader buffs to combat Augments</description>
+    </item>
     <item>
       <title>Notes de patch 18.2 de TFT</title>
       <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-18-2</link>
@@ -137,13 +144,6 @@
       <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-1</guid>
       <pubDate>Tue, 02 Dec 2025 19:00:00 GMT</pubDate>
       <description>Déverrouillez une infinité de compos avec le nouveau set : Lore &amp; Legends !</description>
-    </item>
-    <item>
-      <title>Notes de patch 15.9 de Teamfight Tactics</title>
-      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-15-9-notes</link>
-      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-15-9-notes</guid>
-      <pubDate>Tue, 18 Nov 2025 19:00:00 GMT</pubDate>
-      <description>Choncc’s Treasure returns with our final patch of the set before Lore &amp; Legends goes live on December 3rd with patch 16.1!</description>
     </item>
   </channel>
 </rss>
