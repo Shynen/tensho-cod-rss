@@ -4,7 +4,14 @@
     <title>League of Legends — Patch Notes</title>
     <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/</link>
     <description>Notes de patch officielles françaises de League of Legends.</description>
-    <lastBuildDate>Tue, 06 Oct 2026 13:51:46 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 06 Oct 2026 19:18:33 GMT</lastBuildDate>
+    <item>
+      <title>Notes de patch 26.20 de League of Legends</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-20-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-20-notes</guid>
+      <pubDate>Tue, 06 Oct 2026 18:00:00 GMT</pubDate>
+      <description>Bzz bzz dring : le patch des Worlds est là ! Au programme : de nombreux d'ajustements pour les pros, l'arrivée de nouveaux champions dans le mode Classic, et des nouvelles de notre groupe préféré : HEARTSTEEL.</description>
+    </item>
     <item>
       <title>Notes de patch 26.19 de League of Legends</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-19-notes</link>
@@ -137,13 +144,6 @@
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-26-1-notes</guid>
       <pubDate>Wed, 07 Jan 2026 19:00:00 GMT</pubDate>
       <description>Demacia rises in Patch 26.1 🛡️</description>
-    </item>
-    <item>
-      <title>Notes de patch 25.24</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-25-24-notes</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-25-24-notes</guid>
-      <pubDate>Tue, 02 Dec 2025 19:00:00 GMT</pubDate>
-      <description>Le dernier patch de l'année, le 25.24, est là !</description>
     </item>
   </channel>
 </rss>
