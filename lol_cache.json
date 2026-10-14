@@ -138,5 +138,10 @@
     "title": "Résumé : chat vocal d'équipe, Classic et plus",
     "description": "Un petit résumé des changements discutés dans le Dev Update du jour.",
     "pubDate": "Tue, 08 Sep 2026 15:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/dev-league-classic": {
+    "title": "/dev : League Classic",
+    "description": "Ce qui change dans League Classic.",
+    "pubDate": "Wed, 14 Oct 2026 17:00:00 GMT"
   }
 }
