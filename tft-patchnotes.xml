@@ -4,7 +4,14 @@
     <title>Teamfight Tactics — Patch Notes</title>
     <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/</link>
     <description>Notes de patch officielles françaises de Teamfight Tactics.</description>
-    <lastBuildDate>Wed, 21 Oct 2026 06:17:04 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2026 20:52:52 GMT</lastBuildDate>
+    <item>
+      <title>Notes de patch 18.5 de TFT</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-18-5</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-18-5</guid>
+      <pubDate>Tue, 20 Oct 2026 18:00:00 GMT</pubDate>
+      <description>18.5 follows up on the larger 18.4 changes with more precise adjustments and buffs to underperforming champions.</description>
+    </item>
     <item>
       <title>Notes de patch 18.4 de TFT</title>
       <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-18-4</link>
@@ -137,13 +144,6 @@
       <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-3</guid>
       <pubDate>Wed, 21 Jan 2026 19:00:00 GMT</pubDate>
       <description>Patch 16.3 comes with system changes like XP, unlock conditions and balance changes!</description>
-    </item>
-    <item>
-      <title>Notes de patch 16.2 de TFT</title>
-      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-2</link>
-      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-2</guid>
-      <pubDate>Wed, 07 Jan 2026 19:00:00 GMT</pubDate>
-      <description>New year, new patch, new Opening Encounters, balance changes, buffs, and more!</description>
     </item>
   </channel>
 </rss>
