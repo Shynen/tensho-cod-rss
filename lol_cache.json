@@ -143,5 +143,10 @@
     "title": "/dev : League Classic",
     "description": "Ce qui change dans League Classic.",
     "pubDate": "Wed, 14 Oct 2026 17:00:00 GMT"
+  },
+  "https://www.leagueoflegends.com/fr-fr/news/dev/dev-mel-midscope": {
+    "title": "/dev : MàJ de moyenne ampleur de Mel",
+    "description": "Nous mettons à jour Mel, voici comment et pourquoi.",
+    "pubDate": "Tue, 20 Oct 2026 17:00:00 GMT"
   }
 }
