@@ -4,7 +4,14 @@
     <title>League of Legends — Patch Notes</title>
     <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/</link>
     <description>Notes de patch officielles françaises de League of Legends.</description>
-    <lastBuildDate>Wed, 21 Oct 2026 20:52:32 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 22 Oct 2026 02:33:20 GMT</lastBuildDate>
+    <item>
+      <title>Notes de patch 26.21</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-21-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-21-notes</guid>
+      <pubDate>Tue, 20 Oct 2026 18:00:00 GMT</pubDate>
+      <description>True Damage arrive avec style ! Des tas de nouveautés dans les modes FI, ARAM du chaos, Classic et Arena.</description>
+    </item>
     <item>
       <title>Notes de patch 26.20 de League of Legends</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-20-notes</link>
@@ -137,13 +144,6 @@
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-26-2-notes</guid>
       <pubDate>Wed, 21 Jan 2026 19:00:00 GMT</pubDate>
       <description>Patch 26.2 ready to deploy!</description>
-    </item>
-    <item>
-      <title>Notes de patch 26.1</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-26-1-notes</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-26-1-notes</guid>
-      <pubDate>Wed, 07 Jan 2026 19:00:00 GMT</pubDate>
-      <description>Demacia rises in Patch 26.1 🛡️</description>
     </item>
   </channel>
 </rss>
