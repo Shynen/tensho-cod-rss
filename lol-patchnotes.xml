@@ -4,7 +4,14 @@
     <title>League of Legends — Patch Notes</title>
     <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/</link>
     <description>Notes de patch officielles françaises de League of Legends.</description>
-    <lastBuildDate>Tue, 17 Nov 2026 10:58:25 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 17 Nov 2026 19:33:55 GMT</lastBuildDate>
+    <item>
+      <title>League of Legends Patch 26.23 Notes</title>
+      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-23-notes</link>
+      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-23-notes</guid>
+      <pubDate>Tue, 17 Nov 2026 19:00:00 GMT</pubDate>
+      <description>Winter map returns, balance updates galore, and a little musical Mayhem.</description>
+    </item>
     <item>
       <title>Notes de patch 26.22 de League of Legends</title>
       <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-22-notes</link>
@@ -137,13 +144,6 @@
       <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/league-of-legends-patch-26-4-notes</guid>
       <pubDate>Wed, 18 Feb 2026 19:00:00 GMT</pubDate>
       <description>Happy Lunar Revel, welcome to patch 26.4!</description>
-    </item>
-    <item>
-      <title>Notes de patch 26.3</title>
-      <link>https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-26-3-notes</link>
-      <guid isPermaLink="true">https://www.leagueoflegends.com/fr-fr/news/game-updates/patch-26-3-notes</guid>
-      <pubDate>Tue, 03 Feb 2026 19:00:00 GMT</pubDate>
-      <description>Célébrez la nouvelle année et plongez-vous dans le patch 26.3 🎊</description>
     </item>
   </channel>
 </rss>
