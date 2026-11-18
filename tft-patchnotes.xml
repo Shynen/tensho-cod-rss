@@ -4,7 +4,14 @@
     <title>Teamfight Tactics — Patch Notes</title>
     <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/</link>
     <description>Notes de patch officielles françaises de Teamfight Tactics.</description>
-    <lastBuildDate>Wed, 18 Nov 2026 09:32:41 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 18 Nov 2026 18:22:50 GMT</lastBuildDate>
+    <item>
+      <title>Notes de patch 18.7 de TFT</title>
+      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-18-7</link>
+      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-18-7</guid>
+      <pubDate>Tue, 17 Nov 2026 19:00:00 GMT</pubDate>
+      <description>Voici le dernier patch d'Enchanted Wilds avant que TFT entame son Prismatic Tour ! Cette fois on se lâche, avec des compositions délirantes qui voient enfin le jour, et d'anciennes puissantes compositions qui retrouvent leur gloire d'antan.</description>
+    </item>
     <item>
       <title>Notes de patch 18.6 de TFT</title>
       <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-18-6</link>
@@ -137,13 +144,6 @@
       <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-5</guid>
       <pubDate>Wed, 18 Feb 2026 19:00:00 GMT</pubDate>
       <description>We’re past the halfway mark with Lore &amp; Legends and we’re focusing on more specific balance changes.</description>
-    </item>
-    <item>
-      <title>Notes de patch 16.4 de TFT</title>
-      <link>https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-4</link>
-      <guid isPermaLink="true">https://teamfighttactics.leagueoflegends.com/fr-fr/news/game-updates/teamfight-tactics-patch-16-4</guid>
-      <pubDate>Tue, 03 Feb 2026 19:00:00 GMT</pubDate>
-      <description>Le patch 16.4 introduit des optimisations, des ajustements aux niveaux et des modifs d'équilibrage.</description>
     </item>
   </channel>
 </rss>
